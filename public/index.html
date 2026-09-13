@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQRMVZFLMV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JQRMVZFLMV');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flourish Management LLC | Strategic Capital for Long-Term Growth</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Flourish Management LLC manages a diversified portfolio across three primary verticals: strategic real estate acquisitions, capital markets with options-based hedging, and venture capital for growth-stage startups. We partner with founders and VC managers to drive resilient, non-correlated returns.">
+  <meta name="keywords" content="Flourish Management, Flourish Management LLC, Venture Capital, Real Estate acquisitions, Capital Markets, options hedging, physical assets, startup funding, private equity, investment holding company, strategic capital">
+  <link rel="canonical" href="https://flourishmgmt.com/">
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <!-- Open Graph / Facebook / LinkedIn Sharing Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flourishmgmt.com/">
+  <meta property="og:title" content="Flourish Management LLC | Private Investment Holding Company">
+  <meta property="og:description" content="Deploying capital across strategic real estate, options-hedged capital markets, and growth-stage venture capital. Partner with us for resilient, non-correlated returns.">
+  <meta property="og:image" content="https://flourishmgmt.com/logo.png">
+
+  <!-- Twitter Card Sharing Cards -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://flourishmgmt.com/">
+  <meta property="twitter:title" content="Flourish Management LLC | Private Investment Holding Company">
+  <meta property="twitter:description" content="Deploying capital across strategic real estate, options-hedged capital markets, and growth-stage venture capital. Partner with us for resilient, non-correlated returns.">
+  <meta property="twitter:image" content="https://flourishmgmt.com/logo.png">
+
+  <!-- Schema.org JSON-LD Structured Data (For Google Rich Search Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "InvestmentOrFinanceService",
+    "name": "Flourish Management LLC",
+    "alternateName": "Flourish Management",
+    "url": "https://flourishmgmt.com",
+    "logo": "https://flourishmgmt.com/logo.png",
+    "description": "Flourish Management LLC is an elite private investment holding company deploying capital across three primary verticals: physical real estate, options-hedged capital markets, and growth-stage venture capital investments.",
+    "telephone": "+1-424-703-3332",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "founder": [
+      {
+        "@type": "Person",
+        "name": "General Partners"
+      }
+    ],
+    "areaServed": "US",
+    "knowsAbout": ["Venture Capital", "Real Estate Investments", "Capital Markets Hedging", "Wealth Management"]
+  }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans for UI/Body, DM Serif Display for Titles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Tailwind Configuration to Match Logo Colors (Midnight Navy, Slate/Steel Blue and Warm Cream/Beige) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: {
+              light: '#F0F4F8',      // Extremely soft ice blue / light grey-blue
+              pastel: '#E1E8F0',     // Calm light pastel blue
+              accent: '#A5B8D1',     // Muted steel blue accent
+              DEFAULT: '#3B6290',    // Primary mid-tone corporate slate blue
+              dark: '#1A365D',       // Luxurious deep midnight navy
+              darker: '#0A192F'      // Extremely rich dark navy background
+            },
+            cream: {
+              light: '#FCFBF8',      // Soft paper white
+              DEFAULT: '#FAF7F2',    // Elegant warm cream
+              dark: '#F0EADF',       // Sand beige
+              accent: '#DFD2C2'      // Warm linen outline
+            },
+            slate: {
+              light: '#8C9BA5',      // Soft blue-grey
+              DEFAULT: '#4A5560',    // Muted charcoal blue
+              dark: '#1A212D'        // Rich dark slate
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"DM Serif Display"', 'serif'],
+          },
+          borderRadius: {
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- CSS Custom Utility Styles for Scroll Animations & Mesh Gradient -->
+  <style>
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-on-scroll.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Elegant Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FCFBF8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #A5B8D1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7B96BC;
+    }
+
+    /* Slow Cinematic Floating Animations for Glassmorphism Mesh Gradient */
+    @keyframes float-slow-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(80px, -60px) scale(1.15); }
+    }
+    @keyframes float-slow-2 {
+      0%, 100% { transform: translate(0, 0) scale(1.1); }
+      50% { transform: translate(-70px, 80px) scale(0.85); }
+    }
+    @keyframes float-slow-3 {
+      0%, 100% { transform: translate(0, 0) scale(0.95); }
+      50% { transform: translate(60px, 90px) scale(1.1); }
+    }
+    .animate-float-1 {
+      animation: float-slow-1 22s infinite ease-in-out;
+    }
+    .animate-float-2 {
+      animation: float-slow-2 28s infinite ease-in-out;
+    }
+    .animate-float-3 {
+      animation: float-slow-3 34s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-cream-light text-slate-dark font-sans leading-relaxed selection:bg-sage-accent selection:text-sage-darker">
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-sage-darker/95 backdrop-blur-md shadow-md text-white border-b border-sage-dark/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+      <!-- Logo Container -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <img src="logo.png" alt="Flourish Management LLC Logo" class="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-10 text-sm font-medium tracking-wide">
+        <a href="#" class="hover:text-sage-accent transition-colors duration-200">HOME</a>
+        <a href="#about" class="hover:text-sage-accent transition-colors duration-200">ABOUT US</a>
+        <a href="#philosophy" class="hover:text-sage-accent transition-colors duration-200">OUR FOCUS AREAS</a>
+        <a href="#contact" class="hover:text-sage-accent transition-colors duration-200">CONTACT</a>
+      </nav>
+
+      <!-- Primary CTA Button (Desktop) -->
+      <div class="hidden lg:block">
+        <a href="#contact" class="bg-white hover:bg-cream-dark text-sage-dark font-semibold text-sm px-6 py-2.5 rounded-full shadow-sm hover:shadow transition-all duration-200">
+          Get in Touch
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-white focus:outline-none" aria-label="Toggle Mobile Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-sage-dark border-t border-sage-dark/30">
+      <div class="px-6 py-4 space-y-4 text-center font-medium">
+        <a href="#" class="block text-white hover:text-sage-accent py-2 transition-colors">HOME</a>
+        <a href="#about" class="block text-white hover:text-sage-accent py-2 transition-colors">ABOUT US</a>
+        <a href="#philosophy" class="block text-white hover:text-sage-accent py-2 transition-colors">OUR FOCUS AREAS</a>
+        <a href="#contact" class="block text-white hover:text-sage-accent py-2 transition-colors">CONTACT</a>
+        <a href="#contact" class="inline-block w-full bg-white hover:bg-cream-dark text-sage-dark py-2.5 rounded-full font-semibold transition-all">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO SECTION
+       ========================================== -->
+  <section class="relative min-h-screen lg:min-h-0 pt-24 pb-12 lg:pt-32 lg:pb-24 flex items-center bg-[#070F21] text-white overflow-hidden">
+    <!-- Sophisticated Background Animated Mesh Gradients -->
+    <div class="absolute inset-0 z-0 bg-[#070F21]">
+      <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-[#1E3A8A]/40 rounded-full animate-float-1" style="filter: blur(90px); -webkit-filter: blur(90px);"></div>
+      <div class="absolute bottom-[-15%] right-[-10%] w-[55vw] h-[60vw] bg-[#3B82F6]/25 rounded-full animate-float-2" style="filter: blur(100px); -webkit-filter: blur(100px);"></div>
+      <div class="absolute top-[20%] right-[10%] w-[50vw] h-[55vw] bg-[#60A5FA]/15 rounded-full animate-float-3" style="filter: blur(80px); -webkit-filter: blur(80px);"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-16 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <!-- Slogan & Text Content -->
+      <div class="lg:col-span-7 space-y-6 lg:space-y-8">
+        <div class="inline-flex items-center space-x-2 bg-sage/20 border border-sage-accent/30 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-sage-accent">
+          <span>PRIVATE INVESTMENT HOLDING COMPANY</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif leading-tight tracking-wide">
+          Flourish Management LLC is an investment holding company specializing in real estate, financial instruments, and venture capital.
+        </h1>
+        
+        <p class="text-base sm:text-lg text-sage-light/80 font-normal max-w-xl">
+          We manage a diversified portfolio across three primary verticals: strategic real estate acquisitions, capital markets with options-based hedging, and venture capital for growth-stage startups.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+          <a href="#philosophy" class="w-full sm:w-auto text-center bg-white hover:bg-cream-dark text-sage-dark font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300">
+            Our Investment Pillars
+          </a>
+          <a href="#about" class="w-full sm:w-auto text-center border border-white/30 hover:border-white hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300">
+            Company Profile
+          </a>
+        </div>
+      </div>
+
+      <!-- Modern Interactive / Stat Graphic Panel -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-md bg-sage-dark/40 border border-sage-accent/20 rounded-4xl p-8 backdrop-blur-md shadow-2xl">
+          <div class="absolute -top-6 -right-6 w-16 h-16 bg-cream-accent/20 rounded-full blur-md"></div>
+          <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-sage-accent/20 rounded-full blur-md"></div>
+          
+          <div class="space-y-6">
+            <div class="flex items-center space-x-4 border-b border-sage/20 pb-4">
+              <span class="p-3 bg-white/10 text-sage-accent rounded-2xl">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </span>
+              <div>
+                <h4 class="text-sm font-bold uppercase tracking-wider text-sage-accent">Investment Strategy</h4>
+                <p class="text-xs text-sage-light/70">"Strategic capital for long-term growth"</p>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="flex justify-between items-center bg-white/5 rounded-2xl p-4 border border-white/5">
+                <span class="text-sm font-semibold">Real Estate & Assets</span>
+                <span class="text-xs text-sage-accent font-mono">Bedrock Stability</span>
+              </div>
+              <div class="flex justify-between items-center bg-white/5 rounded-2xl p-4 border border-white/5">
+                <span class="text-sm font-semibold">Capital Markets</span>
+                <span class="text-xs text-sage-accent font-mono">Options-Hedged Alpha</span>
+              </div>
+              <div class="flex justify-between items-center bg-white/5 rounded-2xl p-4 border border-white/5">
+                <span class="text-sm font-semibold">Venture Capital</span>
+                <span class="text-xs text-sage-accent font-mono">Future Growth</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-center text-sage-light/60 italic">
+              Empowering long-term value and non-correlated returns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Down indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-65 hover:opacity-100 transition-opacity">
+      <span class="text-[10px] tracking-widest font-semibold uppercase text-sage-accent">Discover</span>
+      <div class="w-6 h-10 border-2 border-sage-accent rounded-full flex justify-center p-1">
+        <div class="w-1.5 h-1.5 bg-sage-accent rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       INVESTMENT PHILOSOPHY (OUR FOCUS AREAS)
+       ========================================== -->
+  <section id="philosophy" class="py-24 lg:py-32 bg-cream">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-sage">OUR PHILOSOPHY</span>
+        <h2 class="text-4xl font-serif text-sage-dark">Exceptional Investments. Diversified Growth. Managed Risk.</h2>
+        <p class="text-slate font-medium">
+          At Flourish Management LLC, we employ a multi-asset approach designed to capture alpha across diverse market cycles. Our strategy is built on three pillars:
+        </p>
+      </div>
+
+      <!-- Core Pillars Grid -->
+      <div class="grid md:grid-cols-3 gap-8 reveal-on-scroll">
+        
+        <!-- Pillar 1: Capital Markets -->
+        <div class="bg-cream-light border border-cream-accent/50 rounded-4xl p-8 hover:shadow-2xl hover:border-[#3B6290]/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group min-h-[520px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 bg-[#1A365D]/10 text-[#1A365D] rounded-3xl flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Hedged Alpha</span>
+            </div>
+            
+            <h3 class="text-2xl font-serif text-slate-dark mb-4">Precision in Markets</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6">
+              We actively manage a portfolio of equities, fixed income, and options, utilizing sophisticated options-based hedging strategies to mitigate downside risk, generate income, and preserve capital in volatile climates.
+            </p>
+          </div>
+
+          <!-- Statically Integrated Micro-Metrics Dashboard -->
+          <div class="bg-cream border border-cream-accent/60 rounded-3xl p-5 mt-auto flex items-center space-x-5 shadow-inner">
+            <!-- Left Side: Minimal vector SVG preview -->
+            <div class="w-20 h-20 bg-slate-900 rounded-2xl flex items-center justify-center p-2 border border-slate-800 shrink-0 shadow-md">
+              <svg class="w-full h-full" viewBox="0 0 200 80">
+                <line x1="10" y1="70" x2="190" y2="70" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+                <!-- Hedged Collar curve (glowing light blue) -->
+                <path d="M 20 60 L 70 60 L 140 25 L 180 25" fill="none" stroke="#38BDF8" stroke-width="3.5" class="drop-shadow-[0_0_4px_rgba(56,189,248,0.5)]" />
+                <circle cx="70" cy="60" r="5" fill="#38BDF8" />
+                <circle cx="140" cy="25" r="5" fill="#38BDF8" />
+              </svg>
+            </div>
+            <!-- Right Side: Structured high-contrast parameters -->
+            <div class="flex-1 space-y-1 text-xs font-mono">
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">Downside Floor:</span>
+                <span class="text-emerald-600 font-extrabold">-5.0% Limit</span>
+              </div>
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">Target Yield:</span>
+                <span class="text-slate-dark font-extrabold">6.0%-8.5%</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate font-bold">Beta Target:</span>
+                <span class="text-slate-dark font-extrabold">0.35 (Low)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Real Estate -->
+        <div class="bg-cream-light border border-cream-accent/50 rounded-4xl p-8 hover:shadow-2xl hover:border-[#3B6290]/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group min-h-[520px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 bg-[#1A365D]/10 text-[#1A365D] rounded-3xl flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H5a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+              </div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Core Tangibles</span>
+            </div>
+            
+            <h3 class="text-2xl font-serif text-slate-dark mb-4">Tangible Value</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6">
+              We invest in high-yield real estate opportunities that provide both defensive cash-flow stability and long-term asset appreciation. We focus on undervalued acquisitions across residential and commercial sectors.
+            </p>
+          </div>
+
+          <!-- Statically Integrated Micro-Metrics Dashboard -->
+          <div class="bg-cream border border-cream-accent/60 rounded-3xl p-5 mt-auto flex items-center space-x-5 shadow-inner">
+            <!-- Left Side: Minimal vector SVG preview -->
+            <div class="w-20 h-20 bg-slate-900 rounded-2xl flex items-center justify-center p-2 border border-slate-800 shrink-0 shadow-md">
+              <svg class="w-full h-full" viewBox="0 0 200 80">
+                <circle cx="100" cy="40" r="22" fill="none" stroke="#38BDF8" stroke-dasharray="3,3" class="opacity-75 animate-[spin_10s_linear_infinite]" />
+                <circle cx="100" cy="40" r="5" fill="#38BDF8" />
+              </svg>
+            </div>
+            <!-- Right Side: Structured parameters -->
+            <div class="flex-1 space-y-1 text-xs font-mono">
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">Target IRR:</span>
+                <span class="text-slate-dark font-extrabold">15.5%-18.0%</span>
+              </div>
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">LTV Limit:</span>
+                <span class="text-slate-dark font-extrabold">65% Max</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate font-bold">Markets:</span>
+                <span class="text-slate-dark font-extrabold">Multifamily</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Venture Capital -->
+        <div class="bg-cream-light border border-cream-accent/50 rounded-4xl p-8 hover:shadow-2xl hover:border-[#3B6290]/50 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between relative overflow-hidden group min-h-[520px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 bg-[#1A365D]/10 text-[#1A365D] rounded-3xl flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Future Growth</span>
+            </div>
+            
+            <h3 class="text-2xl font-serif text-slate-dark mb-4">Future-forward Capital</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6">
+              We partner with visionary founders from Seed to Series A stages, supporting them with capital and mentorship. We also strategically invest as limited partners in top-tier venture funds.
+            </p>
+          </div>
+
+          <!-- Statically Integrated Micro-Metrics Dashboard -->
+          <div class="bg-cream border border-cream-accent/60 rounded-3xl p-5 mt-auto flex items-center space-x-5 shadow-inner">
+            <!-- Left Side: Minimal vector SVG preview -->
+            <div class="w-20 h-20 bg-slate-900 rounded-2xl flex items-center justify-center p-2 border border-slate-800 shrink-0 shadow-md">
+              <svg class="w-14 h-14" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="5" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#3B6290" stroke-width="5" stroke-dasharray="55 45" stroke-dashoffset="25" />
+                <circle cx="18" cy="18" r="15.915" fill="none" stroke="#38BDF8" stroke-width="5" stroke-dasharray="45 55" stroke-dashoffset="80" class="drop-shadow-[0_0_4px_rgba(56,189,248,0.5)]" />
+              </svg>
+            </div>
+            <!-- Right Side: Structured parameters -->
+            <div class="flex-1 space-y-1 text-xs font-mono">
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">Co-Invest:</span>
+                <span class="text-slate-dark font-extrabold">45% Alloc.</span>
+              </div>
+              <div class="flex justify-between border-b border-cream-accent/30 pb-1">
+                <span class="text-slate font-bold">VC LP Alloc:</span>
+                <span class="text-slate-dark font-extrabold">55% Alloc.</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate font-bold">Stage Scope:</span>
+                <span class="text-slate-dark font-extrabold">Seed - Ser A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CAPITAL ALLOCATION & DUE DILIGENCE PROCESS TIMELINE
+       ========================================== -->
+  <section class="py-24 lg:py-32 bg-cream-light border-t border-cream-accent/30 relative overflow-hidden">
+    <!-- Subtle architectural grid lines in background -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <!-- Section Header -->
+      <div class="max-w-3xl mx-auto text-center mb-20 space-y-4 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-[#3B6290]">Institutional Rigor</span>
+        <h2 class="text-4xl lg:text-5xl font-serif text-slate-dark">Our Capital Allocation & Underwriting Process</h2>
+        <p class="text-slate font-medium text-base">
+          We combine proprietary deal flow with quantitative hedging to isolate upside returns while strictly safeguarding investor capital against market volatility.
+        </p>
+      </div>
+
+      <!-- Process Timeline Cards -->
+      <div class="grid md:grid-cols-4 gap-8 relative reveal-on-scroll">
+        <!-- Connecting Line (Desktop) -->
+        <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#A5B8D1]/20 via-[#3B6290]/40 to-[#A5B8D1]/20 -translate-y-12 z-0"></div>
+
+        <!-- Step 1 -->
+        <div class="bg-cream border border-cream-accent/50 rounded-3xl p-6 relative z-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[300px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-4xl font-serif font-bold text-[#A5B8D1]/35">01</span>
+              <span class="p-3 bg-[#E1E8F0] text-[#1A365D] rounded-2xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </span>
+            </div>
+            <h4 class="text-lg font-serif font-bold text-slate-dark mb-2">Identify & Source</h4>
+            <p class="text-xs text-slate leading-relaxed">
+              We leverage proprietary networks, real estate associations, and founder ecosystems to secure high-quality, off-market investment opportunities before they reach public markets.
+            </p>
+          </div>
+          <div class="text-[9px] font-mono text-[#3B6290] tracking-wider uppercase font-semibold">Deal Sourcing Phase</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-cream border border-cream-accent/50 rounded-3xl p-6 relative z-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[300px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-4xl font-serif font-bold text-[#A5B8D1]/35">02</span>
+              <span class="p-3 bg-[#E1E8F0] text-[#1A365D] rounded-2xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </span>
+            </div>
+            <h4 class="text-lg font-serif font-bold text-slate-dark mb-2">Stress-Test & Underwrite</h4>
+            <p class="text-xs text-slate leading-relaxed">
+              Every asset is subjected to rigorous quantitative underwriting. We stress-test cash flows against worst-case macroeconomic variables, rising interest rates, and localized risk profiles.
+            </p>
+          </div>
+          <div class="text-[9px] font-mono text-[#3B6290] tracking-wider uppercase font-semibold">Quantitative Modeling</div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-cream border border-cream-accent/50 rounded-3xl p-6 relative z-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[300px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-4xl font-serif font-bold text-[#A5B8D1]/35">03</span>
+              <span class="p-3 bg-[#E1E8F0] text-[#1A365D] rounded-2xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </span>
+            </div>
+            <h4 class="text-lg font-serif font-bold text-slate-dark mb-2">Hedged Structuring</h4>
+            <p class="text-xs text-slate leading-relaxed">
+              We structure acquisitions using protective covenants and options-based collars. By engineering a firm downside floor, we isolate equity appreciation from market turbulence.
+            </p>
+          </div>
+          <div class="text-[9px] font-mono text-[#3B6290] tracking-wider uppercase font-semibold">Downside Mitigation</div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-cream border border-cream-accent/50 rounded-3xl p-6 relative z-10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-[300px]">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-4xl font-serif font-bold text-[#A5B8D1]/35">04</span>
+              <span class="p-3 bg-[#E1E8F0] text-[#1A365D] rounded-2xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </span>
+            </div>
+            <h4 class="text-lg font-serif font-bold text-slate-dark mb-2">Active Compound Growth</h4>
+            <p class="text-xs text-slate leading-relaxed">
+              Post-allocation, we maintain tight operational oversight. Cash flows are dynamically re-routed and compiled to yield non-correlated, compounding long-term returns.
+            </p>
+          </div>
+          <div class="text-[9px] font-mono text-[#3B6290] tracking-wider uppercase font-semibold">Active Compounding</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       ABOUT US SECTION (COMPANY PROFILE)
+       ========================================== -->
+  <section id="about" class="py-24 lg:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid md:grid-cols-12 gap-16 items-center">
+      
+      <!-- Text profile -->
+      <div class="md:col-span-6 space-y-6 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-sage">COMPANY PROFILE</span>
+        <h2 class="text-4xl lg:text-5xl font-serif text-sage-dark leading-tight">Decades of Investment Synergies.</h2>
+        <p class="text-base text-slate leading-relaxed">
+          Flourish Management LLC is a private investment holding company dedicated to long-term value creation through a sophisticated multi-asset approach. Headquartered at the intersection of traditional stability and modern innovation, we deploy capital across real-estate, global financial markets, and high-growth venture ecosystems. Our mission is to achieve superior risk-adjusted returns by balancing foundational assets with visionary equity.
+        </p>
+        <p class="text-base text-slate leading-relaxed">
+          We do not believe in siloed investing. Our philosophy is rooted in the synergy between different asset classes. By integrating the cash-flow stability of real estate with the liquidity of financial markets and the exponential upside of venture capital, we create a robust, non-correlated investment ecosystem.
+        </p>
+        <blockquote class="border-l-4 border-sage-accent pl-6 py-1 italic font-serif text-lg text-sage-dark">
+          "Risk is not avoided; it is managed. Through disciplined hedging and diverse allocation, we transform market volatility into strategic opportunity."
+        </blockquote>
+      </div>
+
+      <!-- Stats counter boxes -->
+      <div class="md:col-span-6 grid grid-cols-2 gap-6 reveal-on-scroll">
+        <!-- Stat 1 -->
+        <div class="bg-cream p-8 rounded-4xl border border-cream-accent/30 flex flex-col justify-center space-y-3">
+          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">15</div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate">Years Experience</p>
+        </div>
+        <!-- Stat 2 -->
+        <div class="bg-sage-pastel p-8 rounded-4xl border border-sage-accent/20 flex flex-col justify-center space-y-3">
+          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">28</div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate">Current Investments</p>
+        </div>
+        <!-- Stat 3 -->
+        <div class="bg-sage-pastel p-8 rounded-4xl border border-sage-accent/20 flex flex-col justify-center space-y-3">
+          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">6</div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate">Specialist Industries</p>
+        </div>
+        <!-- Stat 4 -->
+        <div class="bg-cream p-8 rounded-4xl border border-cream-accent/30 flex flex-col justify-center space-y-3">
+          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">4</div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate">Experienced Partners</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       WHY CHOOSE FLOURISH SECTION
+       ========================================== -->
+  <section class="py-24 lg:py-32 bg-cream-light">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-sage">PARTNERSHIP VALUE</span>
+        <h2 class="text-4xl font-serif text-sage-dark">Why Choose Flourish?</h2>
+        <p class="text-slate">
+          We serve as a trusted bridge between capital and premium opportunities.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
+        
+        <!-- Reason 1 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Expertise in Multi-Assets</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            In-depth strategic leadership across Real Estate, sophisticated Capital Market Instruments, and deep Venture Capital ecosystems.
+          </p>
+        </div>
+
+        <!-- Reason 2 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Educated yet Bold Approach</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            A fearless investment mindset backed by rigorous data-driven analysis and quantitative risk-mitigating options hedging.
+          </p>
+        </div>
+
+        <!-- Reason 3 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Decades of Management</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            Led by multi-cycle veteran fund managers who understand how to structure assets to preserve wealth through economic shifts.
+          </p>
+        </div>
+
+        <!-- Reason 4 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Nurturing Startup Growth</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            Active strategic mentorship, key industry networking, and seed funding support directly to visionary founders.
+          </p>
+        </div>
+
+        <!-- Reason 5 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2.5M15 13H17.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Global Investment Reach</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            Sourcing opportunities internationally, spanning diversified markets, asset types, and geographic growth regions.
+          </p>
+        </div>
+
+        <!-- Reason 6 -->
+        <div class="bg-white p-8 rounded-3xl border border-cream-accent/30 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 bg-sage-light text-sage rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-sage-dark">Focused on Success</h4>
+          <p class="text-sm text-slate leading-relaxed">
+            Deeply committed to building alignment, fostering high-trust relations, and generating robust non-correlated alpha.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       STRATEGIC ECOSYSTEM PARTNERS SECTION
+       ========================================== -->
+  <section class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-sage">STRATEGIC ECOSYSTEM</span>
+        <h2 class="text-4xl font-serif text-sage-dark">Ecosystem Partners</h2>
+        <p class="text-slate">
+          We collaborate with leading venture networks and startup accelerators to nurture outstanding growth-stage enterprises.
+        </p>
+      </div>
+
+      <!-- Partners Grid -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto reveal-on-scroll">
+        
+        <!-- Partner 1: TCA Venture Group -->
+        <a href="https://tcaventuregroup.com/" target="_blank" rel="noopener noreferrer" class="bg-cream-light border border-cream-accent/50 rounded-4xl p-8 hover:shadow-xl hover:border-[#3B6290]/40 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group min-h-[220px]">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="text-xl font-serif font-bold text-slate-dark group-hover:text-sage transition-colors">TCA Venture Group</h4>
+              <span class="text-[#3B6290] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </span>
+            </div>
+            <p class="text-sm text-slate leading-relaxed">
+              One of the largest, most active investment syndicates in the United States, providing seed and early-stage capital, mentorship, and key network access to visionary tech innovators and entrepreneurs.
+            </p>
+          </div>
+          <div class="text-[10px] font-mono text-[#3B6290] tracking-wider uppercase font-bold mt-4">Venture Syndication &middot; tcaventuregroup.com</div>
+        </a>
+
+        <!-- Partner 2: Expert Dojo -->
+        <a href="https://expertdojo.com/" target="_blank" rel="noopener noreferrer" class="bg-cream-light border border-cream-accent/50 rounded-4xl p-8 hover:shadow-xl hover:border-[#3B6290]/40 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group min-h-[220px]">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="text-xl font-serif font-bold text-slate-dark group-hover:text-sage transition-colors">Expert Dojo</h4>
+              <span class="text-[#3B6290] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </span>
+            </div>
+            <p class="text-sm text-slate leading-relaxed">
+              A premier global early-stage accelerator program, actively backing and scaling high-potential founders, leading rapid seed financing rounds, and driving international expansion paths.
+            </p>
+          </div>
+          <div class="text-[10px] font-mono text-[#3B6290] tracking-wider uppercase font-bold mt-4">Accelerator Program &middot; expertdojo.com</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACT SECTION
+       ========================================== -->
+  <section id="contact" class="py-24 bg-cream relative">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 items-start">
+      
+      <!-- Contact Details -->
+      <div class="lg:col-span-5 space-y-8 reveal-on-scroll">
+        <span class="text-xs font-bold tracking-widest uppercase text-sage">CONNECT WITH US</span>
+        <h2 class="text-4xl font-serif text-sage-dark">Let's build long-term value.</h2>
+        <p class="text-base text-slate leading-relaxed">
+          Flourish Management LLC serves as a trusted bridge between capital and opportunity. We look forward to connecting with founders, real estate brokers, VC managers, and strategic co-investors.
+        </p>
+
+        <div class="space-y-6 pt-4">
+          <!-- Item 1: Email -->
+          <div class="flex items-start space-x-4">
+            <span class="p-3 bg-white border border-cream-accent/40 text-sage rounded-2xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate">Email Inquiry</h4>
+              <a href="mailto:info@flourish-mgmt.com" class="text-base font-semibold text-sage-dark hover:text-sage transition-colors">info@flourish-mgmt.com</a>
+            </div>
+          </div>
+
+          <!-- Item 2: Phone -->
+          <div class="flex items-start space-x-4">
+            <span class="p-3 bg-white border border-cream-accent/40 text-sage rounded-2xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+            </span>
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate">Call Our Offices</h4>
+              <a href="tel:+14247033332" class="text-base font-semibold text-sage-dark hover:text-sage transition-colors">+1 (424) 703-3332</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-sage-pastel p-6 rounded-3xl border border-sage-accent/20">
+          <h4 class="text-sm font-bold text-sage-dark mb-2">Are you a...</h4>
+          <ul class="text-xs text-slate space-y-2 list-disc pl-4 leading-relaxed">
+            <li><strong>Founder:</strong> Seeking capital & strategic mentorship.</li>
+            <li><strong>RE Professional:</strong> Sourcing transactions/projects.</li>
+            <li><strong>VC Fund Manager:</strong> Looking for understood institutional-grade LPs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Form Container -->
+      <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-4xl border border-cream-accent/40 shadow-xl reveal-on-scroll">
+        <h3 class="text-2xl font-serif text-sage-dark mb-6">Send an Inquiry</h3>
+        
+        <!-- Form success message -->
+        <div id="form-success" class="hidden mb-6 bg-sage-light border border-sage-accent text-sage-dark px-4 py-3 rounded-2xl text-sm flex items-center space-x-2">
+          <svg class="w-5 h-5 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>Thank you! Your message was sent successfully. We will respond shortly.</span>
+        </div>
+
+        <form id="contact-form" class="space-y-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-xs font-bold text-slate uppercase tracking-wider mb-2">Your Name</label>
+              <input type="text" id="name" required class="w-full bg-cream-light border border-cream-accent/60 focus:border-sage focus:ring focus:ring-sage-light focus:outline-none rounded-2xl px-4 py-3 text-sm transition-all">
+            </div>
+            <div>
+              <label for="email" class="block text-xs font-bold text-slate uppercase tracking-wider mb-2">Email Address</label>
+              <input type="email" id="email" required class="w-full bg-cream-light border border-cream-accent/60 focus:border-sage focus:ring focus:ring-sage-light focus:outline-none rounded-2xl px-4 py-3 text-sm transition-all">
+            </div>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-xs font-bold text-slate uppercase tracking-wider mb-2">Phone Number (Optional)</label>
+            <input type="tel" id="phone" class="w-full bg-cream-light border border-cream-accent/60 focus:border-sage focus:ring focus:ring-sage-light focus:outline-none rounded-2xl px-4 py-3 text-sm transition-all">
+          </div>
+
+          <div>
+            <label for="message" class="block text-xs font-bold text-slate uppercase tracking-wider mb-2">Inquiry / Message</label>
+            <textarea id="message" rows="5" required class="w-full bg-cream-light border border-cream-accent/60 focus:border-sage focus:ring focus:ring-sage-light focus:outline-none rounded-2xl px-4 py-3 text-sm transition-all"></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-sage hover:bg-sage-dark text-white font-bold tracking-wider uppercase text-sm py-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="bg-sage-darker text-white py-12 border-t border-sage-dark/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Flourish Management Logo" class="h-8 w-auto object-contain">
+      </div>
+      
+      <p class="text-xs text-sage-light/60">
+        © 2035 by Flourish Management LLC. All Rights Reserved.
+      </p>
+
+      <div class="flex space-x-6 text-xs text-sage-accent">
+        <a href="#" class="hover:underline hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:underline hover:text-white">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       WORKING CHAT WIDGET
+       ========================================== -->
+  <!-- Floating Button -->
+  <button id="chat-toggle" class="fixed bottom-6 right-6 z-40 bg-sage hover:bg-sage-dark text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 group focus:outline-none" aria-label="Open Chat">
+    <!-- Chat Icon -->
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+    </svg>
+    <!-- Notification Badge -->
+    <span id="chat-notification" class="hidden absolute top-0 right-0 w-3 h-3 bg-rose-500 rounded-full border-2 border-white animate-ping"></span>
+  </button>
+
+  <!-- Interactive Chat Container -->
+  <div id="chat-container" class="hidden fixed bottom-24 right-6 z-50 w-[360px] sm:w-[400px] h-[500px] bg-white rounded-3xl border border-cream-accent shadow-2xl flex-col overflow-hidden transition-all duration-300">
+    <!-- Chat Header -->
+    <div class="bg-sage-dark text-white p-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="relative">
+          <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center font-bold text-sage-accent">F</div>
+          <!-- Online indicator pulse -->
+          <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-sage-dark animate-pulse"></div>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold leading-tight">Flourish Assistant</h4>
+          <p class="text-[10px] text-emerald-300 font-medium">Online &middot; Ready to help</p>
+        </div>
+      </div>
+      
+      <!-- Close Button -->
+      <button id="close-chat" class="text-white/80 hover:text-white focus:outline-none">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Messages Window -->
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-cream-light">
+      <!-- Simulated Typing Indicator Bubble -->
+      <div id="typing-indicator" class="hidden flex justify-start mb-3">
+        <div class="bg-cream-dark text-slate rounded-2xl rounded-bl-none px-4 py-2 border border-cream-accent/40 shadow-sm flex items-center space-x-1">
+          <div class="w-2 h-2 bg-slate-light rounded-full animate-bounce"></div>
+          <div class="w-2 h-2 bg-slate-light rounded-full animate-bounce [animation-delay:0.2s]"></div>
+          <div class="w-2 h-2 bg-slate-light rounded-full animate-bounce [animation-delay:0.4s]"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Questions / Heuristic Prompts bar -->
+    <div class="px-4 py-2 bg-cream border-t border-cream-accent/20 flex flex-wrap gap-2 text-[10px] font-medium text-slate">
+      <button data-question="Tell me about your real estate investments" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🏠 Real Estate</button>
+      <button data-question="What is your options hedging strategy?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">📈 Public Markets</button>
+      <button data-question="How can a startup founder partner with you?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🚀 Venture Capital</button>
+    </div>
+
+    <!-- Message Input Form -->
+    <form id="chat-form" class="p-3 bg-white border-t border-cream-accent/30 flex items-center space-x-2">
+      <input type="text" id="chat-input" placeholder="Type your question here..." class="flex-1 text-sm bg-cream-light border border-cream-accent/40 focus:border-sage focus:outline-none rounded-full px-4 py-2.5 transition-colors">
+      <button type="submit" class="bg-sage hover:bg-sage-dark text-white p-2.5 rounded-full shadow-sm transition-colors focus:outline-none">
+        <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
