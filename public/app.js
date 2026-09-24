@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Greetings & Desk Introduction
     if (reMatch(query, ['hello', 'hi', 'hey', 'greetings', 'start', 'test', 'good morning', 'good afternoon', 'good evening', 'who is this'])) {
-      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee (Est. 2004)</strong>.<br><br>Our general partner syndicate oversees a 22-year cross-cycle multi-strategy portfolio across:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
+      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee</strong>.<br><br>Our partners bring 22 years of cross-cycle multi-strategy investment experience across:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
     }
 
     // 2. Real Estate Underwriting & Criteria
     if (reMatch(query, ['real estate', 'property', 'properties', 'multifamily', 'apartment', 'housing', 'acquisition', 'cap rate', 'debt yield', 'replacement cost', 'opex', 'underwriting rule', 'fm-re-01', 'real estate underwriting'])) {
-      return "<strong>Real Estate Underwriting Mandate (Est. 2004):</strong><br>Our committee acquires cash-flowing residential and workforce housing under four non-negotiable rules:<br><br>" +
+      return "<strong>Real Estate Underwriting Mandate:</strong><br>Our committee acquires cash-flowing residential and workforce housing under four non-negotiable rules:<br><br>" +
         "1. <strong>The 50% OpEx Mandate:</strong> We never underwrite to seller or broker pro formas. Operating expenses (taxes, insurance, turns, management) invariably absorb 48–52% of gross revenues.<br>" +
         "2. <strong>Sub-Replacement Cost Hurdle:</strong> Acquisition basis must be ≤75% of new construction cost per door to ensure an unassailable margin of safety.<br>" +
         "3. <strong>Fixed-Rate Debt Only:</strong> Zero floating-rate bridge debt. All properties carry 7-to-10 year fixed agency financing backed by a 12-month operational liquidity reserve.<br>" +
@@ -278,14 +278,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "📥 Review our framework: <a href='/sheets/seed-safe-audit.html' target='_blank' class='underline font-bold text-brand-gold'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
     }
 
-    // 5. 20-Year Track Record & Four Market Regimes (2004–2026)
-    if (reMatch(query, ['track record', 'experience', '20 years', '20-year', 'history', 'cycle', 'cycles', 'market cycles', 'how long', '2004', 'regime', 'performance', 'gfc', '2008', '2020', '2022', 'track record'])) {
-      return "<strong>22 Years Across Four Economic Regimes (2004 – 2026):</strong><br>Our Investment Committee has steered capital through every major financial stress-test of the modern era with <strong>zero debt defaults</strong>:<br><br>" +
+    // 5. 20-Year Track Record & Four Market Regimes
+    if (reMatch(query, ['track record', 'experience', '20 years', '20-year', '22 years', '22-year', 'history', 'cycle', 'cycles', 'market cycles', 'how long', 'regime', 'performance', 'gfc', '2008', '2020', '2022', 'track record'])) {
+      return "<strong>22 Years Across Four Economic Regimes:</strong><br>Our Investment Committee has steered capital through every major financial stress-test of the modern era with <strong>zero debt defaults</strong>:<br><br>" +
         "• <strong>2008 Financial Crisis:</strong> Fixed-rate debt and strict 12-month operating reserves protected our physical assets while floating-rate competitors faced liquidation.<br>" +
         "• <strong>2014–2020 Low-Rate Tech Boom:</strong> Maintained disciplined entry valuations; refused speculative 50x ARR seed rounds and focused on tangible cash flows.<br>" +
         "• <strong>2020 Liquidity Shock:</strong> Monetized deep out-of-the-money options crash hedges to acquire distressed high-quality assets at deep discounts.<br>" +
-        "• <strong>2022–2026 Rapid Rate Shock:</strong> Systematic 0.18 delta covered call overlays buffered against a 500 bps Fed tightening cycle while debt-heavy syndicators stalled.<br><br>" +
-        "See our detailed cycle analysis on the <a href='/track-record' class='underline font-bold text-brand-gold'>20-Year Track Record page</a>.";
+        "• <strong>2022 Rapid Rate Shock:</strong> Systematic 0.18 delta covered call overlays buffered against a 500 bps Fed tightening cycle while debt-heavy borrowers stalled.<br><br>" +
+        "See our detailed cycle analysis on the <a href='/track-record' class='underline font-bold text-brand-gold'>Track Record page</a>.";
     }
 
     // 6. Institutional Diligence Tear-Sheets
@@ -298,23 +298,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 7. Allocator / LP Inquiries
-    if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds', 'syndicate'])) {
-      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> or visit the <a href='/contact' class='underline font-bold text-brand-gold'>Executive Portal</a>.";
+    if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds'])) {
+      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investments, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> or visit the <a href='/contact' class='underline font-bold text-brand-gold'>Executive Portal</a>.";
     }
 
-    // 8. Identity, Partners, Governance & Anonymity
+    // 8. Identity, Partners, Governance & Oversight
     if (reMatch(query, ['who are you', 'team', 'partner', 'partners', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'prabhu', 'thiagarajan', 'linkedin'])) {
-      return "<strong>Governance & Institutional Attribution:</strong><br>Flourish Management LLC operates under the governance of our <strong>Investment Committee and General Partner Syndicate (Est. 2004)</strong>. To strictly prevent employment conflicts and ensure institutional independence, our cross-cycle track record and underwriting frameworks are attributed directly to the committee rather than individual corporate titles. We let our 22-year numbers, risk scar tissue, and granular diligence rulebooks speak for themselves.";
+      return "<strong>Investment Governance & Oversight:</strong><br>Flourish Management LLC is governed directly by our <strong>Investment Committee</strong>. Our partners bring 22 years of cross-cycle investing experience across physical real estate, quantitative options hedging, and early-stage venture. We let our track record, underwriting rules, and risk management discipline speak for themselves.";
     }
 
     // 9. Contact & Inquiries
     if (reMatch(query, ['contact', 'email', 'phone', 'call', 'reach out', 'office', 'inquiry', 'info', 'message', 'mail', 'address'])) {
-      return "<strong>Executive Contact Channels:</strong><br>• <strong>Syndicate Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-brand-gold'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-brand-gold'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='/contact' class='underline font-bold text-brand-gold'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
+      return "<strong>Executive Contact Channels:</strong><br>• <strong>Executive Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-brand-gold'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-brand-gold'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='/contact' class='underline font-bold text-brand-gold'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
     }
 
     // 10. Compliance & Disclaimers
     if (reMatch(query, ['disclaimer', 'sec', 'compliance', 'legal', 'regulation', '506', 'accreditation'])) {
-      return "<strong>Syndicate Legal Disclaimer:</strong><br>Flourish Management is an independent private research syndicate and family office allocation think tank. All market perspectives, underwriting frameworks, and quantitative options models are strictly for informational and analytical purposes and do not constitute an offer to sell, a solicitation to buy, or an investment recommendation. Past performance across historical economic cycles (2004–2026) is no guarantee of future results.";
+      return "<strong>Legal Disclaimer:</strong><br>Flourish Management is an independent private investment management firm. All market perspectives, underwriting frameworks, and quantitative options models are strictly for informational and analytical purposes and do not constitute an offer to sell, a solicitation to buy, or an investment recommendation. Past performance across historical economic cycles is no guarantee of future results.";
     }
 
     // 11. Polite Closing / Acknowledgment
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only if there are no user/assistant messages yet (besides the typing indicator)
     const messages = chatMessages.querySelectorAll('div:not(#typing-indicator)');
     if (messages.length === 0) {
-      appendMessage('assistant', "Welcome to Flourish Management. I am the digital desk officer for the <strong>Flourish Investment Committee (Est. 2004)</strong>.<br><br>Whether you are an accredited allocator evaluating our cross-cycle strategies, a founder submitting a seed round, or reviewing our diligence frameworks, how may I assist you today?");
+      appendMessage('assistant', "Welcome to Flourish Management. I am the digital desk officer for the <strong>Flourish Investment Committee</strong>.<br><br>Whether you are an accredited allocator evaluating our cross-cycle strategies, a founder submitting a seed round, or reviewing our diligence frameworks, how may I assist you today?");
       // Show notification badge if chat window is closed
       if (chatContainer.classList.contains('hidden')) {
         chatNotification.classList.remove('hidden');

@@ -154,7 +154,7 @@ const INITIAL_ARTICLES = [
       {
         "id": "c-sep-vc-1",
         "author": "Julian Thorne",
-        "affiliation": "Seed Syndicate Lead",
+        "affiliation": "Seed Investment Lead",
         "text": "The 72-hour founder velocity test is brilliant. We started applying it last quarter and passed on three sluggish teams.",
         "date": "Sep 21, 2026"
       }
@@ -175,7 +175,7 @@ const INITIAL_ARTICLES = [
       {
         "id": "c-sep-3",
         "author": "David Chen",
-        "affiliation": "Real Estate Syndicate Lead",
+        "affiliation": "Real Estate Investment Lead",
         "text": "The 50% operating expense rule has saved us from bad deals multiple times. Brokers hate it, but it works.",
         "date": "Sep 17, 2026"
       }

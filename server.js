@@ -351,7 +351,7 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
   const cleanPhone = phone ? sanitize(phone) : 'Not Provided';
   const isAllocator = leadType === 'allocator';
   const cleanOrg = organization ? sanitize(organization) : 'Not Specified';
-  const cleanInterest = interest ? sanitize(interest) : 'General Co-Investment / Syndicate Research';
+  const cleanInterest = interest ? sanitize(interest) : 'General Co-Investment Inquiries';
   const cleanPitch = pitch ? sanitize(pitch) : 'Not Provided';
 
   console.log(`\n==================================================`);
@@ -488,7 +488,7 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
           </div>
 
           <div style="background-color: #EFE7DE; padding: 14px 20px; text-align: center; font-size: 11px; color: #718096; border-top: 1px solid #DFD2C2;">
-            Flourish Management Concierge Desk &middot; Confidential Syndicate Intelligence &middot; ${new Date().toLocaleString()}
+            Flourish Management Concierge Desk &middot; Confidential Lead Intelligence &middot; ${new Date().toLocaleString()}
           </div>
         </div>
       `,
@@ -554,7 +554,7 @@ const DILIGENCE_SHEETS = [
     category: 'venture-capital',
     categoryLabel: 'Early-Stage Venture',
     title: 'The Seed Angel SAFE & Cap Table Dilution Audit',
-    subtitle: 'Angel Syndicate Defense Architecture: Dilution Math, Protective Covenants & Velocity Scoring',
+    subtitle: 'Seed Capital Defense Architecture: Dilution Math, Protective Covenants & Velocity Scoring',
     format: 'Printable 1-Page PDF / 8.5" x 11"',
     url: '/sheets/seed-safe-audit.html',
     highlights: [
@@ -852,7 +852,7 @@ app.get('/strategies', (req, res) => {
   res.render('strategies', { currentPath: '/strategies' });
 });
 
-// 3. 20-Year Cross-Cycle Track Record (2004–2026)
+// 3. 22-Year Cross-Cycle Track Record
 app.get('/track-record', (req, res) => {
   res.render('track-record', { currentPath: '/track-record' });
 });
