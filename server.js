@@ -53,6 +53,25 @@ const contactLimiter = rateLimit({
 
 app.use('/api/contact', contactLimiter);
 
+// Universal Logo Attachment & Header Helper for all outbound emails
+const logoAttachment = {
+  filename: 'logo.png',
+  path: path.join(__dirname, 'public', 'logo.png'),
+  cid: 'flourish-logo'
+};
+
+function getBrandedEmailHeader(subtitle = 'Executive Notification') {
+  return `
+    <div style="background-color: #1A365D; padding: 28px 24px; text-align: center; border-bottom: 2px solid #DFD2C2;">
+      <a href="https://flourish-web-151213060012.us-central1.run.app" style="text-decoration: none; display: inline-block;">
+        <img src="cid:flourish-logo" alt="Flourish Management" width="160" style="display: block; margin: 0 auto 10px auto; max-width: 160px; height: auto; border: 0;" />
+      </a>
+      <h1 style="color: #FAF7F2; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 400; letter-spacing: 1.2px;">FLOURISH MANAGEMENT</h1>
+      <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">${subtitle}</p>
+    </div>
+  `;
+}
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -144,31 +163,35 @@ app.post('/api/contact', async (req, res) => {
             `Phone: ${cleanPhone}\n\n` +
             `Message:\n${cleanMessage}\n`,
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 600px; border: 1px solid #DFD2C2; border-radius: 12px; padding: 24px; background-color: #FAF7F2;">
-          <h2 style="color: #1A365D; border-bottom: 2px solid #A5B8D1; padding-bottom: 10px; margin-top: 0;">New Website Inquiry</h2>
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; width: 100px; color: #4A5560;">Name:</td>
-              <td style="padding: 6px 0; color: #1A212D;">${cleanName}</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; color: #4A5560;">Email:</td>
-              <td style="padding: 6px 0; color: #1A212D;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none;">${cleanEmail}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; color: #4A5560;">Phone:</td>
-              <td style="padding: 6px 0; color: #1A212D;">${cleanPhone}</td>
-            </tr>
-          </table>
-          <div style="background-color: #ffffff; border-radius: 8px; padding: 16px; border: 1px solid #F0EADF; color: #1A212D;">
-            <p style="margin: 0; font-weight: bold; color: #4A5560; margin-bottom: 8px;">Message:</p>
-            <p style="margin: 0; white-space: pre-wrap;">${cleanMessage}</p>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; background-color: #FAF7F2; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          ${getBrandedEmailHeader('Direct Website Inquiry')}
+          <div style="padding: 28px 24px; color: #1A212D;">
+            <h2 style="color: #1A365D; margin-top: 0; font-size: 18px; font-weight: 600;">New Direct Investor Inquiry</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; width: 100px; color: #4A5560; font-size: 13px;">Name:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Email:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Phone:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPhone}</td>
+              </tr>
+            </table>
+            <div style="background-color: #ffffff; border-radius: 8px; padding: 16px; border: 1px solid #DFD2C2; color: #1A212D;">
+              <p style="margin: 0; font-weight: bold; color: #4A5560; margin-bottom: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Message:</p>
+              <p style="margin: 0; white-space: pre-wrap; font-size: 14px; line-height: 1.6;">${cleanMessage}</p>
+            </div>
           </div>
-          <p style="font-size: 11px; color: #8C9BA5; text-align: center; margin-top: 24px; border-top: 1px solid #F0EADF; padding-top: 12px;">
+          <div style="background-color: #EFE7DE; padding: 14px 20px; text-align: center; font-size: 11px; color: #718096; border-top: 1px solid #DFD2C2;">
             Sent automatically by Flourish Management Cloud Server &middot; ${new Date().toLocaleString()}
-          </p>
+          </div>
         </div>
-      `
+      `,
+      attachments: [logoAttachment]
     };
 
     await transporter.sendMail(mailOptions);
@@ -265,13 +288,10 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
       subject: `📈 New Subscriber Alert: ${cleanEmail}`,
       text: `You have a new subscriber for your "Flourish Insights" monthly letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
       html: `
-        <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-          <div style="background-color: #1A365D; padding: 24px; text-align: center; border-bottom: 2px solid #DFD2C2;">
-            <h1 style="color: #FAF7F2; margin: 0; font-size: 20px; font-weight: 400; letter-spacing: 1px;">FLOURISH MANAGEMENT</h1>
-            <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Thought Leadership Newsletter</p>
-          </div>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+          ${getBrandedEmailHeader('Subscriber Registration')}
           <div style="padding: 32px 24px; color: #1A212D;">
-            <h2 style="margin-top: 0; font-size: 18px; color: #1A365D; font-weight: 500;">New Subscriber Registered</h2>
+            <h2 style="margin-top: 0; font-size: 18px; color: #1A365D; font-weight: 600;">New Subscriber Registered</h2>
             <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your monthly insights newsletter channel!</p>
             
             <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #DFD2C2;">
@@ -281,11 +301,12 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
               </tr>
             </table>
           </div>
-          <div style="background-color: #F0EADF; padding: 16px; text-align: center; font-size: 11px; color: #4A5560; border-top: 1px solid #DFD2C2;">
+          <div style="background-color: #EFE7DE; padding: 16px; text-align: center; font-size: 11px; color: #718096; border-top: 1px solid #DFD2C2;">
             &copy; 2026 Flourish Management LLC. All rights reserved.
           </div>
         </div>
-      `
+      `,
+      attachments: [logoAttachment]
     };
 
     await transporter.sendMail(mailOptions);
@@ -387,38 +408,42 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
       to: process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com',
       subject: `New Interactive Chat Lead: ${cleanName}`,
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 600px; border: 1px solid #DFD2C2; border-radius: 12px; padding: 24px; background-color: #FAF7F2;">
-          <h2 style="color: #1A365D; border-bottom: 2px solid #A5B8D1; padding-bottom: 10px; margin-top: 0;">New Chat Lead & Transcript</h2>
-          
-          <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; width: 120px; color: #4A5560;">Name:</td>
-              <td style="padding: 6px 0; color: #1A212D;">${cleanName}</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; color: #4A5560;">Email:</td>
-              <td style="padding: 6px 0; color: #1A212D;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none;">${cleanEmail}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; color: #4A5560;">Phone:</td>
-              <td style="padding: 6px 0; color: #1A212D;">${cleanPhone}</td>
-            </tr>
-            <tr>
-              <td style="padding: 6px 0; font-weight: bold; color: #4A5560;">Pitch summary:</td>
-              <td style="padding: 6px 0; color: #1A212D;">${cleanPitch}</td>
-            </tr>
-          </table>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; background-color: #FAF7F2; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          ${getBrandedEmailHeader('Interactive Concierge Lead')}
+          <div style="padding: 28px 24px; color: #1A212D;">
+            <h2 style="color: #1A365D; margin-top: 0; font-size: 18px; font-weight: 600;">New Qualified Chat Lead & Transcript</h2>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; width: 120px; color: #4A5560; font-size: 13px;">Name:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanName}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Email:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Phone:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPhone}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Pitch summary:</td>
+                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPitch}</td>
+              </tr>
+            </table>
 
-          <h3 style="color: #1A365D; border-top: 1px solid #DFD2C2; padding-top: 16px; margin-bottom: 12px;">Full Conversation History</h3>
-          <div style="background-color: #ffffff; border-radius: 8px; padding: 16px; border: 1px solid #F0EADF; max-height: 400px; overflow-y: auto;">
-            ${transcriptHtml}
+            <h3 style="color: #1A365D; border-top: 1px solid #DFD2C2; padding-top: 16px; margin-bottom: 12px; font-size: 15px;">Full Conversation History</h3>
+            <div style="background-color: #ffffff; border-radius: 8px; padding: 16px; border: 1px solid #DFD2C2; max-height: 400px; overflow-y: auto;">
+              ${transcriptHtml}
+            </div>
           </div>
 
-          <p style="font-size: 11px; color: #8C9BA5; text-align: center; margin-top: 24px; border-top: 1px solid #F0EADF; padding-top: 12px;">
+          <div style="background-color: #EFE7DE; padding: 14px 20px; text-align: center; font-size: 11px; color: #718096; border-top: 1px solid #DFD2C2;">
             Sent automatically by Flourish Management Cloud Server &middot; ${new Date().toLocaleString()}
-          </p>
+          </div>
         </div>
-      `
+      `,
+      attachments: [logoAttachment]
     };
 
     await transporter.sendMail(mailOptions);
