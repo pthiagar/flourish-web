@@ -866,15 +866,7 @@ app.get('/diligence', (req, res) => {
 app.get('/insights', (req, res) => {
   try {
     const selectedCategory = req.query.category || null;
-    let articles;
-    if (selectedCategory) {
-      articles = insightsEngine.getPublishedArticles().filter(a => {
-        const cat = (a.topic || a.category || '').toLowerCase();
-        return cat.includes(selectedCategory.toLowerCase());
-      });
-    } else {
-      articles = insightsEngine.getPublishedArticles();
-    }
+    const articles = insightsEngine.getPublishedArticles(selectedCategory);
     const all = insightsEngine.getPublishedArticles();
     res.render('insights', {
       currentPath: '/insights',

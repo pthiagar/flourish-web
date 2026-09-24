@@ -844,20 +844,48 @@ class InsightsEngine {
   }
 
   /**
+   * Helper to determine whether an article matches a category/topic filter
+   */
+  matchesCategory(article, query) {
+    if (!query || query === 'all') return true;
+    const q = (typeof query === 'string' ? query : (query.category || '')).toLowerCase().trim();
+    if (!q || q === 'all') return true;
+    const topic = (article.topic || '').toLowerCase();
+    const cat = (article.category || '').toLowerCase();
+
+    if (q === 'macro' || q === 'options' || q === 'options-macro' || q === 'options & macro') {
+      return topic.includes('options') || topic.includes('macro') || cat.includes('macro') || cat.includes('options');
+    }
+    if (q === 'real-estate' || q === 'realestate' || q === 'real' || q === 'estate') {
+      return topic.includes('real') || cat.includes('real');
+    }
+    if (q === 'venture' || q === 'vc' || q === 'venture-capital') {
+      return topic.includes('venture') || cat.includes('venture');
+    }
+    return topic.includes(q) || cat.includes(q);
+  }
+
+  /**
    * Retrieves all published articles formatted with status flags:
    * - isRecent: published within the last 3 months (exactly 9 letters)
    * - isArchived: published more than 3 months ago (archives)
    */
-  getPublishedArticles(options = {}) {
+  getPublishedArticles(categoryOrOptions = null) {
     // Lazily evaluate schedule on each read to guarantee cloud instances stay current
     this.checkSchedule();
     const now = new Date();
     // 3 months sliding window: beginning of 2 calendar months prior (giving 3 full calendar months: current month + prior 2 months)
     const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 2, 1);
 
+    const categoryQuery = typeof categoryOrOptions === 'string' 
+      ? categoryOrOptions 
+      : (categoryOrOptions && categoryOrOptions.category ? categoryOrOptions.category : null);
+
     let list = this.articles.filter(article => {
       const pubDate = new Date(article.publishDate);
-      return pubDate <= now; // only already published articles
+      if (pubDate > now) return false;
+      if (categoryQuery && !this.matchesCategory(article, categoryQuery)) return false;
+      return true;
     });
 
     // Sort descending by publish date (newest first)
@@ -889,24 +917,16 @@ class InsightsEngine {
    * Returns recent articles (published within past 3 months, 9 letters)
    */
   getRecentArticles(category = null) {
-    const all = this.getPublishedArticles();
-    let recent = all.filter(a => a.isRecent);
-    if (category && category !== 'all') {
-      recent = recent.filter(a => a.category.toLowerCase().includes(category.toLowerCase()));
-    }
-    return recent;
+    const all = this.getPublishedArticles(category);
+    return all.filter(a => a.isRecent);
   }
 
   /**
    * Returns archived articles (older than 3 months), grouped by year/period
    */
   getArchivedArticles(category = null) {
-    const all = this.getPublishedArticles();
-    let archived = all.filter(a => a.isArchived);
-    if (category && category !== 'all') {
-      archived = archived.filter(a => a.category.toLowerCase().includes(category.toLowerCase()));
-    }
-    return archived;
+    const all = this.getPublishedArticles(category);
+    return all.filter(a => a.isArchived);
   }
 
   /**
