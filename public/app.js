@@ -446,6 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalDate = document.getElementById('modal-date');
   const modalReadTime = document.getElementById('modal-read-time');
   const modalTitle = document.getElementById('modal-title');
+  const modalBannerImg = document.getElementById('modal-banner-img');
   const modalBody = document.getElementById('modal-body');
   const modalLikeBtn = document.getElementById('modal-like-btn');
   const modalLikeIcon = document.getElementById('modal-like-icon');
@@ -462,6 +463,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentSubmitBtn = document.getElementById('comment-submit-btn');
   const commentMessage = document.getElementById('comment-message');
   const modalScrollPane = document.getElementById('modal-scroll-pane');
+
+  // Category Thumbnail Mapping for Editorial Images
+  const categoryThumbnails = {
+    'real estate': 'images/pillar-realestate.png',
+    'macro strategy': 'images/pillar-markets.png',
+    'capital markets': 'images/pillar-markets.png',
+    'venture capital': 'images/pillar-venture.png',
+    'venture & angel': 'images/pillar-venture.png'
+  };
+
+  function getCategoryThumbnail(category) {
+    const norm = (category || '').toLowerCase();
+    return categoryThumbnails[norm] || 'images/about-boardroom.png';
+  }
 
   // State Management
   let recentArticles = [];
@@ -524,14 +539,24 @@ document.addEventListener('DOMContentLoaded', () => {
     insightsGrid.innerHTML = filtered.map(article => {
       const isLiked = likedArticlesSet.has(article.id);
       const commentsCount = (article.comments && article.comments.length) || 0;
+      const thumbImg = getCategoryThumbnail(article.category);
 
       return `
         <div class="insight-article-card bg-cream-light border border-cream-accent/50 rounded-4xl p-7 hover:shadow-xl transition-all duration-300 hover:border-[#3B6290]/40 flex flex-col justify-between cursor-pointer group"
              data-article-id="${article.id}">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">${escapeHtml(article.category)}</span>
-              <span class="text-xs text-slate font-mono">${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
+            <!-- Article Image Thumbnail -->
+            <div class="relative h-40 w-full rounded-2xl overflow-hidden mb-5 border border-cream-accent/40 shadow-sm shrink-0">
+              <img src="${thumbImg}" alt="${escapeHtml(article.category)} Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent"></div>
+              <div class="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between">
+                <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 bg-[#1A365D]/90 text-white rounded-full font-mono backdrop-blur-sm border border-white/20">
+                  ${escapeHtml(article.category)}
+                </span>
+                <span class="text-[10px] text-white/90 font-mono drop-shadow-sm">
+                  ${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}
+                </span>
+              </div>
             </div>
             <h3 class="text-xl font-serif text-slate-dark mb-3 group-hover:text-sage transition-colors leading-snug">${escapeHtml(article.title)}</h3>
             <p class="text-xs text-slate leading-relaxed line-clamp-3 mb-4">
@@ -589,17 +614,23 @@ document.addEventListener('DOMContentLoaded', () => {
     archiveListContainer.innerHTML = filtered.map(article => {
       const isLiked = likedArticlesSet.has(article.id);
       const commentsCount = (article.comments && article.comments.length) || 0;
+      const thumbImg = getCategoryThumbnail(article.category);
 
       return `
-        <div class="archive-item bg-cream-light border border-cream-accent/50 rounded-2xl p-5 hover:border-[#3B6290]/50 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer"
+        <div class="archive-item bg-cream-light border border-cream-accent/50 rounded-2xl p-4 hover:border-[#3B6290]/50 hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer"
              data-article-id="${article.id}">
-          <div class="space-y-1.5 flex-1">
-            <div class="flex items-center space-x-2 text-[10px] font-mono">
-              <span class="px-2.5 py-0.5 bg-[#3B6290]/10 text-[#1A365D] font-bold rounded-full">${escapeHtml(article.category)}</span>
-              <span class="text-slate font-medium">${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
+          <div class="flex items-center space-x-4 flex-1">
+            <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-cream-accent/60 hidden sm:block">
+              <img src="${thumbImg}" alt="${escapeHtml(article.category)}" class="w-full h-full object-cover">
             </div>
-            <h4 class="text-base font-serif text-slate-dark font-semibold">${escapeHtml(article.title)}</h4>
-            <p class="text-xs text-slate line-clamp-2 leading-relaxed">${escapeHtml(article.summary)}</p>
+            <div class="space-y-1.5 flex-1">
+              <div class="flex items-center space-x-2 text-[10px] font-mono">
+                <span class="px-2.5 py-0.5 bg-[#3B6290]/10 text-[#1A365D] font-bold rounded-full">${escapeHtml(article.category)}</span>
+                <span class="text-slate font-medium">${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
+              </div>
+              <h4 class="text-base font-serif text-slate-dark font-semibold">${escapeHtml(article.title)}</h4>
+              <p class="text-xs text-slate line-clamp-2 leading-relaxed">${escapeHtml(article.summary)}</p>
+            </div>
           </div>
           <div class="flex items-center justify-between md:justify-end space-x-4 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-cream-accent/30 text-xs">
             <div class="flex items-center space-x-3 text-slate font-mono text-[11px]">
@@ -702,6 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalDate) modalDate.textContent = article.date || article.displayDate;
     if (modalReadTime) modalReadTime.textContent = `• ${article.readTime || '4 Min Read'}`;
     if (modalTitle) modalTitle.textContent = article.title;
+    if (modalBannerImg) modalBannerImg.src = getCategoryThumbnail(article.category);
     if (modalBody) modalBody.innerHTML = article.body;
 
     // Likes state in modal
