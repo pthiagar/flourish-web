@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Greetings & Desk Introduction
     if (reMatch(query, ['hello', 'hi', 'hey', 'greetings', 'start', 'test', 'good morning', 'good afternoon', 'good evening', 'who is this'])) {
-      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee</strong>.<br><br>Our partners bring 22 years of cross-cycle multi-strategy investment experience across:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
+      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee</strong>.<br><br>We allocate proprietary capital across three core disciplines:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
     }
 
     // 2. Real Estate Underwriting & Criteria
@@ -278,9 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "📥 Review our framework: <a href='/sheets/seed-safe-audit.html' target='_blank' class='underline font-bold text-brand-gold'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
     }
 
-    // 5. 20-Year Track Record & Four Market Regimes
+    // 5. Four Market Regimes Track Record
     if (reMatch(query, ['track record', 'experience', '20 years', '20-year', '22 years', '22-year', 'history', 'cycle', 'cycles', 'market cycles', 'how long', 'regime', 'performance', 'gfc', '2008', '2020', '2022', 'track record'])) {
-      return "<strong>22 Years Across Four Economic Regimes:</strong><br>Our Investment Committee has steered capital through every major financial stress-test of the modern era with <strong>zero debt defaults</strong>:<br><br>" +
+      return "<strong>Steering Capital Across Four Economic Regimes:</strong><br>Our Investment Committee has steered capital through every major financial stress-test of the modern era with <strong>zero debt defaults</strong>:<br><br>" +
         "• <strong>2008 Financial Crisis:</strong> Fixed-rate debt and strict 12-month operating reserves protected our physical assets while floating-rate competitors faced liquidation.<br>" +
         "• <strong>2014–2020 Low-Rate Tech Boom:</strong> Maintained disciplined entry valuations; refused speculative 50x ARR seed rounds and focused on tangible cash flows.<br>" +
         "• <strong>2020 Liquidity Shock:</strong> Monetized deep out-of-the-money options crash hedges to acquire distressed high-quality assets at deep discounts.<br>" +
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 9. Identity, Governance & Oversight
     if (reMatch(query, ['who are you', 'team', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'partners', 'leadership'])) {
-      return "<strong>Investment Governance & Oversight:</strong><br>Flourish Management LLC is governed directly by our <strong>Investment Committee</strong>. Our partners bring 22 years of cross-cycle investing experience across physical real estate, quantitative options hedging, and early-stage venture. We let our track record, underwriting rules, and risk management discipline speak for themselves.";
+      return "<strong>Investment Governance & Oversight:</strong><br>Flourish Management LLC is governed directly by our <strong>Investment Committee</strong>. We allocate capital across physical real estate, quantitative options hedging, and early-stage venture. We let our track record, underwriting rules, and risk management discipline speak for themselves.";
     }
 
     // 10. Contact & Inquiries

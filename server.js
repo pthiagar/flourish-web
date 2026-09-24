@@ -852,7 +852,7 @@ app.get('/strategies', (req, res) => {
   res.render('strategies', { currentPath: '/strategies' });
 });
 
-// 3. 22-Year Cross-Cycle Track Record
+// 3. Cross-Cycle Track Record
 app.get('/track-record', (req, res) => {
   res.render('track-record', { currentPath: '/track-record' });
 });
