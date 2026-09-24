@@ -282,8 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 7. Allocator / LP Inquiries
-    if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds', 'syndicate', 'allocate'])) {
-      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential discussion with our Investment Committee, type <strong>'allocate'</strong> or select <strong>'Allocator Inquiries'</strong> above to share your mandate parameters.";
+    if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds', 'syndicate'])) {
+      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> to share your entity and focus.";
     }
 
     // 8. Identity, Partners, Governance & Anonymity
@@ -339,43 +339,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = messageText.toLowerCase().trim();
 
     // Check if the user is attempting to escape/cancel the lead process
-    if (query === 'reset' || query === 'cancel' || query === 'exit' || query === 'restart') {
+    if (query === 'reset' || query === 'cancel' || query === 'exit' || query === 'restart' || query === 'stop' || query === 'back') {
       leadState = 'DEFAULT';
       leadType = 'founder';
       leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
       setTimeout(() => {
         hideTyping();
         appendMessage('assistant', "Onboarding flow reset. I am at your disposal. You can inquire about our 20-year cross-cycle track record, real estate underwriting, options hedging parameters, or executive tear-sheets.");
-      }, 600);
+      }, 500);
       return;
     }
 
     let responseText = '';
     let triggerLeadSubmit = false;
 
+    // Smart Interruption: Check if user is asking an informational question, command, or topic query
+    const isGeneralQuestion = 
+      query.includes('?') ||
+      query.startsWith('what') || 
+      query.startsWith('how') || 
+      query.startsWith('why') || 
+      query.startsWith('tell me') || 
+      query.startsWith('explain') || 
+      query.startsWith('show me') || 
+      query.startsWith('can you') ||
+      reMatch(query, [
+        'real estate', 'property', 'properties', 'option', 'options', 'hedging', 'hedge', 
+        'track record', 'tear-sheet', 'tear sheet', 'tear sheets', 'diligence sheets', 
+        'cycle', 'cycles', '2008', '2020', '2022', 'who are you', 'team', 'partner', 
+        'contact', 'email', 'phone', 'help', 'philosophy', 'strategy', 'about'
+      ]);
+
+    // Explicit intake activation triggers
+    const isPitchRequest = reMatch(query, [
+      'i want to pitch', 'pitch a startup', 'pitch my startup', 'submit pitch', 
+      'submit my pitch', 'submit deal', 'submit a deal', 'apply for funding', 
+      'seeking capital for startup', 'pitch to partners', 'pitch deck', 'raise seed capital'
+    ]);
+
+    const isAllocatorRequest = reMatch(query, [
+      'start allocator intake', 'apply to allocate', 'onboard as allocator', 
+      'submit allocator inquiry', 'register allocator', 'allocator onboarding'
+    ]);
+
+    // If currently in an intake flow but the user asks an informational question, break out cleanly
+    if (leadState !== 'DEFAULT' && isGeneralQuestion && !isPitchRequest && !isAllocatorRequest) {
+      leadState = 'DEFAULT';
+      leadType = 'founder';
+      leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
+      responseText = getAssistantResponse(messageText);
+    }
     // Process chat inputs statefully
-    if (leadState === 'DEFAULT') {
-      const isPitchRequest = reMatch(query, [
-        'raise', 'funding', 'raise capital', 'pitch', 'pitching', 'seed round',
-        'back startups', 'raising', 'venture deal', 'founder', 'startup', 
-        'start-up', 'series a', 'partner with you', 'looking to raise',
-        'submit pitch', 'submit deal'
-      ]);
-
-      const isAllocatorRequest = reMatch(query, [
-        'allocate', 'allocating', 'co-invest', 'coinvest', 'lp inquiry', 'limited partner',
-        'family office inquiry', 'institutional investor', 'invest in flourish', 'allocator inquiry',
-        'accredited allocator', 'partner inquiry', 'syndicate access'
-      ]);
-
+    else if (leadState === 'DEFAULT') {
       if (isPitchRequest) {
         leadType = 'founder';
         leadState = 'FOUNDER_NAME';
-        responseText = "<strong>Venture Partnership Intake:</strong> We actively evaluate early-stage software, fintech, and hard-tech startups with high-velocity founding teams. I will capture your parameters and transmit your transcript directly to our Investment Committee.<br><br>Let's begin: <strong>What is your full name?</strong>";
+        responseText = "<strong>Venture Partnership Intake:</strong> We actively evaluate early-stage software, fintech, and hard-tech startups with high-velocity founding teams. I will capture your parameters and transmit your transcript directly to our Investment Committee.<br><br>Let's begin: <strong>What is your full name?</strong><br><span class='text-[10px] text-slate-500 font-mono'>(Type 'cancel' anytime to return to general questions)</span>";
       } else if (isAllocatorRequest) {
         leadType = 'allocator';
         leadState = 'ALLOCATOR_NAME';
-        responseText = "<strong>Institutional Allocator Intake:</strong> We welcome confidential dialogue with accredited family offices, institutional allocators, and co-investment partners. I will log your mandate and brief our General Partners directly.<br><br>To begin: <strong>What is your full name and title?</strong>";
+        responseText = "<strong>Institutional Allocator Intake:</strong> We welcome confidential dialogue with accredited family offices, institutional allocators, and co-investment partners. I will log your mandate and brief our General Partners directly.<br><br>To begin: <strong>What is your full name and title?</strong><br><span class='text-[10px] text-slate-500 font-mono'>(Type 'cancel' anytime to return to general questions)</span>";
       } else {
         responseText = getAssistantResponse(messageText);
       }
@@ -387,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
       responseText = `Great to connect, <strong>${leadData.name}</strong>. What is your <strong>best executive email address</strong> so our Investment Committee can follow up?`;
     } else if (leadState === 'FOUNDER_EMAIL') {
       if (!messageText.includes('@') || !messageText.includes('.')) {
-        responseText = "Please provide a valid email address so our committee can contact you directly:";
+        responseText = "Please provide a valid email address so our committee can contact you directly (or type 'cancel' to exit):";
       } else {
         leadData.email = messageText;
         leadState = 'FOUNDER_PHONE';
@@ -410,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
       responseText = `Thank you, <strong>${leadData.name}</strong>. What is your <strong>primary institutional or executive email address</strong>?`;
     } else if (leadState === 'ALLOCATOR_EMAIL') {
       if (!messageText.includes('@') || !messageText.includes('.')) {
-        responseText = "Please provide a valid corporate or executive email address:";
+        responseText = "Please provide a valid corporate or executive email address (or type 'cancel' to exit):";
       } else {
         leadData.email = messageText;
         leadState = 'ALLOCATOR_ORG';
@@ -493,6 +516,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Bind Standard Click event listeners to shortcut buttons (Strictly complies with CSP)
   document.querySelectorAll('.chat-shortcut-btn').forEach(button => {
     button.addEventListener('click', () => {
+      // ALWAYS reset lead state on shortcut click so buttons are never trapped in a form
+      leadState = 'DEFAULT';
+      leadType = 'founder';
+      leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
       const questionText = button.getAttribute('data-question');
       if (questionText) {
         handleUserMessageSubmit(questionText);
