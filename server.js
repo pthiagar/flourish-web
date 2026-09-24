@@ -333,9 +333,9 @@ const chatLeadLimiter = rateLimit({
   legacyHeaders: false
 });
 
-// API endpoint to handle stateful chat-lead capture and transcripts
+// API endpoint to handle stateful chat-lead capture and transcripts (Dual-Track: Founders & Allocators)
 app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
-  const { name, email, phone, pitch, transcript } = req.body;
+  const { name, email, phone, pitch, organization, interest, leadType, transcript } = req.body;
 
   if (!name || !email) {
     return res.status(400).json({ success: false, message: 'Name and email are required to log a chat lead.' });
@@ -345,14 +345,22 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
   const cleanName = sanitize(name);
   const cleanEmail = sanitize(email);
   const cleanPhone = phone ? sanitize(phone) : 'Not Provided';
+  const isAllocator = leadType === 'allocator';
+  const cleanOrg = organization ? sanitize(organization) : 'Not Specified';
+  const cleanInterest = interest ? sanitize(interest) : 'General Co-Investment / Syndicate Research';
   const cleanPitch = pitch ? sanitize(pitch) : 'Not Provided';
 
   console.log(`\n==================================================`);
-  console.log(`💬  [NEW INTERACTIVE CHAT LEAD LOGGED]`);
-  console.log(`👤 Name:      ${cleanName}`);
-  console.log(`📧 Email:     ${cleanEmail}`);
-  console.log(`📞 Phone:     ${cleanPhone}`);
-  console.log(`🚀 Pitch:     ${cleanPitch}`);
+  console.log(`💬  [NEW CONCIERGE CHAT LEAD: ${isAllocator ? 'ACCREDITED ALLOCATOR' : 'FOUNDER PITCH'}]`);
+  console.log(`👤 Name:         ${cleanName}`);
+  console.log(`📧 Email:        ${cleanEmail}`);
+  console.log(`📞 Phone:        ${cleanPhone}`);
+  if (isAllocator) {
+    console.log(`🏛️ Org/Entity:   ${cleanOrg}`);
+    console.log(`🎯 Allocation:   ${cleanInterest}`);
+  } else {
+    console.log(`🚀 Pitch:        ${cleanPitch}`);
+  }
   console.log(`==================================================\n`);
 
   // Check SMTP setup
@@ -390,7 +398,7 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
         const isUser = msg.sender === 'user';
         const color = isUser ? '#1A365D' : '#3B6290';
         const align = isUser ? 'right' : 'left';
-        const displayName = isUser ? 'User' : 'Assistant';
+        const displayName = isUser ? 'User' : 'Concierge';
         return `
           <div style="margin-bottom: 12px; text-align: ${align};">
             <span style="font-size: 10px; font-weight: bold; color: ${color}; text-transform: uppercase;">${displayName}</span>
@@ -404,34 +412,69 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
       transcriptHtml = `<p style="font-style: italic; color: #8C9BA5;">Transcript not available.</p>`;
     }
 
+    const emailSubject = isAllocator
+      ? `New Accredited Allocator Inquiry: ${cleanName} (${cleanOrg})`
+      : `New Founder Pitch Lead: ${cleanName}`;
+
+    const leadTypeBadge = isAllocator ? 'Allocator Lead &middot; Institutional Desk' : 'Founder Pitch &middot; Venture Desk';
+
+    const detailsTableRows = isAllocator
+      ? `
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; width: 140px; color: #4A5560; font-size: 13px;">Name:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanName}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Email:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Phone:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPhone}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Organization / Entity:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanOrg}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Allocation Focus:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanInterest}</td>
+        </tr>
+      `
+      : `
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; width: 140px; color: #4A5560; font-size: 13px;">Name:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanName}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Email:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Phone:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPhone}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Pitch Summary:</td>
+          <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPitch}</td>
+        </tr>
+      `;
+
     const mailOptions = {
-      from: `"${cleanName} (Chat Lead)" <${senderEmail}>`,
+      from: `"${cleanName} (${isAllocator ? 'Allocator Inquiry' : 'Pitch Lead'})" <${senderEmail}>`,
       replyTo: cleanEmail,
       to: process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com',
-      subject: `New Interactive Chat Lead: ${cleanName}`,
+      subject: emailSubject,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; background-color: #FAF7F2; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-          ${getBrandedEmailHeader('Interactive Concierge Lead')}
+          ${getBrandedEmailHeader(leadTypeBadge)}
           <div style="padding: 28px 24px; color: #1A212D;">
-            <h2 style="color: #1A365D; margin-top: 0; font-size: 18px; font-weight: 600;">New Qualified Chat Lead & Transcript</h2>
+            <h2 style="color: #1A365D; margin-top: 0; font-size: 18px; font-weight: 600;">
+              ${isAllocator ? 'New Accredited Allocator Brief & Transcript' : 'New Founder Pitch & Diligence Transcript'}
+            </h2>
             
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; width: 120px; color: #4A5560; font-size: 13px;">Name:</td>
-                <td style="padding: 8px 0; color: #1A212D; font-size: 14px; font-weight: 500;">${cleanName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Email:</td>
-                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Phone:</td>
-                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPhone}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #4A5560; font-size: 13px;">Pitch summary:</td>
-                <td style="padding: 8px 0; color: #1A212D; font-size: 14px;">${cleanPitch}</td>
-              </tr>
+              ${detailsTableRows}
             </table>
 
             <h3 style="color: #1A365D; border-top: 1px solid #DFD2C2; padding-top: 16px; margin-bottom: 12px; font-size: 15px;">Full Conversation History</h3>
@@ -441,7 +484,7 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
           </div>
 
           <div style="background-color: #EFE7DE; padding: 14px 20px; text-align: center; font-size: 11px; color: #718096; border-top: 1px solid #DFD2C2;">
-            Sent automatically by Flourish Management Cloud Server &middot; ${new Date().toLocaleString()}
+            Flourish Management Concierge Desk &middot; Confidential Syndicate Intelligence &middot; ${new Date().toLocaleString()}
           </div>
         </div>
       `,

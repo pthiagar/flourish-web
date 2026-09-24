@@ -1763,25 +1763,31 @@
   <!-- Interactive Chat Container -->
   <div id="chat-container" class="hidden fixed bottom-24 right-6 z-50 w-[360px] sm:w-[400px] h-[500px] bg-white rounded-3xl border border-cream-accent shadow-2xl flex-col overflow-hidden transition-all duration-300">
     <!-- Chat Header -->
-    <div class="bg-sage-dark text-white p-4 flex items-center justify-between">
+    <div class="bg-[#1A365D] text-white p-4 flex items-center justify-between border-b border-white/10">
       <div class="flex items-center space-x-3">
         <div class="relative">
           <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center font-bold text-sage-accent">F</div>
           <!-- Online indicator pulse -->
-          <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-sage-dark animate-pulse"></div>
+          <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-[#1A365D] animate-pulse"></div>
         </div>
         <div>
-          <h4 class="text-sm font-semibold leading-tight">Flourish Assistant</h4>
-          <p class="text-[10px] text-emerald-300 font-medium">Online &middot; Ready to help</p>
+          <h4 class="text-sm font-serif font-bold tracking-wide">Flourish Syndicate Concierge</h4>
+          <p class="text-[10px] text-emerald-300 font-medium">General Partner Desk &middot; 20-Yr Committee</p>
         </div>
       </div>
       
       <!-- Close Button -->
-      <button id="close-chat" class="text-white/80 hover:text-white focus:outline-none">
+      <button id="close-chat" class="text-white/80 hover:text-white focus:outline-none" aria-label="Close Chat">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
+    </div>
+
+    <!-- Institutional Context Ribbon -->
+    <div class="bg-[#10233b] px-4 py-1 text-[9px] font-mono tracking-wider uppercase text-sage-accent/90 flex items-center justify-between border-b border-white/5">
+      <span>Cross-Cycle Knowledge Engine</span>
+      <span class="text-white/60">2004 – 2026</span>
     </div>
 
     <!-- Messages Window -->
@@ -1797,10 +1803,13 @@
     </div>
 
     <!-- Quick Questions / Heuristic Prompts bar -->
-    <div class="px-4 py-2 bg-cream border-t border-cream-accent/20 flex flex-wrap gap-2 text-[10px] font-medium text-slate">
-      <button data-question="Tell me about your real estate investments" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🏠 Real Estate</button>
-      <button data-question="What is your options hedging strategy?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">📈 Public Markets</button>
-      <button data-question="How can a startup founder partner with you?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🚀 Venture Capital</button>
+    <div class="px-3 py-2 bg-cream border-t border-cream-accent/20 flex flex-wrap gap-1.5 text-[10px] font-medium text-slate">
+      <button data-question="What are your real estate underwriting rules?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🏢 Real Estate</button>
+      <button data-question="Explain your options hedging strategy" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">📈 Options Hedging</button>
+      <button data-question="What is your 20-year cross-cycle track record?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">📜 20-Yr Track Record</button>
+      <button data-question="Show me your diligence tear-sheets" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">📑 Tear-Sheets</button>
+      <button data-question="I want to pitch a seed stage startup" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">🚀 Founder Pitch</button>
+      <button data-question="How can an accredited allocator co-invest with you?" class="chat-shortcut-btn bg-white hover:bg-sage-pastel border border-cream-accent/40 rounded-full px-2.5 py-1 transition-colors">💼 Allocator Inquiries</button>
     </div>
 
     <!-- Message Input Form -->

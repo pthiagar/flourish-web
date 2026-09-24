@@ -176,10 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Stateful conversation state for interactive lead collection
+  // Stateful conversation state for interactive lead collection (Dual-Track: Founders & Allocators)
   let conversationHistory = [];
-  let leadState = 'DEFAULT'; // DEFAULT, COLLECTING_NAME, COLLECTING_EMAIL, COLLECTING_PHONE, COLLECTING_PITCH
-  let leadData = { name: '', email: '', phone: '', pitch: '' };
+  let leadState = 'DEFAULT'; // DEFAULT, FOUNDER_NAME, FOUNDER_EMAIL, FOUNDER_PHONE, FOUNDER_PITCH, ALLOCATOR_NAME, ALLOCATOR_EMAIL, ALLOCATOR_ORG, ALLOCATOR_INTEREST
+  let leadType = 'founder'; // 'founder' | 'allocator'
+  let leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
 
   // Add a message bubble to the chat (always insert BEFORE the typing indicator)
   const appendMessage = (sender, text) => {
@@ -191,15 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
     messageWrapper.className = `flex ${isUser ? 'justify-end' : 'justify-start'} mb-3`;
 
     const bubble = document.createElement('div');
-    bubble.className = `max-w-[80%] rounded-2xl px-4 py-2.5 text-sm shadow-sm ${
+    bubble.className = `max-w-[85%] rounded-2xl px-4 py-2.5 text-sm shadow-sm ${
       isUser 
-        ? 'bg-sage text-white rounded-br-none' 
-        : 'bg-cream-dark text-slate-dark rounded-bl-none border border-cream-accent'
+        ? 'bg-[#1A365D] text-white rounded-br-none' 
+        : 'bg-[#F8F5F0] text-slate-800 rounded-bl-none border border-[#E5DEC9]'
     }`;
     
     bubble.innerHTML = `
-      <p class="leading-relaxed">${text}</p>
-      <span class="block text-[10px] ${isUser ? 'text-sage-light/75' : 'text-slate-light'} mt-1 text-right">${getFormattedTime()}</span>
+      <div class="leading-relaxed text-xs sm:text-sm">${text}</div>
+      <span class="block text-[9px] ${isUser ? 'text-slate-300' : 'text-slate-400'} mt-1 text-right font-mono">${getFormattedTime()}</span>
     `;
 
     messageWrapper.appendChild(bubble);
@@ -221,61 +222,103 @@ document.addEventListener('DOMContentLoaded', () => {
     typingIndicator.classList.add('hidden');
   };
 
-  // Highly robust conversational NLP matching
+  // 20-Year Partner Wisdom Engine: Institutional Heuristic Responses
   const getAssistantResponse = (userMsg) => {
     const query = userMsg.toLowerCase().trim();
 
-    // Check for Greetings
-    if (reMatch(query, ['hello', 'hi', 'hey', 'greetings', 'g\'day', 'hola', 'start', 'anybody there', 'test'])) {
-      return "Hi there! I'm the digital assistant for Flourish Management LLC. I'm here to help you navigate our services. Are you interested in our <strong>Real Estate acquisitions</strong>, <strong>Capital Markets hedging</strong>, or <strong>Venture Capital investments</strong>?";
+    // 1. Greetings & Desk Introduction
+    if (reMatch(query, ['hello', 'hi', 'hey', 'greetings', 'start', 'test', 'good morning', 'good afternoon', 'good evening', 'who is this'])) {
+      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee (Est. 2004)</strong>.<br><br>Our general partner syndicate oversees a 22-year cross-cycle multi-strategy portfolio across:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
     }
 
-    // Real Estate & Properties
-    if (reMatch(query, ['real estate', 'property', 'properties', 'residential', 'commercial', 'building', 'buy land', 'acquisition', 're', 'housing', 'apartment', 'developer'])) {
-      return "<strong>Real Estate & Physical Assets:</strong><br>We target high-yield acquisitions in residential and commercial sectors to provide defensive, consistent cash flows and long-term equity appreciation. We partner actively with brokers, local developers, and property managers to identify off-market gems. Do you have a project or property you are seeking capital for?";
+    // 2. Real Estate Underwriting & Criteria
+    if (reMatch(query, ['real estate', 'property', 'properties', 'multifamily', 'apartment', 'housing', 'acquisition', 'cap rate', 'debt yield', 'replacement cost', 'opex', 'underwriting rule', 'fm-re-01', 'real estate underwriting'])) {
+      return "<strong>Real Estate Underwriting Mandate (Est. 2004):</strong><br>Our committee acquires cash-flowing residential and workforce housing under four non-negotiable rules:<br><br>" +
+        "1. <strong>The 50% OpEx Mandate:</strong> We never underwrite to seller or broker pro formas. Operating expenses (taxes, insurance, turns, management) invariably absorb 48–52% of gross revenues.<br>" +
+        "2. <strong>Sub-Replacement Cost Hurdle:</strong> Acquisition basis must be ≤75% of new construction cost per door to ensure an unassailable margin of safety.<br>" +
+        "3. <strong>Fixed-Rate Debt Only:</strong> Zero floating-rate bridge debt. All properties carry 7-to-10 year fixed agency financing backed by a 12-month operational liquidity reserve.<br>" +
+        "4. <strong>Unlevered Debt Yield:</strong> Minimum 9.5% unlevered debt yield hurdle upon stabilized occupancy.<br><br>" +
+        "📥 Review our complete 1-page framework: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Multifamily Screening Matrix (Doc ID: FM-RE-01)</a>.";
     }
 
-    // Venture Capital, Startups & Seed
-    if (reMatch(query, ['venture', 'vc', 'startup', 'start-up', 'founder', 'seed', 'series a', 'tech', 'mentorship', 'equity', 'mentoring', 'grow business', 'raising', 'raise capital'])) {
-      return "<strong>Venture Capital & Private Equity:</strong><br>We partner with visionary, early-stage founders from Seed to Series A stages, supporting them with capital and operational mentorship. Additionally, we participate as LPs in top-tier VC funds to ensure strategic exposure across the most promising technological frontiers. Are you a founder raising capital?";
+    // 3. Options Hedging & Volatility Strategy
+    if (reMatch(query, ['option', 'options', 'hedging', 'hedge', 'delta', 'vix', 'volatility', 'capital market', 'public market', 'crash put', 'covered call', 'derivative', 'fm-mm-03', 'options hedging'])) {
+      return "<strong>Systematic Options & Volatility Hedging:</strong><br>We execute a disciplined, non-correlated derivatives overlay designed to protect capital and harvest structural cash yields:<br><br>" +
+        "1. <strong>0.18 Delta Systematic Write:</strong> 30–45 DTE covered calls rolled on monthly expirations to generate recurring income without capping long-term core equity upside.<br>" +
+        "2. <strong>3-Tier VIX Regime Calibration:</strong> Low IV (VIX <15) triggers tight systematic writes; moderate (15–28) triggers defensive call spreads; high volatility (VIX >28) triggers rolling strikes down and monetizing long tail puts.<br>" +
+        "3. <strong>Asymmetric Crash-Put Budget:</strong> 1.5%–2.0% annual premium allocated to deep out-of-the-money crash puts, generating +500% to +1,000% payouts during systemic shocks (e.g. 2020 liquidity freeze).<br>" +
+        "4. <strong>100% Cash-Secured Collateral:</strong> Collateral is swept continuously into 4-week US Treasury bills; unhedged margin debt is strictly prohibited.<br><br>" +
+        "📥 Review our parameters: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Delta-Hedging Parameter Sheet (Doc ID: FM-MM-03)</a>.";
     }
 
-    // Capital Markets, Stocks, Bonds, Options & Hedging
-    if (reMatch(query, ['market', 'capital market', 'equities', 'stock', 'bond', 'option', 'hedge', 'hedging', 'fixed income', 'volatility', 'trading', 'portfolio', 'derivative', 'risk'])) {
-      return "<strong>Capital Markets & Hedging:</strong><br>We manage a highly liquid, sophisticated public portfolio. We combine a core foundation of equities and bonds with customized, options-based derivative strategies to hedge downside risks, capture yield, and monetize volatility. This ensures steady capital preservation during broad market turbulence.";
+    // 4. Venture Capital & Seed Diligence
+    if (reMatch(query, ['venture', 'vc', 'startup', 'start-up', 'founder', 'seed', 'series a', 'safe', 'cap table', 'dilution', 'angel', 'pre-seed', 'fm-vc-02', 'venture capital'])) {
+      return "<strong>Seed Venture Underwriting & Diligence:</strong><br>We partner with technical founders building high-velocity software, fintech, and critical infrastructure under strict ownership discipline:<br><br>" +
+        "1. <strong>20% SAFE Dilution Ceiling:</strong> Total cumulative post-money SAFE dilution before Series A cannot exceed 20% to prevent founder demotivation.<br>" +
+        "2. <strong>72-Hour Technical Velocity Test:</strong> Founders must demonstrate exceptional execution tempo by shipping code or addressing diligence requests within 72 hours.<br>" +
+        "3. <strong>Option Pool Trap Defense:</strong> We verify unallocated ESOP pools (10–15%) are modeled post-money to shield seed investors from unearned early dilution.<br>" +
+        "4. <strong>Pro-Rata Rights:</strong> We insist on contractual pro-rata participation into Series A.<br><br>" +
+        "🚀 <em>If you are a founder raising seed capital, type <strong>'pitch'</strong> or select 'Founder Pitch' above to initiate Investment Committee review.</em><br><br>" +
+        "📥 Review our framework: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
     }
 
-    // Stats, Experience, General Partners, Team
-    if (reMatch(query, ['experience', 'how long', 'year', 'track record', 'stat', 'number', 'investment count', 'portfolio size', 'partner', 'team', 'who runs', 'who are', 'about'])) {
-      return "<strong>Flourish Profile:</strong><br>Flourish Management has <strong>15 years of investment experience</strong>, directed by our <strong>4 general partners</strong>. We currently manage a diversified roster of <strong>28 active investments</strong> across <strong>6 specialist industries</strong>. Our synergy model ensures stability through every economic cycle.";
+    // 5. 20-Year Track Record & Four Market Regimes (2004–2026)
+    if (reMatch(query, ['track record', 'experience', '20 years', '20-year', 'history', 'cycle', 'cycles', 'market cycles', 'how long', '2004', 'regime', 'performance', 'gfc', '2008', '2020', '2022', 'track record'])) {
+      return "<strong>22 Years Across Four Economic Regimes (2004 – 2026):</strong><br>Our Investment Committee has steered capital through every major financial stress-test of the modern era with <strong>zero debt defaults</strong>:<br><br>" +
+        "• <strong>2008 Financial Crisis:</strong> Fixed-rate debt and strict 12-month operating reserves protected our physical assets while floating-rate competitors faced liquidation.<br>" +
+        "• <strong>2014–2020 Low-Rate Tech Boom:</strong> Maintained disciplined entry valuations; refused speculative 50x ARR seed rounds and focused on tangible cash flows.<br>" +
+        "• <strong>2020 Liquidity Shock:</strong> Monetized deep out-of-the-money options crash hedges to acquire distressed high-quality assets at deep discounts.<br>" +
+        "• <strong>2022–2026 Rapid Rate Shock:</strong> Systematic 0.18 delta covered call overlays buffered against a 500 bps Fed tightening cycle while debt-heavy syndicators stalled.<br><br>" +
+        "See our detailed cycle analysis in the <a href='#track-record' class='underline font-bold text-[#1A365D]'>20-Year Track Record section</a>.";
     }
 
-    // Core philosophy or "what do you do" or "what is your strategy"
-    if (reMatch(query, ['what do you do', 'what is this', 'what are you', 'tell me about flourish', 'philosophy', 'strategy', 'pillar', 'goal', 'mission', 'about flourish', 'overview'])) {
-      return "Flourish Management LLC is a private investment holding company. We operate a multi-asset ecosystem designed for non-correlated returns. By balancing high-growth startup equity with hedged capital market strategies and tangible cash-flowing real estate, we maximize returns while mitigating structural risks.";
+    // 6. Institutional Diligence Tear-Sheets
+    if (reMatch(query, ['tear-sheet', 'tear sheet', 'tear-sheets', 'tear sheets', 'checklist', 'pdf', 'matrix', 'worksheet', 'download', 'print', 'diligence sheets'])) {
+      return "<strong>Institutional Diligence Tear-Sheets:</strong><br>We provide standardized 1-page institutional diligence matrices for allocators and operators:<br><br>" +
+        "1. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-RE-01: Multifamily Screening Matrix</a> &middot; 50% OpEx stress test, debt yield hurdles, replacement cost.<br>" +
+        "2. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-VC-02: Seed SAFE Cap Table Audit</a> &middot; 20% aggregate dilution ceiling, 72-hr founder velocity, ESOP traps.<br>" +
+        "3. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-MM-03: Delta-Hedging Parameter Sheet</a> &middot; 0.18 delta covered calls, VIX regimes, crash put insurance.<br><br>" +
+        "Click 'Preview Tear-Sheet' on any card in the <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Diligence section</a> to view or print the PDF.";
     }
 
-    // Contact, phone, email, reach, talk, send message
-    if (reMatch(query, ['contact', 'email', 'phone', 'call', 'reach out', 'talk to human', 'real person', 'address', 'office', 'inquiry', 'info', 'message', 'mail'])) {
-      return "We would love to talk! You can connect with our general partners via:<br>• <strong>Email:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline hover:text-sage font-semibold'>info@flourish-mgmt.com</a><br>• <strong>Phone:</strong> <a href='tel:+14247033332' class='underline hover:text-sage font-semibold'>+1 (424) 703-3332</a><br>Or simply fill out our <strong>Inquiry Form</strong> on the page, and we will get back to you within 24 hours.";
+    // 7. Allocator / LP Inquiries
+    if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds', 'syndicate', 'allocate'])) {
+      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential discussion with our Investment Committee, type <strong>'allocate'</strong> or select <strong>'Allocator Inquiries'</strong> above to share your mandate parameters.";
     }
 
-    // Friendly pleasantries
-    if (reMatch(query, ['thank', 'thanks', 'cool', 'awesome', 'great', 'nice', 'ok', 'good', 'perfect', 'got it', 'bye', 'goodbye'])) {
-      return "My pleasure! Let me know if there's anything else about Flourish Management I can clarify. Enjoy exploring our site!";
+    // 8. Identity, Partners, Governance & Anonymity
+    if (reMatch(query, ['who are you', 'team', 'partner', 'partners', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'prabhu', 'thiagarajan', 'linkedin'])) {
+      return "<strong>Governance & Institutional Attribution:</strong><br>Flourish Management LLC operates under the governance of our <strong>Investment Committee and General Partner Syndicate (Est. 2004)</strong>. To strictly prevent employment conflicts and ensure institutional independence, our cross-cycle track record and underwriting frameworks are attributed directly to the committee rather than individual corporate titles. We let our 22-year numbers, risk scar tissue, and granular diligence rulebooks speak for themselves.";
     }
 
-    // Broader fallback - if user types random questions, give them an informative menu of options to pick from
-    return "I want to make sure I give you the exact information you're looking for. Please type a topic or select one of the quick options above:<br>• Type <strong>'real estate'</strong> to hear about our property criteria.<br>• Type <strong>'venture'</strong> to learn how we back startups.<br>• Type <strong>'hedging'</strong> to understand our capital market protective strategies.<br>• Type <strong>'contact'</strong> to get connected with a partner directly.";
+    // 9. Contact & Inquiries
+    if (reMatch(query, ['contact', 'email', 'phone', 'call', 'reach out', 'office', 'inquiry', 'info', 'message', 'mail', 'address'])) {
+      return "<strong>Executive Contact Channels:</strong><br>• <strong>Syndicate Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-[#1A365D]'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-[#1A365D]'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='#contact' class='underline font-bold text-[#1A365D]'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
+    }
+
+    // 10. Compliance & Disclaimers
+    if (reMatch(query, ['disclaimer', 'sec', 'compliance', 'legal', 'regulation', '506', 'accreditation'])) {
+      return "<strong>Syndicate Legal Disclaimer:</strong><br>Flourish Management is an independent private research syndicate and family office allocation think tank. All market perspectives, underwriting frameworks, and quantitative options models are strictly for informational and analytical purposes and do not constitute an offer to sell, a solicitation to buy, or an investment recommendation. Past performance across historical economic cycles (2004–2026) is no guarantee of future results.";
+    }
+
+    // 11. Polite Closing / Acknowledgment
+    if (reMatch(query, ['thank', 'thanks', 'great', 'awesome', 'good', 'perfect', 'understood', 'got it', 'bye', 'goodbye'])) {
+      return "You are very welcome. The Flourish Investment Committee Desk is always at your service. Please reach out if you require further diligence or co-investment details.";
+    }
+
+    // 12. Fallback Menu
+    return "I want to ensure you receive the precise institutional perspective you require. Please select one of the quick options above, or ask about:<br><br>" +
+      "• <strong>'real estate'</strong> for our 50% OpEx & debt yield criteria.<br>" +
+      "• <strong>'options'</strong> for our 0.18 delta systematic hedging engine.<br>" +
+      "• <strong>'venture'</strong> or <strong>'pitch'</strong> to submit a seed startup.<br>" +
+      "• <strong>'allocator'</strong> for accredited LP & co-investment pathways.<br>" +
+      "• <strong>'tear sheets'</strong> to review our printable institutional matrices.";
   };
 
   // Heuristic matching helper with whole word boundary scanning
   const reMatch = (text, keywords) => {
     return keywords.some(keyword => {
-      // Escape special characters to create a valid regex
       const escaped = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-      // Use \b (word boundary) for single-word keywords to prevent matching parts of words
-      // But allow matching phrases that might contain spaces
       const regex = escaped.includes(' ') 
         ? new RegExp(escaped, 'i') 
         : new RegExp('\\b' + escaped + '\\b', 'i');
@@ -283,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Reusable core message processing function
+  // Reusable core message processing function (Dual-Track State Machine)
   const handleUserMessageSubmit = (messageText) => {
     if (!messageText) return;
 
@@ -298,11 +341,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if the user is attempting to escape/cancel the lead process
     if (query === 'reset' || query === 'cancel' || query === 'exit' || query === 'restart') {
       leadState = 'DEFAULT';
-      leadData = { name: '', email: '', phone: '', pitch: '' };
+      leadType = 'founder';
+      leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
       setTimeout(() => {
         hideTyping();
-        appendMessage('assistant', "No problem! I have cancelled our onboarding loop and reset the chat. How else can I assist you today?");
-      }, 700);
+        appendMessage('assistant', "Onboarding flow reset. I am at your disposal. You can inquire about our 20-year cross-cycle track record, real estate underwriting, options hedging parameters, or executive tear-sheets.");
+      }, 600);
       return;
     }
 
@@ -312,43 +356,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // Process chat inputs statefully
     if (leadState === 'DEFAULT') {
       const isPitchRequest = reMatch(query, [
-        'raise', 'funding', 'raise capital', 'investor', 'pitch', 'pitching', 
-        'back startups', 'raising', 'venture', 'vc', 'founder', 'startup', 
-        'start-up', 'series a', 'seed', 'partner with you', 'looking to raise'
+        'raise', 'funding', 'raise capital', 'pitch', 'pitching', 'seed round',
+        'back startups', 'raising', 'venture deal', 'founder', 'startup', 
+        'start-up', 'series a', 'partner with you', 'looking to raise',
+        'submit pitch', 'submit deal'
+      ]);
+
+      const isAllocatorRequest = reMatch(query, [
+        'allocate', 'allocating', 'co-invest', 'coinvest', 'lp inquiry', 'limited partner',
+        'family office inquiry', 'institutional investor', 'invest in flourish', 'allocator inquiry',
+        'accredited allocator', 'partner inquiry', 'syndicate access'
       ]);
 
       if (isPitchRequest) {
-        leadState = 'COLLECTING_NAME';
-        responseText = "<strong>Venture Partnership Onboarding:</strong> We are always seeking to collaborate with visionary, growth-stage founders! I can collect your details right here and email them directly to our general partners, along with our full conversation history.<br><br>Let's get started! <strong>What is your full name?</strong>";
+        leadType = 'founder';
+        leadState = 'FOUNDER_NAME';
+        responseText = "<strong>Venture Partnership Intake:</strong> We actively evaluate early-stage software, fintech, and hard-tech startups with high-velocity founding teams. I will capture your parameters and transmit your transcript directly to our Investment Committee.<br><br>Let's begin: <strong>What is your full name?</strong>";
+      } else if (isAllocatorRequest) {
+        leadType = 'allocator';
+        leadState = 'ALLOCATOR_NAME';
+        responseText = "<strong>Institutional Allocator Intake:</strong> We welcome confidential dialogue with accredited family offices, institutional allocators, and co-investment partners. I will log your mandate and brief our General Partners directly.<br><br>To begin: <strong>What is your full name and title?</strong>";
       } else {
         responseText = getAssistantResponse(messageText);
       }
-    } else if (leadState === 'COLLECTING_NAME') {
+    } 
+    // Track A: Founder Pitch Flow
+    else if (leadState === 'FOUNDER_NAME') {
       leadData.name = messageText;
-      leadState = 'COLLECTING_EMAIL';
-      responseText = `Great to meet you, <strong>${leadData.name}</strong>! What is your **best email address** so our general partners can get in touch with you?`;
-    } else if (leadState === 'COLLECTING_EMAIL') {
-      // Basic email formatting safety check
+      leadState = 'FOUNDER_EMAIL';
+      responseText = `Great to connect, <strong>${leadData.name}</strong>. What is your <strong>best executive email address</strong> so our Investment Committee can follow up?`;
+    } else if (leadState === 'FOUNDER_EMAIL') {
       if (!messageText.includes('@') || !messageText.includes('.')) {
-        responseText = "Hmm, that doesn't look like a valid email address. Please share a valid email so we can reach you:";
+        responseText = "Please provide a valid email address so our committee can contact you directly:";
       } else {
         leadData.email = messageText;
-        leadState = 'COLLECTING_PHONE';
-        responseText = `Got it, thank you! What is a **good phone number** (including country code) to connect with you at?`;
+        leadState = 'FOUNDER_PHONE';
+        responseText = `Understood. What is a <strong>good direct phone number</strong> (including country code) to connect with you?`;
       }
-    } else if (leadState === 'COLLECTING_PHONE') {
+    } else if (leadState === 'FOUNDER_PHONE') {
       leadData.phone = messageText;
-      leadState = 'COLLECTING_PITCH';
-      responseText = "Perfect. Lastly, please share a **brief description of your startup/project and what you are raising** (e.g., 'raising $500k Seed for AI-driven logistics platform'):";
-    } else if (leadState === 'COLLECTING_PITCH') {
+      leadState = 'FOUNDER_PITCH';
+      responseText = "Perfect. Please share a <strong>brief summary of your startup, current ARR/traction, and your current raise terms</strong> (e.g., '$750k Seed on SAFE at $8M valuation cap'):";
+    } else if (leadState === 'FOUNDER_PITCH') {
       leadData.pitch = messageText;
       leadState = 'DEFAULT';
-      responseText = `Thank you so much, <strong>${leadData.name}</strong>! I am packaging your details and transmitting your conversation transcript directly to our investment partners right now. One moment...`;
+      responseText = `Thank you, <strong>${leadData.name}</strong>. I am compiling your pitch memo and transmitting your conversation transcript directly to our General Partners right now. One moment...`;
+      triggerLeadSubmit = true;
+    }
+    // Track B: Accredited Allocator / LP Flow
+    else if (leadState === 'ALLOCATOR_NAME') {
+      leadData.name = messageText;
+      leadState = 'ALLOCATOR_EMAIL';
+      responseText = `Thank you, <strong>${leadData.name}</strong>. What is your <strong>primary institutional or executive email address</strong>?`;
+    } else if (leadState === 'ALLOCATOR_EMAIL') {
+      if (!messageText.includes('@') || !messageText.includes('.')) {
+        responseText = "Please provide a valid corporate or executive email address:";
+      } else {
+        leadData.email = messageText;
+        leadState = 'ALLOCATOR_ORG';
+        responseText = `What is the name of your <strong>organization, family office, or fund entity</strong> (e.g., 'Single Family Office', 'Endowment', 'Individual Qualified Purchaser')?`;
+      }
+    } else if (leadState === 'ALLOCATOR_ORG') {
+      leadData.organization = messageText;
+      leadState = 'ALLOCATOR_INTEREST';
+      responseText = "Understood. What is your <strong>primary allocation interest or target strategy</strong> (e.g., 'Workforce Housing Equity', 'Systematic Volatility Yield', 'Seed Co-Investment Rights')?";
+    } else if (leadState === 'ALLOCATOR_INTEREST') {
+      leadData.interest = messageText;
+      leadState = 'DEFAULT';
+      responseText = `Thank you, <strong>${leadData.name}</strong>. I am packaging your institutional inquiry and transmitting your brief directly to our Investment Committee. One moment...`;
       triggerLeadSubmit = true;
     }
 
     // Calculate typing speed delay based on word length
-    const delay = Math.max(700, Math.min(2000, responseText.length * 7));
+    const delay = Math.max(600, Math.min(1800, responseText.length * 5));
 
     setTimeout(() => {
       hideTyping();
@@ -364,10 +444,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
+            leadType: leadType,
             name: leadData.name,
             email: leadData.email,
             phone: leadData.phone,
             pitch: leadData.pitch,
+            organization: leadData.organization,
+            interest: leadData.interest,
             transcript: conversationHistory
           })
         })
@@ -375,17 +458,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
           hideTyping();
           if (data.success) {
-            appendMessage('assistant', `🚀 <strong>Transmission Complete!</strong><br>Your details have been logged, and the conversation history has been emailed directly to our general partners. A partner will review your pitch and contact you at <strong>${leadData.email}</strong> within 24 hours.<br><br>Thank you for reaching out to Flourish Management, and we wish you absolute success with your startup!`);
+            if (leadType === 'allocator') {
+              appendMessage('assistant', `🏛️ <strong>Institutional Inquiry Transmitted:</strong><br>Your mandate details and conversation transcript have been delivered directly to the Flourish Investment Committee. A General Partner will review your inquiry and follow up at <strong>${leadData.email}</strong> within 24 hours.<br><br>Thank you for connecting with Flourish Management.`);
+            } else {
+              appendMessage('assistant', `🚀 <strong>Venture Pitch Transmitted:</strong><br>Your details have been logged and the conversation transcript emailed directly to our General Partners. A partner will review your pitch against our Seed diligence criteria and respond to <strong>${leadData.email}</strong> within 24 hours.<br><br>Thank you for submitting to Flourish Management.`);
+            }
           } else {
-            appendMessage('assistant', `ℹ️ <strong>Details Saved!</strong> Your pitch information has been logged locally on our server. A partner will review your inquiry shortly. Thank you, <strong>${leadData.name}</strong>!`);
+            appendMessage('assistant', `ℹ️ <strong>Details Saved!</strong> Your inquiry has been logged locally on our server. A partner will review your submission shortly. Thank you, <strong>${leadData.name}</strong>!`);
           }
           // Reset captured state variables
-          leadData = { name: '', email: '', phone: '', pitch: '' };
+          leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
         })
         .catch(err => {
           hideTyping();
-          appendMessage('assistant', `ℹ️ <strong>Details Logged!</strong> We successfully captured your information on our server. Our team will review your pitch shortly. Thank you, <strong>${leadData.name}</strong>!`);
-          leadData = { name: '', email: '', phone: '', pitch: '' };
+          appendMessage('assistant', `ℹ️ <strong>Details Logged!</strong> We successfully captured your information on our server. Our team will review your inquiry shortly. Thank you, <strong>${leadData.name}</strong>!`);
+          leadData = { name: '', email: '', phone: '', pitch: '', organization: '', interest: '' };
         });
       }
     }, delay);
@@ -418,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only if there are no user/assistant messages yet (besides the typing indicator)
     const messages = chatMessages.querySelectorAll('div:not(#typing-indicator)');
     if (messages.length === 0) {
-      appendMessage('assistant', "Welcome to Flourish Management LLC. I'm here to assist you with any questions about our investment verticals, team, or contact pathways. How can I help you today?");
+      appendMessage('assistant', "Welcome to Flourish Management. I am the digital desk officer for the <strong>Flourish Investment Committee (Est. 2004)</strong>.<br><br>Whether you are an accredited allocator evaluating our cross-cycle strategies, a founder submitting a seed round, or reviewing our diligence frameworks, how may I assist you today?");
       // Show notification badge if chat window is closed
       if (chatContainer.classList.contains('hidden')) {
         chatNotification.classList.remove('hidden');
