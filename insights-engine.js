@@ -839,6 +839,8 @@ class InsightsEngine {
    * - isArchived: published more than 6 months ago
    */
   getPublishedArticles(options = {}) {
+    // Lazily evaluate schedule on each read to guarantee cloud instances stay current
+    this.checkSchedule();
     const now = new Date();
     // 6 months ago threshold in milliseconds: approximately 183 days
     const sixMonthsAgo = new Date(now.getTime() - 183 * 24 * 60 * 60 * 1000);
