@@ -1,0 +1,84 @@
+<%- include('partials/head', { title: 'Quarterly Partner Letters', description: 'Executive research letters and underwriting memos from the Flourish Management Investment Committee.' }) %>
+<%- include('partials/nav') %>
+
+<main class="flex-grow">
+  
+  <!-- Header Banner -->
+  <section class="bg-brand-navy text-white py-16 sm:py-20 border-b border-brand-navyLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-navyLight border border-brand-gold/40 text-xs font-mono uppercase tracking-widest text-brand-gold mb-4">
+          <span>Investment Committee Publications</span>
+        </div>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight mb-4">
+          Quarterly Partner Letters & Research Memos
+        </h1>
+        <p class="text-sm sm:text-base text-brand-slateLight leading-relaxed">
+          Prescriptive, battle-tested underwriting insights published across twenty-two years of active committee stewardship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Article Grid Section -->
+  <section class="py-12 sm:py-16 bg-brand-cream border-b border-brand-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap items-center gap-2 mb-10 pb-6 border-b border-brand-linen">
+        <span class="text-xs uppercase tracking-wider text-brand-inkMuted font-bold mr-2">Discipline:</span>
+        <a href="/insights" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= !selectedCategory ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+          All Publications (<%= totalCount %>)
+        </a>
+        <a href="/insights?category=real-estate" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= selectedCategory === 'real-estate' ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+          Physical Real Estate
+        </a>
+        <a href="/insights?category=macro" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= selectedCategory === 'macro' ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+          Options & Macro
+        </a>
+        <a href="/insights?category=venture" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= selectedCategory === 'venture' ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+          Seed Venture
+        </a>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% if (articles && articles.length > 0) { %>
+          <% articles.forEach(function(article) { %>
+          <article class="bg-white rounded-2xl p-6 border border-brand-linen shadow-sm flex flex-col justify-between card-hover">
+            <div>
+              <div class="flex items-center justify-between text-[11px] font-mono text-brand-slateLight uppercase tracking-wider mb-3">
+                <span><%= article.displayDate || article.date || 'Publication' %></span>
+                <span class="px-2 py-0.5 rounded bg-brand-cream border border-brand-linen text-brand-navy font-semibold"><%= article.category %></span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-brand-navy mb-2 line-clamp-2">
+                <a href="/insights/<%= article.id %>" class="hover:text-brand-gold transition-colors">
+                  <%= article.title %>
+                </a>
+              </h3>
+              <p class="text-xs text-brand-inkMuted leading-relaxed line-clamp-3 mb-6">
+                <%= article.summary %>
+              </p>
+            </div>
+            
+            <div class="pt-4 border-t border-brand-linen/70 flex items-center justify-between text-xs font-semibold">
+              <a href="/insights/<%= article.id %>" class="text-brand-navy hover:text-brand-gold inline-flex items-center">
+                <span>Read Letter &rarr;</span>
+              </a>
+              <span class="text-[10px] text-brand-slateLight font-mono"><%= article.readTime || '4 Min Read' %></span>
+            </div>
+          </article>
+          <% }); %>
+        <% } else { %>
+          <div class="col-span-3 text-center py-12 text-brand-inkMuted text-sm">
+            No partner letters found for the selected category.
+          </div>
+        <% } %>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

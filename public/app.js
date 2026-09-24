@@ -4,14 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('mobile-menu');
 
   if (mobileMenuBtn && mobileMenu) {
+    const barsIcon = document.getElementById('menu-icon-bars');
+    const closeIcon = document.getElementById('menu-icon-close');
+
     mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const isClosed = mobileMenu.classList.toggle('hidden');
+      if (barsIcon && closeIcon) {
+        if (isClosed) {
+          barsIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        } else {
+          barsIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        }
+      }
     });
 
     // Close menu when clicking links
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
+        if (barsIcon && closeIcon) {
+          barsIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
       });
     });
   }
@@ -238,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "2. <strong>Sub-Replacement Cost Hurdle:</strong> Acquisition basis must be ≤75% of new construction cost per door to ensure an unassailable margin of safety.<br>" +
         "3. <strong>Fixed-Rate Debt Only:</strong> Zero floating-rate bridge debt. All properties carry 7-to-10 year fixed agency financing backed by a 12-month operational liquidity reserve.<br>" +
         "4. <strong>Unlevered Debt Yield:</strong> Minimum 9.5% unlevered debt yield hurdle upon stabilized occupancy.<br><br>" +
-        "📥 Review our complete 1-page framework: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Multifamily Screening Matrix (Doc ID: FM-RE-01)</a>.";
+        "📥 Review our complete 1-page framework: <a href='/sheets/multifamily-matrix.html' target='_blank' class='underline font-bold text-brand-gold'>Multifamily Screening Matrix (Doc ID: FM-RE-01)</a>.";
     }
 
     // 3. Options Hedging & Volatility Strategy
@@ -248,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "2. <strong>3-Tier VIX Regime Calibration:</strong> Low IV (VIX <15) triggers tight systematic writes; moderate (15–28) triggers defensive call spreads; high volatility (VIX >28) triggers rolling strikes down and monetizing long tail puts.<br>" +
         "3. <strong>Asymmetric Crash-Put Budget:</strong> 1.5%–2.0% annual premium allocated to deep out-of-the-money crash puts, generating +500% to +1,000% payouts during systemic shocks (e.g. 2020 liquidity freeze).<br>" +
         "4. <strong>100% Cash-Secured Collateral:</strong> Collateral is swept continuously into 4-week US Treasury bills; unhedged margin debt is strictly prohibited.<br><br>" +
-        "📥 Review our parameters: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Delta-Hedging Parameter Sheet (Doc ID: FM-MM-03)</a>.";
+        "📥 Review our parameters: <a href='/sheets/delta-hedging-matrix.html' target='_blank' class='underline font-bold text-brand-gold'>Delta-Hedging Parameter Sheet (Doc ID: FM-MM-03)</a>.";
     }
 
     // 4. Venture Capital & Seed Diligence
@@ -259,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "3. <strong>Option Pool Trap Defense:</strong> We verify unallocated ESOP pools (10–15%) are modeled post-money to shield seed investors from unearned early dilution.<br>" +
         "4. <strong>Pro-Rata Rights:</strong> We insist on contractual pro-rata participation into Series A.<br><br>" +
         "🚀 <em>If you are a founder raising seed capital, type <strong>'pitch'</strong> or select 'Founder Pitch' above to initiate Investment Committee review.</em><br><br>" +
-        "📥 Review our framework: <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
+        "📥 Review our framework: <a href='/sheets/seed-safe-audit.html' target='_blank' class='underline font-bold text-brand-gold'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
     }
 
     // 5. 20-Year Track Record & Four Market Regimes (2004–2026)
@@ -269,21 +285,21 @@ document.addEventListener('DOMContentLoaded', () => {
         "• <strong>2014–2020 Low-Rate Tech Boom:</strong> Maintained disciplined entry valuations; refused speculative 50x ARR seed rounds and focused on tangible cash flows.<br>" +
         "• <strong>2020 Liquidity Shock:</strong> Monetized deep out-of-the-money options crash hedges to acquire distressed high-quality assets at deep discounts.<br>" +
         "• <strong>2022–2026 Rapid Rate Shock:</strong> Systematic 0.18 delta covered call overlays buffered against a 500 bps Fed tightening cycle while debt-heavy syndicators stalled.<br><br>" +
-        "See our detailed cycle analysis in the <a href='#track-record' class='underline font-bold text-[#1A365D]'>20-Year Track Record section</a>.";
+        "See our detailed cycle analysis on the <a href='/track-record' class='underline font-bold text-brand-gold'>20-Year Track Record page</a>.";
     }
 
     // 6. Institutional Diligence Tear-Sheets
     if (reMatch(query, ['tear-sheet', 'tear sheet', 'tear-sheets', 'tear sheets', 'checklist', 'pdf', 'matrix', 'worksheet', 'download', 'print', 'diligence sheets'])) {
       return "<strong>Institutional Diligence Tear-Sheets:</strong><br>We provide standardized 1-page institutional diligence matrices for allocators and operators:<br><br>" +
-        "1. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-RE-01: Multifamily Screening Matrix</a> &middot; 50% OpEx stress test, debt yield hurdles, replacement cost.<br>" +
-        "2. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-VC-02: Seed SAFE Cap Table Audit</a> &middot; 20% aggregate dilution ceiling, 72-hr founder velocity, ESOP traps.<br>" +
-        "3. <a href='#diligence-sheets' class='font-bold text-[#1A365D] underline'>FM-MM-03: Delta-Hedging Parameter Sheet</a> &middot; 0.18 delta covered calls, VIX regimes, crash put insurance.<br><br>" +
-        "Click 'Preview Tear-Sheet' on any card in the <a href='#diligence-sheets' class='underline font-bold text-[#1A365D]'>Diligence section</a> to view or print the PDF.";
+        "1. <a href='/sheets/multifamily-matrix.html' target='_blank' class='font-bold text-brand-gold underline'>FM-RE-01: Multifamily Screening Matrix</a> &middot; 50% OpEx stress test, debt yield hurdles, replacement cost.<br>" +
+        "2. <a href='/sheets/seed-safe-audit.html' target='_blank' class='font-bold text-brand-gold underline'>FM-VC-02: Seed SAFE Cap Table Audit</a> &middot; 20% aggregate dilution ceiling, 72-hr founder velocity, ESOP traps.<br>" +
+        "3. <a href='/sheets/delta-hedging-matrix.html' target='_blank' class='font-bold text-brand-gold underline'>FM-MM-03: Delta-Hedging Parameter Sheet</a> &middot; 0.18 delta covered calls, VIX regimes, crash put insurance.<br><br>" +
+        "Review and print all sheets on the <a href='/diligence' class='underline font-bold text-brand-gold'>Diligence Portal</a>.";
     }
 
     // 7. Allocator / LP Inquiries
     if (reMatch(query, ['allocator', 'co-invest', 'coinvest', 'lp', 'limited partner', 'family office', 'institutional investor', 'accredited', 'private wealth', 'endowment', 'fund of funds', 'syndicate'])) {
-      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> to share your entity and focus.";
+      return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investment syndicates, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> or visit the <a href='/contact' class='underline font-bold text-brand-gold'>Executive Portal</a>.";
     }
 
     // 8. Identity, Partners, Governance & Anonymity
@@ -293,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 9. Contact & Inquiries
     if (reMatch(query, ['contact', 'email', 'phone', 'call', 'reach out', 'office', 'inquiry', 'info', 'message', 'mail', 'address'])) {
-      return "<strong>Executive Contact Channels:</strong><br>• <strong>Syndicate Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-[#1A365D]'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-[#1A365D]'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='#contact' class='underline font-bold text-[#1A365D]'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
+      return "<strong>Executive Contact Channels:</strong><br>• <strong>Syndicate Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-brand-gold'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-brand-gold'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='/contact' class='underline font-bold text-brand-gold'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
     }
 
     // 10. Compliance & Disclaimers

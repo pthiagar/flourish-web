@@ -1,0 +1,162 @@
+<%- include('partials/head', { title: 'Diligence Tear-Sheets', description: 'Standardized 1-page institutional underwriting matrices for real estate, options hedging, and seed venture.' }) %>
+<%- include('partials/nav') %>
+
+<main class="flex-grow">
+  
+  <!-- Header Banner -->
+  <section class="bg-brand-navy text-white py-16 sm:py-20 border-b border-brand-navyLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-navyLight border border-brand-gold/40 text-xs font-mono uppercase tracking-widest text-brand-gold mb-4">
+          <span>Investment Committee Standard</span>
+        </div>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight mb-4">
+          Institutional Diligence Tear-Sheets
+        </h1>
+        <p class="text-sm sm:text-base text-brand-slateLight leading-relaxed">
+          Standardized 1-page underwriting frameworks developed across 22 years of market stress. Preview in-browser or print directly for committee review.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diligence Cards Grid (Responsive: 1 column on mobile, 3 columns on tablet/desktop) -->
+  <section class="py-16 sm:py-24 bg-brand-cream border-b border-brand-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Sheet 1: Multifamily Matrix -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen shadow-sm flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-brand-linen/80">
+              <span class="text-[11px] font-mono font-bold text-brand-gold tracking-widest uppercase">FM-RE-01</span>
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-cream text-brand-slate uppercase font-semibold">1-Page PDF</span>
+            </div>
+
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-4 mb-2">Multifamily Screening Matrix</h3>
+            <p class="text-xs text-brand-slate font-medium mb-4">Class B/C Workforce Housing Hurdle Filter</p>
+            
+            <p class="text-xs text-brand-inkMuted leading-relaxed mb-6">
+              Our 15-minute hurdle filter to rapidly eliminate broker pro-forma bias and stress test operating reality.
+            </p>
+
+            <div class="space-y-2 mb-8 text-xs text-brand-ink">
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>50% Operating Expense rule</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Sub-replacement cost (≤ 75% basis)</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>9.5% stabilized debt yield threshold</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Zero floating-rate bridge debt</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
+            <a href="/sheets/multifamily-matrix.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
+              Preview Matrix &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Sheet 2: Seed SAFE Audit -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen shadow-sm flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-brand-linen/80">
+              <span class="text-[11px] font-mono font-bold text-brand-gold tracking-widest uppercase">FM-VC-02</span>
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-cream text-brand-slate uppercase font-semibold">1-Page PDF</span>
+            </div>
+
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-4 mb-2">Seed Dilution & SAFE Audit</h3>
+            <p class="text-xs text-brand-slate font-medium mb-4">Cap Table Architecture & Founder Velocity</p>
+            
+            <p class="text-xs text-brand-inkMuted leading-relaxed mb-6">
+              Diagnostic tool to protect founding teams from predatory dilution math and option pool traps before Series A.
+            </p>
+
+            <div class="space-y-2 mb-8 text-xs text-brand-ink">
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>20% aggregate seed dilution ceiling</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>72-hour founder execution velocity</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Contractual pro-rata side letters</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Capital efficiency & burn multiple &lt; 1.5x</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
+            <a href="/sheets/seed-safe-audit.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
+              Preview Matrix &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Sheet 3: Delta Hedging Matrix -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen shadow-sm flex flex-col justify-between card-hover">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-brand-linen/80">
+              <span class="text-[11px] font-mono font-bold text-brand-gold tracking-widest uppercase">FM-MM-03</span>
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-cream text-brand-slate uppercase font-semibold">1-Page PDF</span>
+            </div>
+
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-4 mb-2">Delta-Hedging Parameter Sheet</h3>
+            <p class="text-xs text-brand-slate font-medium mb-4">Quantitative Options & Tail-Risk Harvesting</p>
+            
+            <p class="text-xs text-brand-inkMuted leading-relaxed mb-6">
+              Our systematic parameter matrix governing covered call writing, crash-put allocations, and VIX regimes.
+            </p>
+
+            <div class="space-y-2 mb-8 text-xs text-brand-ink">
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>0.18 Delta systematic call overlay</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>3-Tier VIX volatility regime playbook</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Pre-funded +800% crash put payouts</span>
+              </div>
+              <div class="flex items-start space-x-2">
+                <svg class="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>100% US Treasury cash collateral sweep</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
+            <a href="/sheets/delta-hedging-matrix.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
+              Preview Matrix &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,183 @@
+<%- include('partials/head', { title: 'Executive Portal & Inquiries', description: 'Confidential direct inquiries for accredited allocators, family offices, and seed-stage founders.' }) %>
+<%- include('partials/nav') %>
+
+<main class="flex-grow">
+  
+  <!-- Header Banner -->
+  <section class="bg-brand-navy text-white py-16 sm:py-20 border-b border-brand-navyLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-navyLight border border-brand-gold/40 text-xs font-mono uppercase tracking-widest text-brand-gold mb-4">
+          <span>Confidential Executive Desk</span>
+        </div>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight mb-4">
+          Direct Dialogue with the General Partners
+        </h1>
+        <p class="text-sm sm:text-base text-brand-slateLight leading-relaxed">
+          We welcome confidential inquiries from accredited allocators, single family offices, and high-velocity founders.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portal Form & Committee Desk Section -->
+  <section class="py-16 sm:py-24 bg-brand-cream border-b border-brand-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Form Container -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-10 border border-brand-linen shadow-sm">
+          
+          <h2 class="font-serif text-2xl font-bold text-brand-navy mb-2">Submit an Inquiry</h2>
+          <p class="text-xs text-brand-inkMuted mb-8">
+            Every submission is received directly by our Investment Committee. We respect your confidentiality.
+          </p>
+
+          <form id="portal-form" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="contact-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Full Name *</label>
+                <input type="text" id="contact-name" name="name" required placeholder="Your Name" class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors">
+              </div>
+              <div>
+                <label for="contact-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Corporate or Personal Email *</label>
+                <input type="email" id="contact-email" name="email" required placeholder="name@domain.com" class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="contact-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Direct Phone (Optional)</label>
+                <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 000-0000" class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors">
+              </div>
+              <div>
+                <label for="contact-type" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Inquiry Track</label>
+                <select id="contact-type" name="inquiryType" class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors">
+                  <option value="allocator">Accredited LP / Allocator Co-Investment</option>
+                  <option value="founder">Early-Stage Founder Pitch</option>
+                  <option value="realestate">Real Estate Acquisition Acquisition</option>
+                  <option value="general">General Partner Desk Inquiry</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">Executive Summary / Proposal *</label>
+              <textarea id="contact-message" name="message" rows="5" required placeholder="Provide an overview of your fund allocation criteria, co-investment thesis, or startup traction..." class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors"></textarea>
+            </div>
+
+            <!-- Status message container -->
+            <div id="form-status" class="hidden p-4 rounded-xl text-xs font-semibold"></div>
+
+            <button type="submit" id="submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight border border-brand-navy shadow-sm transition-all">
+              <span>Transmit Directly to Committee</span>
+              <svg class="w-4 h-4 ml-2 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+
+          </form>
+
+        </div>
+
+        <!-- Right: Committee Info & Direct Contact -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen shadow-sm">
+            <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Committee Mandate</span>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-3">Response Protocol</h3>
+            <p class="text-xs text-brand-inkMuted leading-relaxed mb-4">
+              We maintain direct, un-intermediated communication. Your submission does not go to a sales representative or junior screener; it is routed to the General Partner email inbox.
+            </p>
+            <div class="space-y-3 pt-3 border-t border-brand-linen text-xs text-brand-ink">
+              <div class="flex items-center space-x-2 font-medium">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Response SLA: 48 Business Hours</span>
+              </div>
+              <div class="flex items-center space-x-2 font-medium">
+                <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                <span>Direct Partner Review</span>
+              </div>
+              <div class="flex items-center space-x-2 font-medium">
+                <span class="w-2 h-2 rounded-full bg-brand-navy"></span>
+                <span>Strict Non-Disclosure Compliance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-brand-navy rounded-2xl p-6 sm:p-8 text-white">
+            <h4 class="font-serif text-lg font-bold text-brand-gold mb-3">Direct Executive Desk</h4>
+            <p class="text-xs text-brand-slateLight leading-relaxed mb-4">
+              For time-sensitive syndication matters or direct wire/escrow coordination:
+            </p>
+            <div class="space-y-2 text-xs">
+              <p>
+                <span class="text-brand-slateLight">Email:</span>
+                <a href="mailto:info@flourish-mgmt.com" class="text-white hover:text-brand-gold ml-2 font-semibold">info@flourish-mgmt.com</a>
+              </p>
+              <p>
+                <span class="text-brand-slateLight">Telephone:</span>
+                <a href="tel:+14247033332" class="text-white hover:text-brand-gold ml-2 font-semibold">+1 (424) 703-3332</a>
+              </p>
+              <p class="pt-2 text-[10px] text-brand-slateLight/70 font-mono">
+                Flourish Management LLC &middot; Los Angeles, CA
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // AJAX form submit
+  const portalForm = document.getElementById('portal-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (portalForm) {
+    portalForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Transmitting to Committee...';
+
+      const formData = {
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email').value,
+        phone: document.getElementById('contact-phone').value,
+        message: `[Inquiry Track: ${document.getElementById('contact-type').value}]\n\n${document.getElementById('contact-message').value}`
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          formStatus.className = 'p-4 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 block';
+          formStatus.textContent = 'Inquiry successfully transmitted. Our Investment Committee will review your submission within 48 business hours.';
+          portalForm.reset();
+        } else {
+          formStatus.className = 'p-4 rounded-xl text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200 block';
+          formStatus.textContent = data.message || 'Submission failed. Please email us directly at info@flourish-mgmt.com.';
+        }
+      } catch (err) {
+        formStatus.className = 'p-4 rounded-xl text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200 block';
+        formStatus.textContent = 'Submission error. Please email us directly at info@flourish-mgmt.com.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Transmit Directly to Committee</span><svg class="w-4 h-4 ml-2 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+      }
+    });
+  }
+</script>
+
+<%- include('partials/footer') %>

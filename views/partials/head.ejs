@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' | Flourish Management' : 'Flourish Management | Private Investment Syndicate (Est. 2004)' %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Flourish Management is an independent private research syndicate and family office allocation think tank. 22-year cross-cycle track record across real estate, systematic options, and seed venture.' %>">
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title + ' | Flourish Management' : 'Flourish Management | Private Investment Syndicate' %>">
+  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : '22-year cross-cycle track record across real estate, systematic options yield, and seed venture.' %>">
+  <meta property="og:image" content="/images/about-boardroom.png">
+
+  <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Brand-Harmonized Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0A192F',        // Exact Midnight Navy from Brand Crest
+              navyLight: '#142134',   // Midnight Oxford Blue
+              navySoft: '#1A365D',    // Classic Corporate Deep Navy
+              gold: '#B48D48',        // Exact Refined Gold Accent from Logo
+              goldLight: '#C5A059',   // Warm Champagne Highlight
+              goldDark: '#997530',    // Deep Bronze Accent
+              cream: '#FAF7F2',       // Editorial Alabaster Canvas
+              creamPaper: '#FCFBF8',  // Crisp Paper
+              creamDark: '#F0EADF',   // Sand Neutral
+              linen: '#DFD2C2',       // Linen Hairline Divider
+              slate: '#3B6290',       // Steel Blue Mid-tone
+              slateLight: '#8C9BA5',  // Muted Slate Text
+              ink: '#1A212D',         // Charcoal Ink Body
+              inkMuted: '#4A5560'     // Secondary Charcoal
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            display: ['"DM Serif Display"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth Scrollbar */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #FAF7F2; }
+    ::-webkit-scrollbar-thumb { background: #DFD2C2; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #B48D48; }
+
+    /* Selection Color */
+    ::selection { background: #B48D48; color: #FFFFFF; }
+
+    /* Clean Card Hover Transition */
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(10, 25, 47, 0.08);
+      border-color: #B48D48;
+    }
+  </style>
+</head>
+<body class="bg-brand-cream text-brand-ink font-sans antialiased selection:bg-brand-gold selection:text-white flex flex-col min-h-screen">

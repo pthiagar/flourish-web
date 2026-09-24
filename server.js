@@ -11,6 +11,10 @@ const emailDispatcher = require('./email-dispatcher');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configure EJS view engine for Multi-Page Application (MPA)
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // 1. App Security: Harden HTTP Headers with customized Content Security Policy (CSP)
 app.use(
   helmet({
@@ -74,8 +78,8 @@ function getBrandedEmailHeader(subtitle = 'Executive Notification') {
   `;
 }
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the public directory (disable automatic index.html serving so EJS router handles /)
+app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 // API endpoint to handle contact form inquiries
 app.post('/api/contact', async (req, res) => {
@@ -829,9 +833,82 @@ app.get('/api/admin/subscribers', (req, res) => {
   });
 });
 
-// Catch-all route to serve index.html for single-page routing
+// ----------------------------------------------------
+// MULTI-PAGE APPLICATION (MPA) ROUTES
+// ----------------------------------------------------
+
+// 1. Executive Overview / Homepage
+app.get('/', (req, res) => {
+  try {
+    const recentArticles = insightsEngine.getRecentArticles();
+    res.render('index', { currentPath: '/', recentArticles });
+  } catch (err) {
+    res.render('index', { currentPath: '/', recentArticles: [] });
+  }
+});
+
+// 2. The Three Investment Disciplines
+app.get('/strategies', (req, res) => {
+  res.render('strategies', { currentPath: '/strategies' });
+});
+
+// 3. 20-Year Cross-Cycle Track Record (2004–2026)
+app.get('/track-record', (req, res) => {
+  res.render('track-record', { currentPath: '/track-record' });
+});
+
+// 4. Institutional Diligence Tear-Sheets
+app.get('/diligence', (req, res) => {
+  res.render('diligence', { currentPath: '/diligence', sheets: DILIGENCE_SHEETS });
+});
+
+// 5. Quarterly Partner Letters Journal Archive
+app.get('/insights', (req, res) => {
+  try {
+    const selectedCategory = req.query.category || null;
+    let articles;
+    if (selectedCategory) {
+      articles = insightsEngine.getPublishedArticles().filter(a => {
+        const cat = (a.topic || a.category || '').toLowerCase();
+        return cat.includes(selectedCategory.toLowerCase());
+      });
+    } else {
+      articles = insightsEngine.getPublishedArticles();
+    }
+    const all = insightsEngine.getPublishedArticles();
+    res.render('insights', {
+      currentPath: '/insights',
+      articles,
+      totalCount: all.length,
+      selectedCategory
+    });
+  } catch (err) {
+    console.error('Error rendering insights:', err);
+    res.render('insights', { currentPath: '/insights', articles: [], totalCount: 0, selectedCategory: null });
+  }
+});
+
+// 6. Individual Research Letter Editorial Reader
+app.get('/insights/:id', (req, res) => {
+  try {
+    const article = insightsEngine.getArticleById(req.params.id);
+    if (!article) {
+      return res.redirect('/insights');
+    }
+    res.render('insight-detail', { currentPath: '/insights', article });
+  } catch (err) {
+    res.redirect('/insights');
+  }
+});
+
+// 7. Executive Inquiry Portal
+app.get('/contact', (req, res) => {
+  res.render('contact', { currentPath: '/contact' });
+});
+
+// Fallback 404: redirect unmapped URLs to overview
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {
