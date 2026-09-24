@@ -1295,4 +1295,57 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /**
+   * 20-Year Cross-Cycle Timeline Regime Tab Switcher
+   */
+  function initRegimeTimeline() {
+    const regimeButtons = document.querySelectorAll('.regime-tab-btn');
+    const regimePanels = document.querySelectorAll('.regime-panel');
+
+    if (!regimeButtons.length || !regimePanels.length) return;
+
+    regimeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetRegimeId = btn.getAttribute('data-regime');
+        if (!targetRegimeId) return;
+
+        // Reset all buttons to inactive styling
+        regimeButtons.forEach(b => {
+          b.classList.remove('active', 'bg-[#3B6290]', 'border-[#A5B8D1]', 'text-white', 'shadow-lg', 'shadow-[#3B6290]/20');
+          b.classList.add('bg-white/5', 'border-white/10', 'text-slate-300');
+          const subText = b.querySelector('span');
+          if (subText) {
+            subText.classList.remove('text-emerald-300');
+            subText.classList.add('text-sage-accent');
+          }
+        });
+
+        // Activate clicked button
+        btn.classList.add('active', 'bg-[#3B6290]', 'border-[#A5B8D1]', 'text-white', 'shadow-lg', 'shadow-[#3B6290]/20');
+        btn.classList.remove('bg-white/5', 'border-white/10', 'text-slate-300');
+        const activeSubText = btn.querySelector('span');
+        if (activeSubText) {
+          activeSubText.classList.remove('text-sage-accent');
+          activeSubText.classList.add('text-emerald-300');
+        }
+
+        // Hide all panels and show targeted panel
+        regimePanels.forEach(panel => {
+          panel.classList.add('hidden');
+          panel.classList.remove('animate-fade-in');
+        });
+
+        const targetPanel = document.getElementById(targetRegimeId);
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden');
+          // Re-trigger CSS fade-in
+          void targetPanel.offsetWidth;
+          targetPanel.classList.add('animate-fade-in');
+        }
+      });
+    });
+  }
+
+  initRegimeTimeline();
 });

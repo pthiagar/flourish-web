@@ -217,10 +217,13 @@ class EmailDispatcher {
       <p style="margin: 0 0 10px 0;">
         Strategic Real Estate • Options-Hedged Capital Markets • Growth-Stage Venture Capital
       </p>
-      <p style="margin: 0; font-size: 11px;">
+      <p style="margin: 0 0 12px 0; font-size: 11px;">
         You are receiving this monthly brief because you subscribed to Flourish Letters at flourishmgmt.com.<br>
         <a href="${unsubUrl}" style="color: #3B6290; text-decoration: underline;">Click here to unsubscribe</a> from this monthly distribution list.
       </p>
+      <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #DFD2C2; font-size: 10px; color: #8C9BA5; line-height: 1.5; text-align: justify;">
+        <strong>Institutional Research Disclaimer:</strong> Flourish Management LLC operates as an independent private research syndicate and family office allocation think tank. All market perspectives, underwriting frameworks, and quantitative models published herein are for informational and educational purposes only and do not constitute an offer to sell, a solicitation of an offer to buy, or an investment recommendation. Past performance across historical economic cycles (2004–2026) is no guarantee of future results.
+      </div>
     </div>
 
   </div>

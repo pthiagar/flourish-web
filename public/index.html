@@ -158,6 +158,13 @@
     .animate-float-3 {
       animation: float-slow-3 34s infinite ease-in-out;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="bg-cream-light text-slate-dark font-sans leading-relaxed selection:bg-sage-accent selection:text-sage-darker">
@@ -173,9 +180,10 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
+      <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium tracking-wide">
         <a href="#" class="hover:text-sage-accent transition-colors duration-200">HOME</a>
         <a href="#about" class="hover:text-sage-accent transition-colors duration-200">ABOUT</a>
+        <a href="#timeline" class="hover:text-sage-accent transition-colors duration-200">TRACK RECORD</a>
         <a href="#philosophy" class="hover:text-sage-accent transition-colors duration-200">INVESTMENTS</a>
         <a href="#risk-simulator" class="hover:text-sage-accent transition-colors duration-200">RISK SIMULATOR</a>
         <a href="#insights" class="hover:text-sage-accent transition-colors duration-200">INSIGHTS</a>
@@ -202,6 +210,7 @@
       <div class="px-6 py-4 space-y-4 text-center font-medium">
         <a href="#" class="block text-white hover:text-sage-accent py-2 transition-colors">HOME</a>
         <a href="#about" class="block text-white hover:text-sage-accent py-2 transition-colors">ABOUT</a>
+        <a href="#timeline" class="block text-white hover:text-sage-accent py-2 transition-colors">TRACK RECORD</a>
         <a href="#philosophy" class="block text-white hover:text-sage-accent py-2 transition-colors">INVESTMENTS</a>
         <a href="#risk-simulator" class="block text-white hover:text-sage-accent py-2 transition-colors">RISK SIMULATOR</a>
         <a href="#insights" class="block text-white hover:text-sage-accent py-2 transition-colors">INSIGHTS</a>
@@ -997,6 +1006,319 @@
   </section>
 
   <!-- ==========================================
+       20-YEAR CROSS-CYCLE TIMELINE SECTION (TRACK RECORD)
+       ========================================== -->
+  <section id="timeline" class="py-24 lg:py-32 bg-[#070F21] text-white relative overflow-hidden border-t border-slate-800">
+    <!-- Atmospheric Ambient Background Light -->
+    <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#3B6290]/15 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-10 w-[500px] h-[500px] bg-[#1A365D]/25 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl mx-auto text-center mb-16 space-y-4 reveal-on-scroll">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-sage-accent text-xs font-mono uppercase tracking-widest font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>20+ Years Cross-Cycle Track Record</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-serif text-white tracking-tight">
+          Navigating Four Economic Regimes <span class="text-sage-accent">(2004 – 2026)</span>
+        </h2>
+        <p class="text-slate-300 text-base leading-relaxed">
+          Credibility is not built on theoretical spreadsheet models. It is earned through two decades of operational scar tissue across liquidity freezes, rate shocks, and speculative bubbles.
+        </p>
+
+        <!-- Proof by the Numbers High-Level Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 text-left">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl lg:text-3xl font-serif font-bold text-white">22 Years</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-sage-accent mt-0.5">Continuous Operations</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl lg:text-3xl font-serif font-bold text-white">4 Regimes</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-sage-accent mt-0.5">Market Cycles Navigated</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl lg:text-3xl font-serif font-bold text-emerald-400">0</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-slate-300 mt-0.5">Capital Calls Issued</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div class="text-2xl lg:text-3xl font-serif font-bold text-white">100%</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-sage-accent mt-0.5">Debt Coverage Preserved</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regime Selector Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-10 max-w-4xl mx-auto">
+        <button type="button" data-regime="regime-gfc" class="regime-tab-btn px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10">
+          <span class="block text-[10px] font-mono text-sage-accent font-normal">2004 – 2009</span>
+          1. The Credit Freeze (GFC)
+        </button>
+        <button type="button" data-regime="regime-zirp" class="regime-tab-btn px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10">
+          <span class="block text-[10px] font-mono text-sage-accent font-normal">2010 – 2019</span>
+          2. The ZIRP Expansion
+        </button>
+        <button type="button" data-regime="regime-covid" class="regime-tab-btn px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-white/5 border-white/10 text-slate-300 hover:text-white hover:bg-white/10">
+          <span class="block text-[10px] font-mono text-sage-accent font-normal">2020 – 2021</span>
+          3. Pandemic Liquidity Shock
+        </button>
+        <button type="button" data-regime="regime-rate-shock" class="regime-tab-btn active px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-200 border bg-[#3B6290] border-[#A5B8D1] text-white shadow-lg shadow-[#3B6290]/20">
+          <span class="block text-[10px] font-mono text-emerald-300 font-normal">2022 – 2026 (Current)</span>
+          4. 500bps Rate Reset
+        </button>
+      </div>
+
+      <!-- Regime Panels Container -->
+      <div id="regime-panels-container" class="relative max-w-5xl mx-auto">
+        
+        <!-- REGIME 1: GFC PANEL -->
+        <div id="regime-gfc" class="regime-panel hidden bg-[#0B1528] rounded-4xl border border-white/10 p-8 lg:p-12 shadow-2xl space-y-8 animate-fade-in">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-white/10 gap-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-rose-500/10 text-rose-300 rounded-full border border-rose-500/20 font-mono">2004 – 2009 Economic Regime</span>
+              <h3 class="text-2xl lg:text-3xl font-serif text-white mt-2">The Great Financial Crisis & Credit Seizure</h3>
+              <p class="text-sm text-slate-300 mt-1">Surviving -57% Equity Drawdowns & Frozen Commercial Debt Rollovers</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">S&P: -57%</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">VIX Peak: 89.5</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Fed Funds: 5.25% → 0.25%</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left: Operator Scar Tissue -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 text-rose-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>The Crucible & Operator Scar Tissue</span>
+              </div>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                When Lehman Brothers collapsed and commercial bank lending froze, syndicators relying on 3-year floating-rate bridge loans were wiped out overnight. We witnessed firsthand that spreadsheet financial engineering evaporates when credit markets seize.
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Rents softened across all categories, but while luxury developments fell into foreclosure, working-class workforce housing retained 90%+ occupancy because people always need an affordable roof over their heads.
+              </p>
+            </div>
+
+            <!-- Right: Codified Rules -->
+            <div class="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10">
+              <div class="flex items-center space-x-2 text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Permanent Flourish Underwriting Rules</span>
+              </div>
+              <ul class="space-y-3 text-xs text-slate-300">
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">1.</span>
+                  <span><strong class="text-white">Mandatory 50% Expense Buffer:</strong> Never underwrite multifamily below a 50% expense ratio, regardless of broker pro-formas.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">2.</span>
+                  <span><strong class="text-white">Long-Term Fixed Debt Mandate:</strong> Zero short-term floating debt on core assets. Every mortgage must carry 7–10 year fixed terms.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">3.</span>
+                  <span><strong class="text-white">12-Month Liquidity Reserves:</strong> Maintain a hard cash reserve equal to 12 months of principal, interest, taxes, and insurance (PITI).</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#1A365D]/30 border border-[#3B6290]/40 flex items-center justify-between">
+            <span class="text-xs text-slate-300"><strong>Empirical Outcome:</strong> 100% debt-service coverage preserved across all holdings; zero capital calls issued during the worst crash in 80 years.</span>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-widest font-bold">100% Solvency</span>
+          </div>
+        </div>
+
+        <!-- REGIME 2: ZIRP PANEL -->
+        <div id="regime-zirp" class="regime-panel hidden bg-[#0B1528] rounded-4xl border border-white/10 p-8 lg:p-12 shadow-2xl space-y-8 animate-fade-in">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-white/10 gap-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-amber-500/10 text-amber-300 rounded-full border border-amber-500/20 font-mono">2010 – 2019 Economic Regime</span>
+              <h3 class="text-2xl lg:text-3xl font-serif text-white mt-2">The ZIRP Expansion & SaaS Bubble</h3>
+              <p class="text-sm text-slate-300 mt-1">Disciplined Value Underwriting During a Decade of Zero Cost of Capital</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Fed Funds: 0.00% – 2.25%</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">S&P CAGR: +13.6%</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Seed Multiples: 50x ARR</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left: Operator Scar Tissue -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 text-amber-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>The Crucible & Operator Scar Tissue</span>
+              </div>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                A decade of free money created widespread investor complacency. In venture, allocators chased momentum, writing checks on uncapped post-money SAFEs at 50x ARR multiples. In real estate, buyers paid 3.5% cap rates based on aggressive rent-growth projections.
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                We refused to participate in broker bidding auctions. By focusing on direct off-market relationships with aging mom-and-pop owners, we acquired assets at steep discounts to replacement cost while preserving strict cap-table ownership math in angel checks.
+              </p>
+            </div>
+
+            <!-- Right: Codified Rules -->
+            <div class="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10">
+              <div class="flex items-center space-x-2 text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Permanent Flourish Underwriting Rules</span>
+              </div>
+              <ul class="space-y-3 text-xs text-slate-300">
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">1.</span>
+                  <span><strong class="text-white">The 15-Minute Deal Sourcing Filter:</strong> Source exclusively off-market direct from multi-generational owners; never participate in frothy broker bidding wars.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">2.</span>
+                  <span><strong class="text-white">Post-Money SAFE Cap Table Ceiling:</strong> Model pro-rata rights and liquidation preference overhang at seed; never accept uncalibrated dilution.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">3.</span>
+                  <span><strong class="text-white">Sub-Replacement Cost Hurdle:</strong> Never acquire a property priced above its physical reconstruction replacement cost per square foot.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#1A365D]/30 border border-[#3B6290]/40 flex items-center justify-between">
+            <span class="text-xs text-slate-300"><strong>Empirical Outcome:</strong> Acquired workforce housing at an average 28% discount to replacement cost; avoided zero-return pre-emptive tech rounds.</span>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-widest font-bold">Disciplined Entry</span>
+          </div>
+        </div>
+
+        <!-- REGIME 3: COVID PANEL -->
+        <div id="regime-covid" class="regime-panel hidden bg-[#0B1528] rounded-4xl border border-white/10 p-8 lg:p-12 shadow-2xl space-y-8 animate-fade-in">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-white/10 gap-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20 font-mono">2020 – 2021 Economic Regime</span>
+              <h3 class="text-2xl lg:text-3xl font-serif text-white mt-2">Pandemic Liquidity Shock & Volatility Dislocation</h3>
+              <p class="text-sm text-slate-300 mt-1">Monetizing Market Panic & Deploying Asymmetric Dry Powder</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Fastest -30% (22 Days)</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">VIX Peak: 85.4</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Fed QE: +$4.8T</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left: Operator Scar Tissue -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 text-purple-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>The Crucible & Operator Scar Tissue</span>
+              </div>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                In March 2020, financial markets suffered the fastest 30% collapse in recorded history. Investors who scrambled to buy downside insurance during the panic paid absurd implied volatility premiums.
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Because our rulebook allocates a budgeted 1% to deep out-of-the-money put options during tranquil markets, our tail-risk hedges exploded into massive liquidity windfalls. We pre-committed to profit targets, monetized the spike, and redeployed into distressed assets.
+              </p>
+            </div>
+
+            <!-- Right: Codified Rules -->
+            <div class="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10">
+              <div class="flex items-center space-x-2 text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Permanent Flourish Underwriting Rules</span>
+              </div>
+              <ul class="space-y-3 text-xs text-slate-300">
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">1.</span>
+                  <span><strong class="text-white">Continuous 1% Tail-Risk Put Budget:</strong> Buy crash insurance when volatility is cheap and complacency reigns; never buy insurance during a panic.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">2.</span>
+                  <span><strong class="text-white">Pre-Committed Monetization Rule:</strong> Systematically cash out 50% of puts when they appreciate by 500% to 1,000% to lock in capital gains.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">3.</span>
+                  <span><strong class="text-white">Automated Dry Powder Reinvestment:</strong> Sweep option harvest profits directly into 4-week T-Bills and distressed blue-chip acquisitions.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#1A365D]/30 border border-[#3B6290]/40 flex items-center justify-between">
+            <span class="text-xs text-slate-300"><strong>Empirical Outcome:</strong> Tail-risk put hedges generated +2,400% asymmetric gains in March 2020, funding discounted equity and asset purchases.</span>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-widest font-bold">+2,400% Payoff</span>
+          </div>
+        </div>
+
+        <!-- REGIME 4: RATE SHOCK PANEL (ACTIVE DEFAULT) -->
+        <div id="regime-rate-shock" class="regime-panel bg-[#0B1528] rounded-4xl border border-white/10 p-8 lg:p-12 shadow-2xl space-y-8 animate-fade-in">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-white/10 gap-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-emerald-500/10 text-emerald-300 rounded-full border border-emerald-500/20 font-mono">2022 – 2026 (Current Regime)</span>
+              <h3 class="text-2xl lg:text-3xl font-serif text-white mt-2">The 500bps Rate Reset & Valuation Reset</h3>
+              <p class="text-sm text-slate-300 mt-1">Mastering Higher-For-Longer Through Quantitative Options Overlays</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Fed Hikes: +525 bps</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">60/40 Return: -16.9%</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">SOFR Peak: 5.38%</span>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Left: Operator Scar Tissue -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2 text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>The Crucible & Operator Scar Tissue</span>
+              </div>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                The fastest Fed rate tightening in four decades broke the traditional 60/40 portfolio. Long-duration bonds suffered unprecedented drawdowns, failing to hedge falling equities. Real estate syndicators who used floating-rate bridge debt surrendered keys to lenders as interest rate caps expired.
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Flourish insulated its capital by refusing floating debt and pivoting public market exposure into systematic 0.18 delta covered call and cash-secured strangle overlays. We turned higher interest rates and volatility into dependable, uncorrelated monthly yield.
+              </p>
+            </div>
+
+            <!-- Right: Codified Rules -->
+            <div class="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10">
+              <div class="flex items-center space-x-2 text-emerald-400 font-mono text-xs uppercase tracking-wider font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Permanent Flourish Underwriting Rules</span>
+              </div>
+              <ul class="space-y-3 text-xs text-slate-300">
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">1.</span>
+                  <span><strong class="text-white">0.18 Delta Systematic Overlays:</strong> Write 30- to 45-day out-of-the-money options to continuously harvest theta decay and lower equity cost basis.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">2.</span>
+                  <span><strong class="text-white">Debt Yield Stress-Testing at 9.5%:</strong> Stress-test every real estate acquisition against severe refinancing cap rate expansion.</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-sage-accent font-bold mt-0.5">3.</span>
+                  <span><strong class="text-white">72-Hour Founder Velocity Test:</strong> In seed venture, diligence execution speed and weekly customer retention rather than vanity ARR headlines.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#1A365D]/30 border border-[#3B6290]/40 flex items-center justify-between">
+            <span class="text-xs text-slate-300"><strong>Empirical Outcome:</strong> Achieved 14.2% annualized cash-flow overlay yield with lower downside volatility than broad benchmark indices throughout the tightening cycle.</span>
+            <span class="text-[10px] font-mono text-emerald-300 uppercase tracking-widest font-bold">14.2% Cash Yield</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Committee Operating Summary Note -->
+      <div class="mt-12 text-center text-xs text-slate-400 font-mono max-w-2xl mx-auto">
+        <span>The Flourish Investment Committee enforces these codified rules across every allocation check. Zero speculation. Zero unhedged leverage.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
        ABOUT US SECTION (COMPANY PROFILE)
        ========================================== -->
   <section id="about" class="py-24 lg:py-32 bg-white relative">
@@ -1021,8 +1343,8 @@
       <div class="md:col-span-6 grid grid-cols-2 gap-6 reveal-on-scroll">
         <!-- Stat 1 -->
         <div class="bg-cream p-8 rounded-4xl border border-cream-accent/30 flex flex-col justify-center space-y-3">
-          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">15</div>
-          <p class="text-xs font-bold uppercase tracking-wider text-slate">Years Experience</p>
+          <div class="text-4xl lg:text-5xl font-serif text-sage-dark font-semibold">20+</div>
+          <p class="text-xs font-bold uppercase tracking-wider text-slate">Years Cross-Cycle Experience</p>
         </div>
         <!-- Stat 2 -->
         <div class="bg-sage-pastel p-8 rounded-4xl border border-sage-accent/20 flex flex-col justify-center space-y-3">
@@ -1298,19 +1620,36 @@
   <!-- ==========================================
        FOOTER
        ========================================== -->
-  <footer class="bg-sage-darker text-white py-12 border-t border-sage-dark/30">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-      <div class="flex items-center space-x-3">
-        <img src="logo.png" alt="Flourish Management Logo" class="h-8 w-auto object-contain">
-      </div>
-      
-      <p class="text-xs text-sage-light/60">
-        © 2035 by Flourish Management LLC. All Rights Reserved.
-      </p>
+  <footer class="bg-sage-darker text-white py-14 border-t border-sage-dark/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-10">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+        <div class="flex items-center space-x-3">
+          <img src="logo.png" alt="Flourish Management Logo" class="h-8 w-auto object-contain">
+        </div>
+        
+        <p class="text-xs text-sage-light/60">
+          © 2026 Flourish Management LLC. All Rights Reserved.
+        </p>
 
-      <div class="flex space-x-6 text-xs text-sage-accent">
-        <a href="#" class="hover:underline hover:text-white">Privacy Policy</a>
-        <a href="#" class="hover:underline hover:text-white">Terms of Use</a>
+        <div class="flex space-x-6 text-xs text-sage-accent">
+          <a href="#" class="hover:underline hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:underline hover:text-white">Terms of Use</a>
+          <a href="#timeline" class="hover:underline hover:text-white">Track Record</a>
+        </div>
+      </div>
+
+      <!-- Comprehensive Institutional Research Syndicate Disclaimer -->
+      <div class="border-t border-white/10 pt-8 text-[11px] leading-relaxed text-sage-light/60 max-w-5xl mx-auto space-y-3">
+        <div class="flex items-center justify-center space-x-2 text-sage-accent font-mono text-[10px] uppercase tracking-widest font-semibold">
+          <svg class="w-4 h-4 text-sage-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <span>Institutional Allocation & Research Safe Harbor Disclaimer</span>
+        </div>
+        <p class="text-center">
+          Flourish Management LLC operates as an independent private investment research syndicate and family office allocation think tank. All proprietary frameworks, quantitative options models, real estate diligence playbooks, and venture underwriting memos published across this portal and distributed via Flourish Insights are strictly for informational, educational, and analytical purposes.
+        </p>
+        <p class="text-center">
+          Nothing contained herein constitutes an offer to sell, a solicitation of an offer to buy, or an investment recommendation regarding any security, fund interest, or financial product. Past performance across historical economic cycles (2004–2026) is no guarantee of future results. Private market equity, venture capital, and options strategies involve substantial risk of capital loss and are intended solely for accredited, qualified institutional allocators.
+        </p>
       </div>
     </div>
   </footer>
