@@ -66,8 +66,8 @@ function getBrandedEmailHeader(subtitle = 'Executive Notification') {
       <a href="https://flourish-web-151213060012.us-central1.run.app" style="text-decoration: none; display: inline-block;">
         <img src="cid:flourish-logo" alt="Flourish Management" width="160" style="display: block; margin: 0 auto 10px auto; max-width: 160px; height: auto; border: 0;" />
       </a>
-      <h1 style="color: #FAF7F2; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 400; letter-spacing: 1.2px;">FLOURISH MANAGEMENT</h1>
-      <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">${subtitle}</p>
+      <h1 style="color: #FAF7F2; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase;">FLOURISH MANAGEMENT</h1>
+      <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.8px;">${subtitle}</p>
     </div>
   `;
 }

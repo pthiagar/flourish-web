@@ -147,10 +147,10 @@ class EmailDispatcher {
       <a href="${siteUrl}" style="text-decoration: none; display: inline-block;">
         <img src="cid:flourish-logo" alt="Flourish Management" width="180" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto; border: 0;" />
       </a>
-      <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: #FAF7F2; letter-spacing: 1.5px; font-weight: 400;">
+      <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: #FAF7F2; letter-spacing: 2.5px; font-weight: 400; text-transform: uppercase;">
         FLOURISH MANAGEMENT
       </h1>
-      <p style="margin: 6px 0 0 0; color: #A5B8D1; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
+      <p style="margin: 5px 0 0 0; color: #A5B8D1; font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;">
         Executive Monthly Brief &bull; ${monthLabel}
       </p>
     </div>
