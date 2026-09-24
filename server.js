@@ -254,7 +254,7 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
       from: `"Flourish Website Alerts" <${senderEmail}>`,
       to: process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com',
       subject: `📈 New Subscriber Alert: ${cleanEmail}`,
-      text: `You have a new subscriber for your "Flourish Insights" quarterly letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
+      text: `You have a new subscriber for your "Flourish Insights" monthly letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
       html: `
         <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
           <div style="background-color: #1A365D; padding: 24px; text-align: center; border-bottom: 2px solid #DFD2C2;">
@@ -263,7 +263,7 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
           </div>
           <div style="padding: 32px 24px; color: #1A212D;">
             <h2 style="margin-top: 0; font-size: 18px; color: #1A365D; font-weight: 500;">New Subscriber Registered</h2>
-            <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your quarterly insights newsletter channel!</p>
+            <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your monthly insights newsletter channel!</p>
             
             <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #DFD2C2;">
               <tr style="border-bottom: 1px solid #F0EADF;">
