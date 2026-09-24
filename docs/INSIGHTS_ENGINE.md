@@ -111,3 +111,23 @@ interface Comment {
   date: string;             // Formatted date string
 }
 ```
+
+---
+
+## 6. Automated Monthly Email Brief Dispatch
+
+To deliver continuous value directly to accredited investors and family offices, the platform includes an automated outbound monthly email dispatch subsystem ([`email-dispatcher.js`](file:///Users/pthiagar/antigravity/flourish-web/email-dispatcher.js) and [`subscriber-manager.js`](file:///Users/pthiagar/antigravity/flourish-web/subscriber-manager.js)).
+
+### Rules of Engagement
+1. **Single-Send Guarantee**:
+   - Each subscriber record tracks `lastSentMonth: "YYYY-MM"`.
+   - The engine guarantees each subscriber receives **exactly one executive email brief per calendar month**.
+   - Repeated triggers within the same calendar month automatically skip already-serviced subscribers.
+2. **Three-Pillar Monthly Roundup**:
+   - The brief synthesizes the month's 3 letters across Macro Strategy, Real Estate, and Venture Capital & Angel Investing.
+   - Includes 2-sentence summaries, read time, and direct links to the full letters and checklists.
+3. **CAN-SPAM & Privacy Compliance**:
+   - Every email features a cryptographic 1-click unsubscribe token:
+     `https://flourish-web-151213060012.us-central1.run.app/api/unsubscribe?token=<TOKEN>`
+   - Unsubscribing permanently sets status to `unsubscribed`, excluding the recipient from all future automated runs.
+

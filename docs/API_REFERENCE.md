@@ -216,3 +216,71 @@ Captures investor qualification information from the interactive concierge chatb
 ```json
 { "success": true, "message": "Concierge lead captured successfully" }
 ```
+
+---
+
+### `GET /api/unsubscribe`
+Renders an executive-styled unsubscription confirmation webpage and opts out the subscriber.
+- **Parameters**: `?token=...` or `?email=...`
+- **Response**: HTML Confirmation Page
+
+---
+
+### `POST /api/unsubscribe`
+Programmatic REST endpoint to opt out a subscriber.
+- **Request Body**:
+```json
+{ "token": "45d5a20758240de09f1f38531ab76c00" }
+```
+- **Response (200 OK)**:
+```json
+{ "success": true, "email": "allocator@sovereignfund.com" }
+```
+
+---
+
+### `POST /api/admin/dispatch-monthly-digest`
+Triggers the automated monthly executive brief email run. Strictly enforces **single-send protection** (subscribers with `lastSentMonth === currentMonthKey` are skipped).
+- **Security**: Requires Header `x-admin-key: <ADMIN_KEY>` or query parameter `?key=<ADMIN_KEY>`.
+- **Request Body (Optional)**:
+```json
+{
+  "testEmail": "prabhu@flourish-mgmt.com",
+  "forceMonthKey": "2026-10"
+}
+```
+- **Response (200 OK)**:
+```json
+{
+  "success": true,
+  "monthKey": "2026-10",
+  "sentCount": 142,
+  "skippedCount": 18,
+  "errorCount": 0
+}
+```
+
+---
+
+### `GET /api/admin/subscribers`
+Returns subscriber statistics and eligibility for the current calendar month.
+- **Security**: Requires Header `x-admin-key: <ADMIN_KEY>` or query parameter `?key=<ADMIN_KEY>`.
+- **Response (200 OK)**:
+```json
+{
+  "total": 160,
+  "active": 155,
+  "eligibleThisMonth": 155,
+  "currentMonthKey": "2026-10",
+  "subscribers": [
+    {
+      "email": "allocator@sovereignfund.com",
+      "status": "active",
+      "subscribedAt": "2026-09-24T04:47:03.251Z",
+      "lastSentMonth": "2026-09",
+      "lastSentAt": "2026-09-24T05:00:00.000Z"
+    }
+  ]
+}
+```
+

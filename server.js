@@ -5,6 +5,8 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const subscriberManager = require('./subscriber-manager');
+const emailDispatcher = require('./email-dispatcher');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -209,19 +211,26 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
   console.log(`Email:     ${cleanEmail}`);
   console.log(`==================================================\n`);
 
-  // Log locally on disk (gracefully catch Cloud Run read-only filesystem blockages)
+  // Register with SubscriberManager
+  let subResult;
   try {
-    const fs = require('fs');
-    let subscribers = [];
-    if (fs.existsSync('subscribers.json')) {
-      subscribers = JSON.parse(fs.readFileSync('subscribers.json', 'utf8'));
-    }
-    if (!subscribers.includes(cleanEmail)) {
-      subscribers.push(cleanEmail);
-      fs.writeFileSync('subscribers.json', JSON.stringify(subscribers, null, 2));
+    subResult = subscriberManager.addSubscriber(cleanEmail);
+    console.log(`📋 Subscriber status: ${subResult.isNew ? 'New' : subResult.reactivated ? 'Reactivated' : 'Existing'}`);
+    
+    // Dispatch this month's digest if not already received this calendar month
+    const currentMonthKey = emailDispatcher.getCurrentMonthKey();
+    if (subResult.subscriber && subResult.subscriber.lastSentMonth !== currentMonthKey) {
+      emailDispatcher.dispatchMonthlyDigest({ testEmail: cleanEmail, forceMonthKey: currentMonthKey })
+        .then(() => {
+          subscriberManager.recordMonthSent(cleanEmail, currentMonthKey);
+          console.log(`✉️  Immediate welcome monthly brief sent to: ${cleanEmail}`);
+        })
+        .catch(err => {
+          console.warn('⚠️ [Welcome Digest] Deferred or skipped:', err.message);
+        });
     }
   } catch (err) {
-    console.warn('⚠️ Unable to write subscribers to disk (Local read-only FS on Cloud Run is expected behavior):', err.message);
+    console.warn('⚠️ [SubscriberManager] Warning during registration:', err.message);
   }
 
   // Check SMTP setup and alert partners
@@ -545,6 +554,143 @@ app.post('/api/articles/trigger-schedule', (req, res) => {
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
+});
+
+// ==========================================
+// MONTHLY NEWSLETTER DISPATCH & UNSUBSCRIBE
+// ==========================================
+
+// GET /api/unsubscribe - CAN-SPAM compliant 1-click unsubscribe page
+app.get('/api/unsubscribe', (req, res) => {
+  const { token, email } = req.query;
+  const result = subscriberManager.unsubscribe(token || email);
+
+  res.send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe Confirmation | Flourish Management</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #FAF7F2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #1A212D;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #DFD2C2;
+      border-radius: 16px;
+      padding: 48px 36px;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      margin: 20px;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      color: #1A365D;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+    p {
+      color: #4A5560;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #1A365D;
+      color: #FAF7F2;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #2A4870;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div style="font-size: 36px;">✉️</div>
+    <h1>Flourish Letters Unsubscribe</h1>
+    <p>
+      ${result.success 
+        ? `You (${result.email || 'your email'}) have been successfully removed from our monthly executive brief distribution list. You will not receive further emails from us.`
+        : 'Your email has already been unsubscribed or this link is expired.'}
+    </p>
+    <a href="/" class="btn">Return to Flourish Management</a>
+  </div>
+</body>
+</html>
+  `);
+});
+
+// POST /api/unsubscribe - Programmatic unsubscription
+app.post('/api/unsubscribe', (req, res) => {
+  const { token, email } = req.body || {};
+  const result = subscriberManager.unsubscribe(token || email);
+  res.json(result);
+});
+
+// POST /api/admin/dispatch-monthly-digest - Trigger monthly email brief
+app.post('/api/admin/dispatch-monthly-digest', async (req, res) => {
+  try {
+    const apiKey = req.headers['x-admin-key'] || req.query.key;
+    const expectedKey = process.env.ADMIN_KEY || 'flourish-admin-dispatch';
+
+    // Allow if matching admin key or in local dev
+    if (process.env.NODE_ENV === 'production' && apiKey !== expectedKey) {
+      return res.status(401).json({ success: false, message: 'Unauthorized. Valid admin key required.' });
+    }
+
+    const { testEmail, forceMonthKey } = req.body || {};
+    const result = await emailDispatcher.dispatchMonthlyDigest({ testEmail, forceMonthKey });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/admin/subscribers - View subscriber statistics
+app.get('/api/admin/subscribers', (req, res) => {
+  const apiKey = req.headers['x-admin-key'] || req.query.key;
+  const expectedKey = process.env.ADMIN_KEY || 'flourish-admin-dispatch';
+
+  if (process.env.NODE_ENV === 'production' && apiKey !== expectedKey) {
+    return res.status(401).json({ success: false, message: 'Unauthorized.' });
+  }
+
+  const all = subscriberManager.getAllSubscribers();
+  const currentMonthKey = emailDispatcher.getCurrentMonthKey();
+  const eligibleThisMonth = subscriberManager.getEligibleSubscribersForMonth(currentMonthKey);
+
+  res.json({
+    total: all.length,
+    active: subscriberManager.getActiveCount(),
+    eligibleThisMonth: eligibleThisMonth.length,
+    currentMonthKey,
+    subscribers: all.map(s => ({
+      email: s.email,
+      status: s.status,
+      subscribedAt: s.subscribedAt,
+      lastSentMonth: s.lastSentMonth,
+      lastSentAt: s.lastSentAt
+    }))
+  });
 });
 
 // Catch-all route to serve index.html for single-page routing

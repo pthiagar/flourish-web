@@ -720,6 +720,16 @@ class InsightsEngine {
       this.saveDatabase();
       console.log(`⏰ [Flourish Insights Scheduler] Verified and populated automated monthly publication queue across all 3 pillars.`);
     }
+
+    if (this.emailDispatcher && typeof this.emailDispatcher.checkAndDispatch === 'function') {
+      this.emailDispatcher.checkAndDispatch().catch(err => {
+        console.warn('⚠️ [Flourish Insights] Email dispatch check error:', err.message);
+      });
+    }
+  }
+
+  registerEmailDispatcher(dispatcher) {
+    this.emailDispatcher = dispatcher;
   }
 
   /**

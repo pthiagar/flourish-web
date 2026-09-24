@@ -104,8 +104,11 @@ flourish-web/
 ├── package-lock.json             # Locked dependency versions
 ├── server.js                     # Express server, security middleware, and REST routes
 ├── insights-engine.js            # Automated 3-pillar publishing & archiving engine
+├── subscriber-manager.js         # Subscriber lifecycle, token auth, and single-send guard
+├── email-dispatcher.js           # Automated monthly email briefs and executive digest templates
 ├── data/
-│   └── articles-data.json        # Seeded library of 36 prescriptive investment letters
+│   ├── articles-data.json        # Seeded library of 36 prescriptive investment letters
+│   └── subscribers.json          # Active subscriber database & dispatch records
 ├── docs/                         # Detailed architecture and API documentation
 │   ├── ARCHITECTURE.md           # Deep dive into system design and security
 │   ├── INSIGHTS_ENGINE.md        # Publishing engine, cadence, and voice standards
@@ -195,7 +198,10 @@ Full documentation is available in [docs/API_REFERENCE.md](docs/API_REFERENCE.md
 | `/api/articles/:id/comment` | `POST` | 20 / 15 min | Post a reader perspective comment. |
 | `/api/articles/trigger-schedule` | `POST` | None | Trigger on-demand evaluation of publishing queue. |
 | `/api/contact` | `POST` | 5 / 15 min | Submit general executive inquiry form. |
-| `/api/subscribe` | `POST` | 10 / 15 min | Subscribe to executive newsletter. |
+| `/api/subscribe` | `POST` | 10 / 15 min | Subscribe to executive newsletter with auto single-send monthly digest. |
+| `/api/unsubscribe` | `GET` / `POST` | None | CAN-SPAM compliant 1-click unsubscription handler and confirmation page. |
+| `/api/admin/dispatch-monthly-digest` | `POST` | Admin Only | Trigger monthly email digest batch or single preview test email. |
+| `/api/admin/subscribers` | `GET` | Admin Only | View subscriber analytics and monthly eligibility status. |
 | `/api/chat-lead` | `POST` | 10 / 15 min | Capture contact details from AI concierge modal. |
 
 ---
