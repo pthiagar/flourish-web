@@ -609,6 +609,9 @@
           <button type="button" class="insight-tab-btn px-4 py-2 rounded-full transition-all text-slate hover:text-slate-dark hover:bg-cream-light" data-category="Real Estate">
             Real Estate
           </button>
+          <button type="button" class="insight-tab-btn px-4 py-2 rounded-full transition-all text-slate hover:text-slate-dark hover:bg-cream-light" data-category="Venture Capital">
+            Venture & Angel
+          </button>
         </div>
 
         <!-- Archives Trigger Button -->
@@ -617,7 +620,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
           </svg>
           <span>View Archives (6+ Mos)</span>
-          <span id="archive-count-badge" class="ml-1.5 px-2 py-0.5 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-[10px] font-mono">6</span>
+          <span id="archive-count-badge" class="ml-1.5 px-2 py-0.5 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-[10px] font-mono">9</span>
         </button>
       </div>
 
@@ -679,6 +682,34 @@
             </span>
           </div>
         </div>
+
+        <div class="insight-article-card bg-cream-light border border-cream-accent/50 rounded-4xl p-7 hover:shadow-xl transition-all duration-300 hover:border-[#3B6290]/40 flex flex-col justify-between cursor-pointer group" data-article-id="seed-angel-underwriting">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Venture Capital</span>
+              <span class="text-xs text-slate font-mono">Sep 2026 • 5 Min</span>
+            </div>
+            <h3 class="text-xl font-serif text-slate-dark mb-3 group-hover:text-sage transition-colors leading-snug">Underwriting Seed Stage Startups: The Angel Investor's Filter</h3>
+            <p class="text-xs text-slate leading-relaxed line-clamp-3 mb-4">
+              How angel investors avoid the pitch deck trap. The four ruthless filters we use to evaluate founders before writing a seed check.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-accent/40 flex items-center justify-between">
+            <div class="flex items-center space-x-3 text-xs text-slate font-mono">
+              <button type="button" class="card-like-btn flex items-center space-x-1 text-slate hover:text-rose-600 transition-colors" data-article-id="seed-angel-underwriting" onclick="event.stopPropagation();">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <span class="like-counter">41</span>
+              </button>
+              <span class="flex items-center space-x-1 text-slate">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                <span>1</span>
+              </span>
+            </div>
+            <span class="text-xs font-bold text-[#3B6290] flex items-center group-hover:translate-x-1 transition-transform">
+              Read <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </span>
+          </div>
+        </div>
       </div>
 
       <!-- Newsletter Form Card -->
@@ -726,6 +757,7 @@
         <button type="button" class="archive-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#1A365D] text-white" data-archive-filter="all">All Archives</button>
         <button type="button" class="archive-filter-btn px-3.5 py-1.5 rounded-full text-xs text-slate hover:text-slate-dark" data-archive-filter="Macro Strategy">Macro Strategy</button>
         <button type="button" class="archive-filter-btn px-3.5 py-1.5 rounded-full text-xs text-slate hover:text-slate-dark" data-archive-filter="Real Estate">Real Estate</button>
+        <button type="button" class="archive-filter-btn px-3.5 py-1.5 rounded-full text-xs text-slate hover:text-slate-dark" data-archive-filter="Venture Capital">Venture & Angel</button>
       </div>
 
       <!-- Archives Scrollable List -->

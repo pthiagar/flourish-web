@@ -680,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">${escapeHtml(article.category)}</span>
-              <span class="text-xs text-slate font-mono">${escapeHtml(article.date)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
+              <span class="text-xs text-slate font-mono">${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
             </div>
             <h3 class="text-xl font-serif text-slate-dark mb-3 group-hover:text-sage transition-colors leading-snug">${escapeHtml(article.title)}</h3>
             <p class="text-xs text-slate leading-relaxed line-clamp-3 mb-4">
@@ -745,7 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="space-y-1.5 flex-1">
             <div class="flex items-center space-x-2 text-[10px] font-mono">
               <span class="px-2.5 py-0.5 bg-[#3B6290]/10 text-[#1A365D] font-bold rounded-full">${escapeHtml(article.category)}</span>
-              <span class="text-slate font-medium">${escapeHtml(article.date)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
+              <span class="text-slate font-medium">${escapeHtml(article.date || article.displayDate)} &bull; ${escapeHtml(article.readTime || '4 Min')}</span>
             </div>
             <h4 class="text-base font-serif text-slate-dark font-semibold">${escapeHtml(article.title)}</h4>
             <p class="text-xs text-slate line-clamp-2 leading-relaxed">${escapeHtml(article.summary)}</p>
@@ -848,7 +848,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Populate Modal Details
     if (modalCategory) modalCategory.textContent = article.category;
-    if (modalDate) modalDate.textContent = article.date;
+    if (modalDate) modalDate.textContent = article.date || article.displayDate;
     if (modalReadTime) modalReadTime.textContent = `• ${article.readTime || '4 Min Read'}`;
     if (modalTitle) modalTitle.textContent = article.title;
     if (modalBody) modalBody.innerHTML = article.body;
