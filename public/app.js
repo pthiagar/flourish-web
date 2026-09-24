@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 9. Identity, Governance & Oversight
-    if (reMatch(query, ['who are you', 'team', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'prabhu', 'thiagarajan', 'linkedin'])) {
+    if (reMatch(query, ['who are you', 'team', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'partners', 'leadership'])) {
       return "<strong>Investment Governance & Oversight:</strong><br>Flourish Management LLC is governed directly by our <strong>Investment Committee</strong>. Our partners bring 22 years of cross-cycle investing experience across physical real estate, quantitative options hedging, and early-stage venture. We let our track record, underwriting rules, and risk management discipline speak for themselves.";
     }
 

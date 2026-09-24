@@ -94,7 +94,7 @@ Returns complete details, full HTML body, and reader discussion thread for a sin
     "comments": [
       {
         "id": "c-sep-vc-1",
-        "author": "Julian Thorne",
+        "author": "Venture Allocator",
         "affiliation": "Seed Syndicate Lead",
         "text": "The 72-hour founder velocity test is brilliant.",
         "date": "Sep 21, 2026"
@@ -131,7 +131,7 @@ Adds a new reader perspective comment to an article.
 - **Request Body**:
 ```json
 {
-  "author": "Marcus Vance",
+  "author": "Institutional Partner",
   "affiliation": "Angel Allocator",
   "text": "Defending pro-rata rights is where venture returns are compounded."
 }
@@ -142,7 +142,7 @@ Adds a new reader perspective comment to an article.
   "success": true,
   "comment": {
     "id": "c-1790221709280-urxr",
-    "author": "Marcus Vance",
+    "author": "Institutional Partner",
     "affiliation": "Angel Allocator",
     "text": "Defending pro-rata rights is where venture returns are compounded.",
     "date": "Sep 24, 2026"
@@ -245,7 +245,7 @@ Triggers the automated monthly executive brief email run. Strictly enforces **si
 - **Request Body (Optional)**:
 ```json
 {
-  "testEmail": "prabhu@flourish-mgmt.com",
+  "testEmail": "info@flourish-mgmt.com",
   "forceMonthKey": "2026-10"
 }
 ```
