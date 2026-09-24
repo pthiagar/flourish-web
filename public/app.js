@@ -302,27 +302,35 @@ document.addEventListener('DOMContentLoaded', () => {
       return "<strong>Accredited Allocator Inquiries:</strong><br>We selectively evaluate co-investments, institutional research partnerships, and programmatic real estate / options allocations with accredited family offices and qualified institutional buyers.<br><br>To initiate a confidential mandate review with our Investment Committee, type <strong>'start allocator intake'</strong> or visit the <a href='/contact' class='underline font-bold text-brand-gold'>Executive Portal</a>.";
     }
 
-    // 8. Identity, Partners, Governance & Oversight
-    if (reMatch(query, ['who are you', 'team', 'partner', 'partners', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'prabhu', 'thiagarajan', 'linkedin'])) {
+    // 8. Strategic Ecosystem & Venture Partners
+    if (reMatch(query, ['tca', 'tca venture', 'expert dojo', 'dojo', 'ecosystem', 'partner link', 'partner links', 'ecosystem partners', 'accelerator', 'venture network'])) {
+      return "<strong>Strategic Ecosystem & Venture Partners:</strong><br>We actively collaborate with premier early-stage investment networks and global accelerators:<br><br>" +
+        "• <a href='https://tcaventuregroup.com/' target='_blank' rel='noopener noreferrer' class='font-bold text-brand-gold underline'>TCA Venture Group</a>: One of the largest and most active early-stage investment networks in the US, providing seed capital, mentorship, and extensive industry connections.<br>" +
+        "• <a href='https://expertdojo.com/' target='_blank' rel='noopener noreferrer' class='font-bold text-brand-gold underline'>Expert Dojo</a>: A premier international early-stage accelerator program backing high-growth founders and leading rapid seed financing rounds.<br><br>" +
+        "Explore these alliances on our <a href='/' class='underline font-bold text-brand-gold'>Home page</a> and <a href='/strategies' class='underline font-bold text-brand-gold'>Investment Disciplines page</a>.";
+    }
+
+    // 9. Identity, Governance & Oversight
+    if (reMatch(query, ['who are you', 'team', 'who runs', 'committee', 'names', 'founder name', 'management', 'governance', 'prabhu', 'thiagarajan', 'linkedin'])) {
       return "<strong>Investment Governance & Oversight:</strong><br>Flourish Management LLC is governed directly by our <strong>Investment Committee</strong>. Our partners bring 22 years of cross-cycle investing experience across physical real estate, quantitative options hedging, and early-stage venture. We let our track record, underwriting rules, and risk management discipline speak for themselves.";
     }
 
-    // 9. Contact & Inquiries
+    // 10. Contact & Inquiries
     if (reMatch(query, ['contact', 'email', 'phone', 'call', 'reach out', 'office', 'inquiry', 'info', 'message', 'mail', 'address'])) {
       return "<strong>Executive Contact Channels:</strong><br>• <strong>Executive Desk:</strong> <a href='mailto:info@flourish-mgmt.com' class='underline font-bold text-brand-gold'>info@flourish-mgmt.com</a><br>• <strong>Direct Telephone:</strong> <a href='tel:+14247033332' class='underline font-bold text-brand-gold'>+1 (424) 703-3332</a><br>• <strong>Formal Inquiry:</strong> Submit details via the <a href='/contact' class='underline font-bold text-brand-gold'>Partner Inquiry Form</a>.<br>• <strong>Live Concierge:</strong> You can also state your inquiry right here, and I will route it directly to our general partners.";
     }
 
-    // 10. Compliance & Disclaimers
+    // 11. Compliance & Disclaimers
     if (reMatch(query, ['disclaimer', 'sec', 'compliance', 'legal', 'regulation', '506', 'accreditation'])) {
       return "<strong>Legal Disclaimer:</strong><br>Flourish Management is an independent private investment management firm. All market perspectives, underwriting frameworks, and quantitative options models are strictly for informational and analytical purposes and do not constitute an offer to sell, a solicitation to buy, or an investment recommendation. Past performance across historical economic cycles is no guarantee of future results.";
     }
 
-    // 11. Polite Closing / Acknowledgment
+    // 12. Polite Closing / Acknowledgment
     if (reMatch(query, ['thank', 'thanks', 'great', 'awesome', 'good', 'perfect', 'understood', 'got it', 'bye', 'goodbye'])) {
       return "You are very welcome. The Flourish Investment Committee Desk is always at your service. Please reach out if you require further diligence or co-investment details.";
     }
 
-    // 12. Fallback Menu
+    // 13. Fallback Menu
     return "I want to ensure you receive the precise institutional perspective you require. Please select one of the quick options above, or ask about:<br><br>" +
       "• <strong>'real estate'</strong> for our 50% OpEx & debt yield criteria.<br>" +
       "• <strong>'options'</strong> for our 0.18 delta systematic hedging engine.<br>" +
