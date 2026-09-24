@@ -1370,59 +1370,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const sheetModal = document.getElementById('sheet-preview-modal');
-  const sheetModalDocId = document.getElementById('modal-sheet-docid');
-  const sheetModalTitle = document.getElementById('modal-sheet-title');
-  const sheetModalPrintBtn = document.getElementById('modal-sheet-print-btn');
-  const sheetModalIframe = document.getElementById('modal-sheet-iframe');
-  const closeSheetModalBtn = document.getElementById('close-sheet-modal-btn');
-
   window.openSheetPreview = function(sheetId) {
     const data = SHEET_DATA[sheetId];
-    if (!data || !sheetModal) return;
+    if (!data) {
+      console.warn('Unknown sheetId:', sheetId);
+      return;
+    }
 
-    if (sheetModalDocId) sheetModalDocId.textContent = data.docId;
-    if (sheetModalTitle) sheetModalTitle.textContent = data.title;
-    if (sheetModalPrintBtn) sheetModalPrintBtn.href = data.url;
-    if (sheetModalIframe) sheetModalIframe.src = data.url;
+    const modal = document.getElementById('sheet-preview-modal');
+    const docIdEl = document.getElementById('modal-sheet-docid');
+    const titleEl = document.getElementById('modal-sheet-title');
+    const printBtnEl = document.getElementById('modal-sheet-print-btn');
+    const iframeEl = document.getElementById('modal-sheet-iframe');
 
-    sheetModal.classList.remove('hidden');
-    sheetModal.classList.add('flex');
+    if (!modal) {
+      console.warn('sheet-preview-modal element not found in DOM');
+      return;
+    }
+
+    if (docIdEl) docIdEl.textContent = data.docId;
+    if (titleEl) titleEl.textContent = data.title;
+    if (printBtnEl) printBtnEl.href = data.url;
+    if (iframeEl) iframeEl.src = data.url;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
     setTimeout(() => {
-      sheetModal.classList.remove('opacity-0');
-      const innerCard = sheetModal.querySelector('div');
+      modal.classList.remove('opacity-0');
+      const innerCard = modal.querySelector('div');
       if (innerCard) innerCard.classList.remove('translate-y-4');
-    }, 10);
+    }, 20);
     document.body.style.overflow = 'hidden';
   };
 
   window.closeSheetPreview = function() {
-    if (!sheetModal) return;
-    sheetModal.classList.add('opacity-0');
-    const innerCard = sheetModal.querySelector('div');
+    const modal = document.getElementById('sheet-preview-modal');
+    const iframeEl = document.getElementById('modal-sheet-iframe');
+    if (!modal) return;
+
+    modal.classList.add('opacity-0');
+    const innerCard = modal.querySelector('div');
     if (innerCard) innerCard.classList.add('translate-y-4');
     setTimeout(() => {
-      sheetModal.classList.add('hidden');
-      sheetModal.classList.remove('flex');
-      if (sheetModalIframe) sheetModalIframe.src = '';
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      if (iframeEl) iframeEl.src = '';
       document.body.style.overflow = '';
-    }, 300);
+    }, 250);
   };
 
-  if (closeSheetModalBtn) {
-    closeSheetModalBtn.addEventListener('click', window.closeSheetPreview);
-  }
-
-  if (sheetModal) {
-    sheetModal.addEventListener('click', (e) => {
-      if (e.target === sheetModal) {
-        window.closeSheetPreview();
+  // Event delegation for preview buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.sheet-preview-btn');
+    if (btn) {
+      e.preventDefault();
+      const sheetId = btn.getAttribute('data-sheet-id');
+      if (sheetId) {
+        window.openSheetPreview(sheetId);
       }
-    });
-  }
+    }
+
+    // Close button
+    if (e.target.closest('#close-sheet-modal-btn')) {
+      e.preventDefault();
+      window.closeSheetPreview();
+    }
+
+    // Backdrop click
+    const modal = document.getElementById('sheet-preview-modal');
+    if (modal && e.target === modal) {
+      window.closeSheetPreview();
+    }
+  });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && sheetModal && !sheetModal.classList.contains('hidden')) {
+    const modal = document.getElementById('sheet-preview-modal');
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
       window.closeSheetPreview();
     }
   });

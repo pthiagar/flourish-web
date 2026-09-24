@@ -1391,7 +1391,7 @@
 
           <!-- Action Buttons -->
           <div class="pt-6 mt-6 border-t border-slate-100 flex items-center space-x-3">
-            <button onclick="openSheetPreview('multifamily-matrix')" class="flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
+            <button type="button" data-sheet-id="multifamily-matrix" onclick="openSheetPreview('multifamily-matrix')" class="sheet-preview-btn flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
               Preview Sheet
             </button>
             <a href="/sheets/multifamily-matrix.html" target="_blank" class="py-2.5 px-4 rounded-xl bg-sage-dark hover:bg-sage-darker text-white text-xs font-semibold tracking-wide transition-all flex items-center space-x-1.5 shadow-sm" title="Print or Save as PDF">
@@ -1449,7 +1449,7 @@
 
           <!-- Action Buttons -->
           <div class="pt-6 mt-6 border-t border-slate-100 flex items-center space-x-3">
-            <button onclick="openSheetPreview('seed-safe-audit')" class="flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
+            <button type="button" data-sheet-id="seed-safe-audit" onclick="openSheetPreview('seed-safe-audit')" class="sheet-preview-btn flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
               Preview Sheet
             </button>
             <a href="/sheets/seed-safe-audit.html" target="_blank" class="py-2.5 px-4 rounded-xl bg-sage-dark hover:bg-sage-darker text-white text-xs font-semibold tracking-wide transition-all flex items-center space-x-1.5 shadow-sm" title="Print or Save as PDF">
@@ -1507,7 +1507,7 @@
 
           <!-- Action Buttons -->
           <div class="pt-6 mt-6 border-t border-slate-100 flex items-center space-x-3">
-            <button onclick="openSheetPreview('delta-hedging-matrix')" class="flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
+            <button type="button" data-sheet-id="delta-hedging-matrix" onclick="openSheetPreview('delta-hedging-matrix')" class="sheet-preview-btn flex-1 py-2.5 px-3 rounded-xl border border-[#3B6290] text-[#3B6290] hover:bg-[#3B6290] hover:text-white text-xs font-semibold tracking-wide transition-all text-center">
               Preview Sheet
             </button>
             <a href="/sheets/delta-hedging-matrix.html" target="_blank" class="py-2.5 px-4 rounded-xl bg-sage-dark hover:bg-sage-darker text-white text-xs font-semibold tracking-wide transition-all flex items-center space-x-1.5 shadow-sm" title="Print or Save as PDF">
@@ -1969,6 +1969,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.5"></script>
 </body>
 </html>

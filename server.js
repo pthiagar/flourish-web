@@ -18,14 +18,16 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'", "cdn.tailwindcss.com", "https://www.googletagmanager.com"],
+        scriptSrcAttr: ["'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
         fontSrc: ["'self'", "fonts.gstatic.com", "fonts.googleapis.com"],
         imgSrc: ["'self'", "data:", "https://static.wixstatic.com", "https://static.parastorage.com", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
-        connectSrc: ["'self'", "https://www.google-analytics.com"]
+        connectSrc: ["'self'", "https://www.google-analytics.com"],
+        frameSrc: ["'self'"]
       }
     },
-    // Prevent clickjacking by restricting frame embedding
-    frameguard: { action: 'deny' },
+    // Allow same-origin frame embedding for tear-sheet preview modals
+    frameguard: { action: 'sameorigin' },
     // Prevent MIME type sniffing
     noSniff: true,
     // Enable XSS filter in older browsers
