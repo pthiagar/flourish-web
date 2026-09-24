@@ -89,7 +89,7 @@ class EmailDispatcher {
   }
 
   generateMonthlyDigestHtml(monthLabel, articles, subscriber) {
-    const siteUrl = 'https://flourish-web-151213060012.us-central1.run.app';
+    const siteUrl = process.env.BASE_URL || 'https://flourishmgmt.com';
     const unsubToken = subscriber.unsubscribeToken || 'unsub';
     const unsubUrl = `${siteUrl}/api/unsubscribe?token=${unsubToken}`;
 
@@ -101,7 +101,7 @@ class EmailDispatcher {
 
     const articleCardsHtml = articles.map(article => {
       const badgeBg = pillarBadges[article.category] || '#1A365D';
-      const readUrl = `${siteUrl}/#insights`;
+      const readUrl = `${siteUrl}/insights/${article.id}`;
       const checklistHtml = this.extractChecklistHtml(article.body);
 
       return `
@@ -125,7 +125,7 @@ class EmailDispatcher {
 
           <div>
             <a href="${readUrl}" style="display: inline-block; background-color: #1A365D; color: #FAF7F2; text-decoration: none; font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 20px;">
-              Read Full Essay & Discuss on Portal &rarr;
+              Read Full Letter on Portal &rarr;
             </a>
           </div>
         </div>
@@ -137,7 +137,7 @@ class EmailDispatcher {
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Flourish Insights Executive Brief</title>
+  <title>Flourish Insights Monthly Partner Letter</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #F5EFEB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1A212D;">
   <div style="max-width: 640px; margin: 30px auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.04);">
@@ -145,20 +145,20 @@ class EmailDispatcher {
     <!-- Header with Official Flourish Management Logo -->
     <div style="background-color: #1A365D; padding: 36px 30px; text-align: center; border-bottom: 2px solid #DFD2C2;">
       <a href="${siteUrl}" style="text-decoration: none; display: inline-block;">
-        <img src="cid:flourish-logo" alt="Flourish Management" width="180" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto; border: 0;" />
+        <img src="${siteUrl}/logo.png" alt="Flourish Management" width="180" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto; border: 0;" />
       </a>
       <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: #FAF7F2; letter-spacing: 2.5px; font-weight: 400; text-transform: uppercase;">
         FLOURISH MANAGEMENT
       </h1>
       <p style="margin: 5px 0 0 0; color: #A5B8D1; font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;">
-        Executive Monthly Brief &bull; ${monthLabel}
+        Monthly Partner Letter &bull; ${monthLabel}
       </p>
     </div>
 
     <!-- Letter Body -->
     <div style="padding: 36px 30px;">
       <p style="font-size: 16px; line-height: 1.6; color: #1A212D; margin-top: 0; font-weight: 600;">
-        Dear Investor,
+        Dear Flourish Partner,
       </p>
       <p style="font-size: 14px; line-height: 1.65; color: #4A5560; margin-bottom: 14px;">
         As we navigate the current economic landscape, capital allocators face an uncommon convergence of macroeconomic crosscurrents: fluctuating interest rate expectations, evolving commercial real estate valuations, and a venture capital environment returning to strict fundamental underwriting. Rather than speculating on short-term market timing, our philosophy centers on quantitative downside hedging, physical asset durability, and structured deal discipline.
@@ -185,7 +185,7 @@ class EmailDispatcher {
                 <p style="font-size: 12px; color: #4A5560; line-height: 1.5; margin: 0 0 16px 0;">
                   Access our 3 printable one-pagers: Multifamily Matrix, Seed SAFE Audit, and Delta Hedges.
                 </p>
-                <a href="${siteUrl}/#diligence-sheets" style="display: inline-block; background-color: #829A7E; color: #FFFFFF; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
+                <a href="${siteUrl}/diligence" style="display: inline-block; background-color: #829A7E; color: #FFFFFF; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
                   View Tear-Sheets &rarr;
                 </a>
               </div>
@@ -199,7 +199,7 @@ class EmailDispatcher {
                 <p style="font-size: 12px; color: #4A5560; line-height: 1.5; margin: 0 0 16px 0;">
                   Connect directly for private co-investment, family office allocations, or deal review.
                 </p>
-                <a href="${siteUrl}/#contact" style="display: inline-block; background-color: #1A365D; color: #FAF7F2; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
+                <a href="${siteUrl}/contact" style="display: inline-block; background-color: #1A365D; color: #FAF7F2; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
                   Contact Partners &rarr;
                 </a>
               </div>
@@ -218,7 +218,7 @@ class EmailDispatcher {
         Strategic Real Estate • Options-Hedged Capital Markets • Growth-Stage Venture Capital
       </p>
       <p style="margin: 0 0 12px 0; font-size: 11px;">
-        You are receiving this monthly brief because you subscribed to Flourish Letters at flourishmgmt.com.<br>
+        You are receiving this monthly partner letter because you subscribed at flourishmgmt.com.<br>
         <a href="${unsubUrl}" style="color: #3B6290; text-decoration: underline;">Click here to unsubscribe</a> from this monthly distribution list.
       </p>
       <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #DFD2C2; font-size: 10px; color: #8C9BA5; line-height: 1.5; text-align: justify;">
@@ -266,7 +266,7 @@ class EmailDispatcher {
           await this.transporter.sendMail({
             from: `"Flourish Insights" <${senderEmail}>`,
             to: options.testEmail,
-            subject: `Flourish Insights — ${monthLabel} Executive Brief: Macro, Real Estate & Venture`,
+            subject: `Flourish Insights — ${monthLabel} Monthly Partner Letter: Macro, Real Estate & Venture`,
             html,
             attachments
           });
@@ -292,14 +292,14 @@ class EmailDispatcher {
       console.log(`📊 Active Subscribers: ${totalActive} | Eligible For ${monthKey}: ${eligible.length}`);
 
       if (eligible.length === 0) {
-        console.log(`ℹ️  All subscribers have already received the ${monthKey} brief. Zero duplicate emails sent.`);
+        console.log(`ℹ️  All subscribers have already received the ${monthKey} letter. Zero duplicate emails sent.`);
         this.isDispatching = false;
         return {
           success: true,
           monthKey,
           sentCount: 0,
           skippedCount: totalActive,
-          message: 'All subscribers already received this month\'s brief'
+          message: 'All subscribers already received this month\'s letter'
         };
       }
 
@@ -314,12 +314,12 @@ class EmailDispatcher {
             await this.transporter.sendMail({
               from: `"Flourish Insights" <${senderEmail}>`,
               to: subscriber.email,
-              subject: `Flourish Insights — ${monthLabel} Executive Brief: Macro, Real Estate & Venture`,
+              subject: `Flourish Insights — ${monthLabel} Monthly Partner Letter: Macro, Real Estate & Venture`,
               html,
               attachments
             });
           } else {
-            console.log(`ℹ️  [Mock Send] Dispatched ${monthKey} brief to: ${subscriber.email}`);
+            console.log(`ℹ️  [Mock Send] Dispatched ${monthKey} letter to: ${subscriber.email}`);
           }
 
           // Mark subscriber as sent for this monthKey so they are never emailed twice this month

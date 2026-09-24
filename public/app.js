@@ -1235,23 +1235,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // NEWSLETTER SUBSCRIPTION AJAX HANDLER
   // ==========================================
-  const newsletterForm = document.getElementById('newsletter-form');
-  const newsletterEmail = document.getElementById('newsletter-email');
-  const newsletterSubmit = document.getElementById('newsletter-submit');
-  const newsletterMessage = document.getElementById('newsletter-message');
-
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', async (e) => {
+  const newsletterForms = document.querySelectorAll('#newsletter-form, .newsletter-form');
+  newsletterForms.forEach(form => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const emailValue = newsletterEmail.value.trim();
+      const emailInput = form.querySelector('input[type="email"]') || document.getElementById('newsletter-email');
+      const submitBtn = form.querySelector('button[type="submit"]') || document.getElementById('newsletter-submit');
+      const parentContainer = form.closest('.max-w-xl') || form.parentElement;
+      const messageEl = parentContainer ? (parentContainer.querySelector('#newsletter-message, .newsletter-message') || document.getElementById('newsletter-message')) : document.getElementById('newsletter-message');
+
+      const emailValue = emailInput ? emailInput.value.trim() : '';
       if (!emailValue) return;
 
       // Reset states
-      newsletterMessage.className = 'text-xs font-semibold mt-3 text-slate';
-      newsletterMessage.textContent = 'Registering your subscription...';
-      newsletterMessage.classList.remove('hidden');
-      newsletterSubmit.disabled = true;
+      if (messageEl) {
+        messageEl.className = 'text-xs font-semibold mt-3 text-brand-inkMuted';
+        messageEl.textContent = 'Registering your subscription...';
+        messageEl.classList.remove('hidden');
+      }
+      if (submitBtn) submitBtn.disabled = true;
 
       try {
         const response = await fetch('/api/subscribe', {
@@ -1265,25 +1268,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok && data.success) {
-          newsletterMessage.className = 'text-xs font-semibold mt-3 text-green-600';
-          newsletterMessage.textContent = data.message || 'Subscribed successfully! Thank you.';
-          newsletterForm.reset();
+          if (messageEl) {
+            messageEl.className = 'text-xs font-semibold mt-3 text-emerald-600';
+            messageEl.textContent = data.message || 'Subscribed successfully! Thank you for joining Flourish Insights.';
+          }
+          form.reset();
         } else {
-          newsletterMessage.className = 'text-xs font-semibold mt-3 text-red-600';
-          newsletterMessage.textContent = data.message || 'Subscription failed. Please try again.';
+          if (messageEl) {
+            messageEl.className = 'text-xs font-semibold mt-3 text-rose-600';
+            messageEl.textContent = data.message || 'Subscription failed. Please try again.';
+          }
         }
       } catch (error) {
         console.error('Newsletter error:', error);
-        newsletterMessage.className = 'text-xs font-semibold mt-3 text-red-600';
-        newsletterMessage.textContent = 'Network error. Please try again later.';
+        if (messageEl) {
+          messageEl.className = 'text-xs font-semibold mt-3 text-rose-600';
+          messageEl.textContent = 'Network error. Please try again later.';
+        }
       } finally {
-        newsletterSubmit.disabled = false;
-        setTimeout(() => {
-          newsletterMessage.classList.add('hidden');
-        }, 6000);
+        if (submitBtn) submitBtn.disabled = false;
+        if (messageEl) {
+          setTimeout(() => {
+            messageEl.classList.add('hidden');
+          }, 6000);
+        }
       }
     });
-  }
+  });
 
   /**
    * 20-Year Cross-Cycle Timeline Regime Tab Switcher

@@ -67,10 +67,11 @@ const logoAttachment = {
 };
 
 function getBrandedEmailHeader(subtitle = 'Executive Notification') {
+  const siteUrl = process.env.BASE_URL || 'https://flourishmgmt.com';
   return `
     <div style="background-color: #1A365D; padding: 28px 24px; text-align: center; border-bottom: 2px solid #DFD2C2;">
-      <a href="https://flourish-web-151213060012.us-central1.run.app" style="text-decoration: none; display: inline-block;">
-        <img src="cid:flourish-logo" alt="Flourish Management" width="160" style="display: block; margin: 0 auto 10px auto; max-width: 160px; height: auto; border: 0;" />
+      <a href="${siteUrl}" style="text-decoration: none; display: inline-block;">
+        <img src="${siteUrl}/logo.png" alt="Flourish Management" width="160" style="display: block; margin: 0 auto 10px auto; max-width: 160px; height: auto; border: 0;" />
       </a>
       <h1 style="color: #FAF7F2; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase;">FLOURISH MANAGEMENT</h1>
       <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.8px;">${subtitle}</p>
@@ -292,13 +293,13 @@ app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
       from: `"Flourish Website Alerts" <${senderEmail}>`,
       to: process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com',
       subject: `📈 New Subscriber Alert: ${cleanEmail}`,
-      text: `You have a new subscriber for your "Flourish Insights" monthly letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
+      text: `You have a new subscriber for your "Flourish Insights" monthly partner letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
           ${getBrandedEmailHeader('Subscriber Registration')}
           <div style="padding: 32px 24px; color: #1A212D;">
             <h2 style="margin-top: 0; font-size: 18px; color: #1A365D; font-weight: 600;">New Subscriber Registered</h2>
-            <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your monthly insights newsletter channel!</p>
+            <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your monthly partner letters channel!</p>
             
             <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #DFD2C2;">
               <tr style="border-bottom: 1px solid #F0EADF;">
@@ -862,21 +863,37 @@ app.get('/diligence', (req, res) => {
   res.render('diligence', { currentPath: '/diligence', sheets: DILIGENCE_SHEETS });
 });
 
-// 5. Quarterly Partner Letters Journal Archive
+// 5. Monthly Partner Letters Journal Archive
 app.get('/insights', (req, res) => {
   try {
     const selectedCategory = req.query.category || null;
-    const articles = insightsEngine.getPublishedArticles(selectedCategory);
-    const all = insightsEngine.getPublishedArticles();
+    const isAllView = req.query.view === 'all' || req.query.scope === 'all';
+
+    const articles = isAllView 
+      ? insightsEngine.getPublishedArticles(selectedCategory)
+      : insightsEngine.getRecentArticles(selectedCategory);
+
+    const allArticles = insightsEngine.getPublishedArticles();
+    const recentArticles = insightsEngine.getRecentArticles();
+
     res.render('insights', {
       currentPath: '/insights',
       articles,
-      totalCount: all.length,
-      selectedCategory
+      totalCount: allArticles.length,
+      recentCount: recentArticles.length,
+      selectedCategory,
+      isAllView
     });
   } catch (err) {
     console.error('Error rendering insights:', err);
-    res.render('insights', { currentPath: '/insights', articles: [], totalCount: 0, selectedCategory: null });
+    res.render('insights', { 
+      currentPath: '/insights', 
+      articles: [], 
+      totalCount: 0, 
+      recentCount: 0, 
+      selectedCategory: null, 
+      isAllView: false 
+    });
   }
 });
 

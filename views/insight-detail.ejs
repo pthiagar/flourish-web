@@ -8,7 +8,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs text-brand-slateLight">
       <a href="/insights" class="inline-flex items-center text-brand-navy hover:text-brand-gold font-bold transition-colors">
         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-        <span>All Partner Letters</span>
+        <span>All Monthly Letters</span>
       </a>
       <div class="flex items-center space-x-3">
         <button onclick="window.print()" class="hidden sm:inline-flex items-center text-brand-slateLight hover:text-brand-navy transition-colors font-medium">
@@ -74,6 +74,32 @@
       <a href="/contact" class="px-4 py-2 rounded-full bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-colors shrink-0">
         Direct Inquiries &rarr;
       </a>
+    </div>
+
+    <!-- Monthly Subscription Card -->
+    <div class="mt-12 bg-brand-cream border border-brand-linen rounded-3xl p-8 sm:p-10 shadow-sm text-center">
+      <div class="max-w-xl mx-auto space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white border border-brand-linen text-[11px] font-mono uppercase tracking-widest text-brand-gold">
+          <svg class="w-3.5 h-3.5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Direct Monthly Dispatch</span>
+        </div>
+        <h3 class="font-serif text-2xl text-brand-navy font-bold">Subscribe to Monthly Partner Letters</h3>
+        <p class="text-xs text-brand-inkMuted leading-relaxed">
+          Receive our investment committee's monthly research letters, portfolio stress-test reports, and direct underwriting frameworks delivered once each month.
+        </p>
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 pt-2 max-w-md mx-auto">
+          <input type="email" id="newsletter-email" placeholder="Your executive email address" required
+                 class="flex-1 px-4 py-3 rounded-full border border-brand-linen bg-white text-brand-navy text-xs focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold transition-all placeholder:text-brand-slateLight">
+          <button type="submit" id="newsletter-submit" 
+                  class="px-6 py-3 bg-brand-navy text-white text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-brand-navyLight border border-brand-navy transition-all shrink-0 shadow-sm">
+            Subscribe
+          </button>
+        </form>
+        <div id="newsletter-message" class="text-xs font-semibold hidden transition-all mt-3"></div>
+        <p class="text-[11px] text-brand-slateLight pt-1">
+          Sent once each month. Direct 1-click unsubscribe included in every email. No spam.
+        </p>
+      </div>
     </div>
 
   </article>

@@ -1,4 +1,4 @@
-<%- include('partials/head', { title: 'Quarterly Partner Letters', description: 'Executive research letters and underwriting memos from the Flourish Management Investment Committee.' }) %>
+<%- include('partials/head', { title: 'Monthly Partner Letters', description: 'Executive research letters and underwriting memos from the Flourish Management Investment Committee.' }) %>
 <%- include('partials/nav') %>
 
 <main class="flex-grow">
@@ -11,10 +11,10 @@
           <span>Investment Committee Publications</span>
         </div>
         <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight mb-4">
-          Quarterly Partner Letters & Research Memos
+          Monthly Partner Letters & Underwriting Memos
         </h1>
         <p class="text-sm sm:text-base text-brand-slateLight leading-relaxed">
-          Prescriptive, battle-tested underwriting insights published across market cycles by our investment committee.
+          Prescriptive, battle-tested underwriting insights and macro frameworks published monthly across market cycles by our investment committee.
         </p>
       </div>
     </div>
@@ -24,21 +24,53 @@
   <section class="py-12 sm:py-16 bg-brand-cream border-b border-brand-linen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Filter Bar -->
-      <div class="flex flex-wrap items-center gap-2 mb-10 pb-6 border-b border-brand-linen">
-        <span class="text-xs uppercase tracking-wider text-brand-inkMuted font-bold mr-2">Discipline:</span>
-        <a href="/insights" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= !selectedCategory ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
-          All Publications (<%= totalCount %>)
-        </a>
-        <a href="/insights?category=real-estate" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'real-estate' || selectedCategory === 'realestate' || selectedCategory === 'real') ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
-          Physical Real Estate
-        </a>
-        <a href="/insights?category=macro" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'macro' || selectedCategory === 'options' || selectedCategory === 'options-macro') ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
-          Options & Macro
-        </a>
-        <a href="/insights?category=venture" class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'venture' || selectedCategory === 'vc' || selectedCategory === 'venture-capital') ? 'bg-brand-navy text-brand-gold' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
-          Seed Venture
-        </a>
+      <!-- Filter & Scope Controls -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 border border-brand-linen mb-10 shadow-sm space-y-4">
+        <!-- Top Row: Timeframe / Scope Selection -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-brand-linen/70">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs uppercase tracking-wider text-brand-inkMuted font-bold mr-1">Timeframe:</span>
+            <!-- Last 3 Months (Default) -->
+            <a href="/insights<%= selectedCategory ? '?category=' + encodeURIComponent(selectedCategory) : '' %>" 
+               class="px-4 py-2 rounded-full text-xs font-semibold transition-all inline-flex items-center <%= !isAllView ? 'bg-brand-navy text-brand-gold shadow-sm' : 'bg-brand-cream text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+              <span>Last 3 Months (Default)</span>
+              <span class="ml-2 px-2 py-0.5 text-[10px] rounded-full <%= !isAllView ? 'bg-brand-navyLight text-brand-gold font-bold' : 'bg-white text-brand-slateLight' %>"><%= recentCount %></span>
+            </a>
+            <!-- All Publications Selection -->
+            <a href="/insights?view=all<%= selectedCategory ? '&category=' + encodeURIComponent(selectedCategory) : '' %>" 
+               class="px-4 py-2 rounded-full text-xs font-semibold transition-all inline-flex items-center <%= isAllView ? 'bg-brand-navy text-brand-gold shadow-sm' : 'bg-brand-cream text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+              <span>All Publications</span>
+              <span class="ml-2 px-2 py-0.5 text-[10px] rounded-full <%= isAllView ? 'bg-brand-navyLight text-brand-gold font-bold' : 'bg-white text-brand-slateLight' %>"><%= totalCount %></span>
+            </a>
+          </div>
+
+          <!-- Context Horizon Label -->
+          <div class="text-xs text-brand-slateLight font-mono flex items-center">
+            <span class="w-2.5 h-2.5 rounded-full <%= isAllView ? 'bg-brand-gold' : 'bg-emerald-500' %> mr-2 inline-block"></span>
+            <%= isAllView ? 'Showing Complete Historical Catalog (Jan 2026 – Present)' : 'Default View: Latest 3 Months (July – September 2026)' %>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Discipline Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs uppercase tracking-wider text-brand-inkMuted font-bold mr-1">Discipline:</span>
+          <a href="/insights<%= isAllView ? '?view=all' : '' %>" 
+             class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= !selectedCategory ? 'bg-brand-navy text-white' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+            All Disciplines
+          </a>
+          <a href="/insights?category=real-estate<%= isAllView ? '&view=all' : '' %>" 
+             class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'real-estate' || selectedCategory === 'realestate' || selectedCategory === 'real') ? 'bg-brand-navy text-white' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+            Physical Real Estate
+          </a>
+          <a href="/insights?category=macro<%= isAllView ? '&view=all' : '' %>" 
+             class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'macro' || selectedCategory === 'options' || selectedCategory === 'options-macro') ? 'bg-brand-navy text-white' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+            Options & Macro
+          </a>
+          <a href="/insights?category=venture<%= isAllView ? '&view=all' : '' %>" 
+             class="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors <%= (selectedCategory === 'venture' || selectedCategory === 'vc' || selectedCategory === 'venture-capital') ? 'bg-brand-navy text-white' : 'bg-white text-brand-ink border border-brand-linen hover:border-brand-gold' %>">
+            Seed Venture
+          </a>
+        </div>
       </div>
 
       <!-- Articles Grid -->
@@ -70,10 +102,39 @@
           </article>
           <% }); %>
         <% } else { %>
-          <div class="col-span-3 text-center py-12 text-brand-inkMuted text-sm">
-            No partner letters found for the selected category.
+          <div class="col-span-3 text-center py-12 bg-white rounded-2xl border border-brand-linen text-brand-inkMuted text-sm">
+            <p class="mb-3">No partner letters found for the selected filter.</p>
+            <a href="/insights" class="inline-flex items-center text-xs font-semibold text-brand-navy hover:text-brand-gold">
+              &larr; Reset to Default View (Last 3 Months)
+            </a>
           </div>
         <% } %>
+      </div>
+
+      <!-- Subscribe to Monthly Partner Letters Form Card -->
+      <div class="mt-16 bg-white border border-brand-linen rounded-3xl p-8 sm:p-12 shadow-sm text-center max-w-3xl mx-auto">
+        <div class="max-w-xl mx-auto space-y-4">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-cream border border-brand-linen text-[11px] font-mono uppercase tracking-widest text-brand-gold">
+            <svg class="w-3.5 h-3.5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>Direct Investor Syndicate</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl text-brand-navy font-bold">Subscribe to Monthly Partner Letters</h3>
+          <p class="text-xs sm:text-sm text-brand-inkMuted leading-relaxed">
+            Join our distribution list to receive our investment committee's monthly research letters, portfolio stress-test reports, and direct underwriting frameworks delivered once each month.
+          </p>
+          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 pt-2 max-w-md mx-auto">
+            <input type="email" id="newsletter-email" placeholder="Your executive email address" required
+                   class="flex-1 px-4 py-3 rounded-full border border-brand-linen bg-brand-cream text-brand-navy text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold transition-all placeholder:text-brand-slateLight">
+            <button type="submit" id="newsletter-submit" 
+                    class="px-6 py-3 bg-brand-navy text-white text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-brand-navyLight border border-brand-navy transition-all shrink-0 shadow-sm">
+              Subscribe
+            </button>
+          </form>
+          <div id="newsletter-message" class="text-xs font-semibold hidden transition-all mt-3"></div>
+          <p class="text-[11px] text-brand-slateLight pt-1">
+            Sent once each month. Direct 1-click unsubscribe included in every email. No spam.
+          </p>
+        </div>
       </div>
 
     </div>
