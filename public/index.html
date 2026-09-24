@@ -173,10 +173,12 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center space-x-10 text-sm font-medium tracking-wide">
+      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
         <a href="#" class="hover:text-sage-accent transition-colors duration-200">HOME</a>
-        <a href="#about" class="hover:text-sage-accent transition-colors duration-200">ABOUT US</a>
-        <a href="#philosophy" class="hover:text-sage-accent transition-colors duration-200">OUR FOCUS AREAS</a>
+        <a href="#about" class="hover:text-sage-accent transition-colors duration-200">ABOUT</a>
+        <a href="#philosophy" class="hover:text-sage-accent transition-colors duration-200">INVESTMENTS</a>
+        <a href="#risk-simulator" class="hover:text-sage-accent transition-colors duration-200">RISK SIMULATOR</a>
+        <a href="#insights" class="hover:text-sage-accent transition-colors duration-200">INSIGHTS</a>
         <a href="#contact" class="hover:text-sage-accent transition-colors duration-200">CONTACT</a>
       </nav>
 
@@ -199,8 +201,10 @@
     <div id="mobile-menu" class="hidden lg:hidden bg-sage-dark border-t border-sage-dark/30">
       <div class="px-6 py-4 space-y-4 text-center font-medium">
         <a href="#" class="block text-white hover:text-sage-accent py-2 transition-colors">HOME</a>
-        <a href="#about" class="block text-white hover:text-sage-accent py-2 transition-colors">ABOUT US</a>
-        <a href="#philosophy" class="block text-white hover:text-sage-accent py-2 transition-colors">OUR FOCUS AREAS</a>
+        <a href="#about" class="block text-white hover:text-sage-accent py-2 transition-colors">ABOUT</a>
+        <a href="#philosophy" class="block text-white hover:text-sage-accent py-2 transition-colors">INVESTMENTS</a>
+        <a href="#risk-simulator" class="block text-white hover:text-sage-accent py-2 transition-colors">RISK SIMULATOR</a>
+        <a href="#insights" class="block text-white hover:text-sage-accent py-2 transition-colors">INSIGHTS</a>
         <a href="#contact" class="block text-white hover:text-sage-accent py-2 transition-colors">CONTACT</a>
         <a href="#contact" class="inline-block w-full bg-white hover:bg-cream-dark text-sage-dark py-2.5 rounded-full font-semibold transition-all">
           Get in Touch
@@ -455,6 +459,400 @@
       </div>
     </div>
   </section>
+
+  <!-- ==========================================
+       INTERACTIVE HEDGING & VOLATILITY SIMULATOR
+       ========================================== -->
+  <section id="risk-simulator" class="py-24 lg:py-32 bg-sage-darker relative overflow-hidden text-white border-t border-slate-800">
+    <!-- Subtle grid lines in background -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dark-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dark-grid)" />
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Side: Content & Slider Controls (5 columns) -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-4">
+            <span class="text-xs font-bold tracking-widest uppercase text-sage-accent">Quantitative Risk Modeling</span>
+            <h2 class="text-4xl lg:text-5xl font-serif text-cream-light leading-tight">Interactive Hedging & Volatility Simulator</h2>
+            <p class="text-slate-light text-sm leading-relaxed">
+              See how Flourish's options-based capital market hedging acts as an institutional shock absorber. Adjust the slider below to simulate market drawdowns and visualize capital preservation.
+            </p>
+          </div>
+
+          <!-- Slider Control -->
+          <div class="bg-slate-dark border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold text-slate-light uppercase tracking-wider">Market Climate Scenario</span>
+              <span id="slider-intensity-label" class="text-lg font-serif text-[#38BDF8] font-semibold">Baseline Climate</span>
+            </div>
+            
+            <div class="relative pt-1">
+              <input type="range" id="simulator-slider" min="0" max="100" value="30" 
+                     class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sage transition-all">
+              <div class="flex justify-between text-[10px] font-mono text-slate-light mt-3">
+                <span>BEAR CRASH (-40%)</span>
+                <span class="text-sage-accent">BASELINE (0%)</span>
+                <span>BULL RUN (+30%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Indicators Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-slate-dark/50 border border-slate-800/60 rounded-2xl p-4 space-y-1">
+              <span class="text-[10px] text-slate-light font-mono uppercase">Unhedged S&P 500</span>
+              <div id="sim-unhedged-perf" class="text-xl font-bold text-red-400 transition-colors duration-300">-20.0%</div>
+              <p class="text-[11px] text-slate-light leading-snug">Full exposure to downside corrections.</p>
+            </div>
+            <div class="bg-slate-dark/50 border border-slate-800/60 rounded-2xl p-4 space-y-1">
+              <span class="text-[10px] text-sage-accent font-mono uppercase">Flourish Hedged Portfolio</span>
+              <div id="sim-hedged-perf" class="text-xl font-bold text-green-400 transition-colors duration-300">-2.8%</div>
+              <p class="text-[11px] text-slate-light leading-snug">Capital protected with alpha capture optimization.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Native Interactive SVG Chart (7 columns) -->
+        <div class="lg:col-span-7 bg-slate-dark border border-slate-800 rounded-4xl p-6 lg:p-8 shadow-2xl flex flex-col justify-between h-full">
+          <div>
+            <!-- Chart Header -->
+            <div class="flex justify-between items-center mb-6">
+              <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                <span class="text-xs font-mono text-slate-light uppercase">Real-Time Risk & Alpha Simulator</span>
+              </div>
+              <div class="flex space-x-4 text-[10px] font-mono">
+                <div class="flex items-center space-x-1.5">
+                  <span class="w-2.5 h-0.5 bg-red-400 inline-block"></span>
+                  <span class="text-slate-light">S&P 500</span>
+                </div>
+                <div class="flex items-center space-x-1.5">
+                  <span class="w-2.5 h-0.5 bg-green-400 inline-block"></span>
+                  <span class="text-slate-light">Flourish Hedged</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Responsive SVG Canvas (With Cleared Height & Padding to Prevent Text Overlap) -->
+            <div class="relative w-full h-[220px] bg-slate-darker/50 rounded-3xl border border-slate-800/80 p-4 overflow-hidden mb-6">
+              <svg id="simulator-svg" class="w-full h-full overflow-visible" viewBox="0 0 500 200" preserveAspectRatio="none">
+                <!-- Grid lines -->
+                <line x1="0" y1="40" x2="500" y2="40" stroke="#1E293B" stroke-dasharray="4 4" />
+                <line x1="0" y1="100" x2="500" y2="100" stroke="#334155" stroke-width="1.5" /> <!-- Thicker Base Line -->
+                <line x1="0" y1="160" x2="500" y2="160" stroke="#1E293B" stroke-dasharray="4 4" />
+                
+                <!-- Y-Axis Labels -->
+                <text x="10" y="32" fill="rgba(255,255,255,0.4)" font-size="9" font-family="monospace">+20% Gain</text>
+                <text x="10" y="94" fill="rgba(255,255,255,0.6)" font-size="9" font-family="monospace" font-weight="bold">0% Baseline</text>
+                <text x="10" y="154" fill="rgba(255,255,255,0.4)" font-size="9" font-family="monospace">-30% Loss</text>
+
+                <!-- X-Axis Labels -->
+                <text x="10" y="190" fill="rgba(255,255,255,0.3)" font-size="8" font-family="monospace">Month 1 (Start)</text>
+                <text x="215" y="190" fill="rgba(255,255,255,0.3)" font-size="8" font-family="monospace">Month 6 (Mid-Cycle)</text>
+                <text x="390" y="190" fill="rgba(255,255,255,0.3)" font-size="8" font-family="monospace">Month 12 (Close)</text>
+
+                <!-- Red Unhedged Line Path -->
+                <path id="svg-unhedged-path" d="" fill="none" stroke="#F87171" stroke-width="3" stroke-linecap="round" />
+                
+                <!-- Green Hedged Line Path -->
+                <path id="svg-hedged-path" d="" fill="none" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Dynamic Chart Explanation Bubble (Moved Outside for Clean Visibility) -->
+          <div class="bg-slate-darker/80 border border-slate-800/80 rounded-2xl p-4 text-xs text-slate-light leading-relaxed">
+            <span class="font-bold text-cream-light block mb-1">Interactive Insight:</span>
+            <span id="simulator-explanation">During standard corrections, option writing structures monetize increased volatility, cushioning asset drops.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FLOURISH INSIGHTS (THOUGHT LEADERSHIP)
+       ========================================== -->
+  <section id="insights" class="py-24 lg:py-32 bg-cream relative overflow-hidden border-t border-cream-accent/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
+        <span class="text-xs font-bold tracking-widest uppercase text-[#3B6290]">Expert Perspectives</span>
+        <h2 class="text-4xl lg:text-5xl font-serif text-slate-dark">Flourish Insights</h2>
+        <p class="text-slate font-medium text-base">
+          Quarterly macroeconomic letters, risk assessments, and investment essays from our General Partners.
+        </p>
+      </div>
+
+      <!-- Navigation & Filter Bar: Categories + Archives Trigger -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 border-b border-cream-accent/60 pb-6">
+        <!-- Category Filter Tabs -->
+        <div class="flex items-center space-x-2 bg-cream-dark p-1.5 rounded-full border border-cream-accent/50 text-xs font-medium">
+          <button type="button" class="insight-tab-btn px-4 py-2 rounded-full transition-all bg-[#1A365D] text-white font-semibold shadow-sm" data-category="all">
+            Recent (Past 6 Mos)
+          </button>
+          <button type="button" class="insight-tab-btn px-4 py-2 rounded-full transition-all text-slate hover:text-slate-dark hover:bg-cream-light" data-category="Macro Strategy">
+            Macro Strategy
+          </button>
+          <button type="button" class="insight-tab-btn px-4 py-2 rounded-full transition-all text-slate hover:text-slate-dark hover:bg-cream-light" data-category="Real Estate">
+            Real Estate
+          </button>
+        </div>
+
+        <!-- Archives Trigger Button -->
+        <button id="open-archive-btn" type="button" class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full border border-[#3B6290]/30 bg-cream-light text-[#1A365D] hover:bg-[#3B6290]/10 hover:border-[#3B6290] transition-all text-xs font-bold uppercase tracking-wider group shadow-sm">
+          <svg class="w-4 h-4 text-[#3B6290] group-hover:rotate-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+          </svg>
+          <span>View Archives (6+ Mos)</span>
+          <span id="archive-count-badge" class="ml-1.5 px-2 py-0.5 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-[10px] font-mono">6</span>
+        </button>
+      </div>
+
+      <!-- Articles Cards Grid (Hydrated dynamically from /api/articles with 6-month recent sliding window) -->
+      <div id="insights-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <!-- Initial pre-rendered cards for instant visual load, dynamically updated by app.js -->
+        <div class="insight-article-card bg-cream-light border border-cream-accent/50 rounded-4xl p-7 hover:shadow-xl transition-all duration-300 hover:border-[#3B6290]/40 flex flex-col justify-between cursor-pointer group" data-article-id="rate-cycles">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Macro Strategy</span>
+              <span class="text-xs text-slate font-mono">Sep 2026 • 5 Min</span>
+            </div>
+            <h3 class="text-xl font-serif text-slate-dark mb-3 group-hover:text-sage transition-colors leading-snug">Hedging Interest Rate Cycles via Options Overlays</h3>
+            <p class="text-xs text-slate leading-relaxed line-clamp-3 mb-4">
+              How we use active option overlays to turn interest rate spikes and market volatility into steady, reliable downside protection.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-accent/40 flex items-center justify-between">
+            <div class="flex items-center space-x-3 text-xs text-slate font-mono">
+              <button type="button" class="card-like-btn flex items-center space-x-1 text-slate hover:text-rose-600 transition-colors" data-article-id="rate-cycles" onclick="event.stopPropagation();">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <span class="like-counter">47</span>
+              </button>
+              <span class="flex items-center space-x-1 text-slate">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                <span>2</span>
+              </span>
+            </div>
+            <span class="text-xs font-bold text-[#3B6290] flex items-center group-hover:translate-x-1 transition-transform">
+              Read <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="insight-article-card bg-cream-light border border-cream-accent/50 rounded-4xl p-7 hover:shadow-xl transition-all duration-300 hover:border-[#3B6290]/40 flex flex-col justify-between cursor-pointer group" data-article-id="physical-assets">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Real Estate</span>
+              <span class="text-xs text-slate font-mono">Sep 2026 • 5 Min</span>
+            </div>
+            <h3 class="text-xl font-serif text-slate-dark mb-3 group-hover:text-sage transition-colors leading-snug">The Resiliency of Physical Assets in Volatile Economies</h3>
+            <p class="text-xs text-slate leading-relaxed line-clamp-3 mb-4">
+              Why sourcing high-quality multifamily properties entirely off-market yields stable, predictable rents that do not care about daily stock market drama.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-cream-accent/40 flex items-center justify-between">
+            <div class="flex items-center space-x-3 text-xs text-slate font-mono">
+              <button type="button" class="card-like-btn flex items-center space-x-1 text-slate hover:text-rose-600 transition-colors" data-article-id="physical-assets" onclick="event.stopPropagation();">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <span class="like-counter">39</span>
+              </button>
+              <span class="flex items-center space-x-1 text-slate">
+                <svg class="w-4 h-4 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                <span>1</span>
+              </span>
+            </div>
+            <span class="text-xs font-bold text-[#3B6290] flex items-center group-hover:translate-x-1 transition-transform">
+              Read <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Form Card -->
+      <div class="bg-cream-dark border border-cream-accent rounded-4xl p-8 lg:p-12 shadow-inner text-center max-w-4xl mx-auto relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+          <h3 class="text-3xl font-serif text-slate-dark">Subscribe to Flourish Letters</h3>
+          <p class="text-slate text-sm leading-relaxed">
+            Join our exclusive distribution list to receive our General Partners' twice-monthly briefs, portfolio stress-test reports, and direct investment frameworks directly to your inbox.
+          </p>
+          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input type="email" id="newsletter-email" placeholder="Your executive email address" required
+                   class="flex-1 px-5 py-3.5 rounded-full border border-cream-accent bg-cream-light text-slate-dark text-sm focus:outline-none focus:ring-2 focus:ring-sage/40 focus:border-sage transition-all placeholder:text-slate-light">
+            <button type="submit" id="newsletter-submit" 
+                    class="px-8 py-3.5 bg-sage text-white font-semibold rounded-full hover:bg-sage/90 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm shrink-0">
+              Subscribe
+            </button>
+          </form>
+          <div id="newsletter-message" class="text-xs font-semibold hidden transition-all mt-3"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FLOURISH INSIGHTS ARCHIVES MODAL
+       ========================================== -->
+  <div id="archive-modal" class="fixed inset-0 bg-slate-darker/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 lg:p-6 transition-opacity duration-300 opacity-0">
+    <div class="bg-cream-light border border-cream-accent/80 w-full max-w-4xl max-h-[85vh] rounded-4xl shadow-2xl flex flex-col overflow-hidden relative translate-y-4 transition-transform duration-300">
+      
+      <!-- Archives Header -->
+      <div class="flex items-center justify-between p-6 border-b border-cream-accent/40 bg-cream">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-[#3B6290] font-mono">Thought Leadership Library</span>
+          <h2 class="text-2xl font-serif text-slate-dark">Flourish Insights Archives</h2>
+          <p class="text-xs text-slate mt-0.5">Historical investment letters and prescriptive frameworks older than 6 months.</p>
+        </div>
+        <button id="close-archive-modal" class="p-2 text-slate hover:text-slate-dark rounded-full hover:bg-cream-dark transition-colors" aria-label="Close archive modal">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Archives Filter Tabs -->
+      <div class="px-6 py-3 bg-cream-dark/60 border-b border-cream-accent/30 flex items-center space-x-2">
+        <button type="button" class="archive-filter-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#1A365D] text-white" data-archive-filter="all">All Archives</button>
+        <button type="button" class="archive-filter-btn px-3.5 py-1.5 rounded-full text-xs text-slate hover:text-slate-dark" data-archive-filter="Macro Strategy">Macro Strategy</button>
+        <button type="button" class="archive-filter-btn px-3.5 py-1.5 rounded-full text-xs text-slate hover:text-slate-dark" data-archive-filter="Real Estate">Real Estate</button>
+      </div>
+
+      <!-- Archives Scrollable List -->
+      <div id="archive-list-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Rendered dynamically by app.js -->
+        <div class="text-center py-12 text-slate text-sm">Loading historical archives...</div>
+      </div>
+
+      <!-- Archives Footer -->
+      <div class="p-4 bg-cream border-t border-cream-accent/30 text-center text-xs text-slate-light font-mono">
+        Past letters remain active reference material for our General Partners & Co-Investors
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLOURISH INSIGHTS ARTICLE READER MODAL (WITH LIKES & COMMENTS)
+       ========================================== -->
+  <div id="article-modal" class="fixed inset-0 bg-slate-darker/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 lg:p-6 transition-opacity duration-300 opacity-0">
+    <div class="bg-cream-light border border-cream-accent/80 w-full max-w-4xl h-[88vh] rounded-4xl shadow-2xl flex flex-col overflow-hidden relative translate-y-4 transition-transform duration-300">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-8 py-5 border-b border-cream-accent/30 bg-cream shrink-0">
+        <div class="flex items-center space-x-3">
+          <span id="modal-category" class="text-[9px] uppercase font-bold tracking-widest px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full border border-[#3B6290]/20 font-mono">Macro Strategy</span>
+          <span id="modal-date" class="text-xs text-slate font-mono">Sep 2026</span>
+          <span id="modal-read-time" class="text-xs text-slate-light font-mono">• 5 Min Read</span>
+        </div>
+        <button id="close-modal" class="p-2 text-slate hover:text-slate-dark rounded-full hover:bg-cream-dark transition-colors" aria-label="Close modal">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Content -->
+      <div id="modal-scroll-pane" class="flex-1 overflow-y-auto px-8 lg:px-12 py-8 space-y-8 text-slate leading-relaxed">
+        
+        <!-- Header & Action Row -->
+        <div class="space-y-4 border-b border-cream-accent/40 pb-6">
+          <h1 id="modal-title" class="text-3xl lg:text-4xl font-serif text-slate-dark leading-tight">Hedging Interest Rate Cycles via Options Overlays</h1>
+          
+          <!-- Social Interaction Bar -->
+          <div class="flex items-center justify-between pt-2">
+            <div class="flex items-center space-x-3">
+              <!-- Like Button -->
+              <button id="modal-like-btn" type="button" class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-rose-200 bg-rose-50/70 text-rose-700 hover:bg-rose-100/90 transition-all text-xs font-semibold shadow-sm active:scale-95">
+                <svg id="modal-like-icon" class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+                <span>Like</span>
+                <span id="modal-like-count" class="font-mono bg-white/80 px-2 py-0.5 rounded-full text-[11px] ml-1">47</span>
+              </button>
+
+              <!-- Jump to Comments Button -->
+              <button id="modal-jump-comments" type="button" class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-cream-accent bg-cream hover:bg-cream-dark transition-colors text-xs font-semibold text-slate-dark">
+                <svg class="w-4 h-4 text-slate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+                <span>Discussion</span>
+                <span id="modal-comment-count" class="font-mono bg-cream-light px-2 py-0.5 rounded-full text-[11px] ml-1 text-slate">2</span>
+              </button>
+            </div>
+
+            <!-- Share Button -->
+            <button id="modal-share-btn" type="button" class="text-xs text-slate hover:text-slate-dark flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-cream-accent/60 bg-cream/50 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+              <span>Share</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Article Content -->
+        <div id="modal-body" class="prose max-w-none text-slate text-sm space-y-6">
+          <!-- Article text injected here -->
+        </div>
+
+        <!-- Reader Discussion & Comments Section -->
+        <div id="comments-section" class="pt-10 border-t border-cream-accent/60 space-y-8">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-xl font-serif text-slate-dark">Reader Perspectives & Discussion</h3>
+              <p class="text-xs text-slate mt-0.5">Private commentary and questions from fellow investors and wealth managers.</p>
+            </div>
+            <span id="comments-badge-total" class="px-3 py-1 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-xs font-mono font-bold">2 Comments</span>
+          </div>
+
+          <!-- Existing Comments Stream -->
+          <div id="modal-comments-list" class="space-y-4">
+            <!-- Dynamic comments injected here -->
+          </div>
+
+          <!-- Add a Comment Form -->
+          <div class="bg-cream rounded-3xl p-6 border border-cream-accent/60 space-y-4">
+            <h4 class="text-sm font-bold text-slate-dark uppercase tracking-wider">Leave a Comment or Question</h4>
+            <form id="comment-form" class="space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="text" id="comment-author" placeholder="Your Name or Firm" required
+                       class="px-4 py-2.5 rounded-xl border border-cream-accent bg-cream-light text-slate-dark text-xs focus:outline-none focus:ring-2 focus:ring-[#3B6290]/40">
+                <input type="text" id="comment-affiliation" placeholder="Role (e.g. Family Office, Allocator, Investor)"
+                       class="px-4 py-2.5 rounded-xl border border-cream-accent bg-cream-light text-slate-dark text-xs focus:outline-none focus:ring-2 focus:ring-[#3B6290]/40">
+              </div>
+              <textarea id="comment-text" rows="3" placeholder="Share your perspective or ask a question for our General Partners..." required
+                        class="w-full px-4 py-2.5 rounded-xl border border-cream-accent bg-cream-light text-slate-dark text-xs focus:outline-none focus:ring-2 focus:ring-[#3B6290]/40 resize-none"></textarea>
+              <div class="flex items-center justify-between pt-1">
+                <span class="text-[11px] text-slate-light">Comments are reviewed for quality and professional discourse.</span>
+                <button type="submit" id="comment-submit-btn" 
+                        class="px-6 py-2 bg-[#1A365D] text-white text-xs font-semibold rounded-full hover:bg-[#1A365D]/90 shadow transition-all active:scale-95">
+                  Post Perspective
+                </button>
+              </div>
+              <div id="comment-message" class="text-xs font-semibold hidden transition-all pt-1"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-8 py-4 bg-cream border-t border-cream-accent/30 flex items-center justify-between text-xs text-slate-light shrink-0">
+        <span>Flourish Management LLC &bull; Private & Confidential Investment Perspectives</span>
+        <button id="modal-footer-close" class="text-xs font-bold text-[#3B6290] hover:underline">Close Window &times;</button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ==========================================
        CAPITAL ALLOCATION & DUE DILIGENCE PROCESS TIMELINE

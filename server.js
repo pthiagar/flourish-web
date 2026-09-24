@@ -182,6 +182,113 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// Rate limiter for newsletter subscriptions
+const subscribeLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: {
+    success: false,
+    message: 'Too many subscription attempts. Please try again later.'
+  },
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+// API endpoint to handle newsletter subscriptions
+app.post('/api/subscribe', subscribeLimiter, async (req, res) => {
+  const { email } = req.body;
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    return res.status(400).json({ success: false, message: 'Please provide a valid email address.' });
+  }
+
+  const cleanEmail = email.replace(/<[^>]*>/g, '').trim();
+
+  console.log(`\n==================================================`);
+  console.log(`📧  [NEW NEWSLETTER SUBSCRIBER LOGGED]`);
+  console.log(`Email:     ${cleanEmail}`);
+  console.log(`==================================================\n`);
+
+  // Log locally on disk (gracefully catch Cloud Run read-only filesystem blockages)
+  try {
+    const fs = require('fs');
+    let subscribers = [];
+    if (fs.existsSync('subscribers.json')) {
+      subscribers = JSON.parse(fs.readFileSync('subscribers.json', 'utf8'));
+    }
+    if (!subscribers.includes(cleanEmail)) {
+      subscribers.push(cleanEmail);
+      fs.writeFileSync('subscribers.json', JSON.stringify(subscribers, null, 2));
+    }
+  } catch (err) {
+    console.warn('⚠️ Unable to write subscribers to disk (Local read-only FS on Cloud Run is expected behavior):', err.message);
+  }
+
+  // Check SMTP setup and alert partners
+  const hasSMTPConfig = 
+    process.env.SMTP_USER && 
+    process.env.SMTP_PASS && 
+    process.env.SMTP_USER !== 'your-email@gmail.com' && 
+    process.env.SMTP_PASS !== 'your-gmail-app-password';
+
+  if (!hasSMTPConfig) {
+    return res.json({ 
+      success: true, 
+      message: 'Subscribed successfully! (Nodemailer alert logged locally on server)' 
+    });
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    });
+
+    const senderEmail = process.env.SENDER_EMAIL || process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com';
+    const mailOptions = {
+      from: `"Flourish Website Alerts" <${senderEmail}>`,
+      to: process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com',
+      subject: `📈 New Subscriber Alert: ${cleanEmail}`,
+      text: `You have a new subscriber for your "Flourish Insights" quarterly letters!\n\nSubscriber Email: ${cleanEmail}\n\nThis subscriber has been logged to your contact database.`,
+      html: `
+        <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+          <div style="background-color: #1A365D; padding: 24px; text-align: center; border-bottom: 2px solid #DFD2C2;">
+            <h1 style="color: #FAF7F2; margin: 0; font-size: 20px; font-weight: 400; letter-spacing: 1px;">FLOURISH MANAGEMENT</h1>
+            <p style="color: #A5B8D1; margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Thought Leadership Newsletter</p>
+          </div>
+          <div style="padding: 32px 24px; color: #1A212D;">
+            <h2 style="margin-top: 0; font-size: 18px; color: #1A365D; font-weight: 500;">New Subscriber Registered</h2>
+            <p style="font-size: 14px; line-height: 1.6; color: #4A5560;">You have captured a new subscription for your quarterly insights newsletter channel!</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 24px 0; background: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #DFD2C2;">
+              <tr style="border-bottom: 1px solid #F0EADF;">
+                <td style="padding: 16px; font-weight: bold; color: #1A365D; font-size: 13px; width: 140px; background-color: #FBFBF9;">Subscriber Email:</td>
+                <td style="padding: 16px; color: #1A212D; font-size: 14px;"><a href="mailto:${cleanEmail}" style="color: #3B6290; text-decoration: none; font-weight: 600;">${cleanEmail}</a></td>
+              </tr>
+            </table>
+          </div>
+          <div style="background-color: #F0EADF; padding: 16px; text-align: center; font-size: 11px; color: #4A5560; border-top: 1px solid #DFD2C2;">
+            &copy; 2026 Flourish Management LLC. All rights reserved.
+          </div>
+        </div>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`🚀 New subscriber email notification dispatched successfully to: ${process.env.NOTIFICATION_EMAIL}\n`);
+    res.json({ success: true, message: 'Subscribed successfully! Thank you for joining Flourish Insights.' });
+
+  } catch (error) {
+    console.error('❌ Nodemailer failed to send subscription alert:', error.message);
+    res.json({ success: true, message: 'Subscribed successfully! Thank you for joining Flourish Insights.' });
+  }
+});
+
 // Rate limiter for chat leads to avoid spam
 const chatLeadLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -312,6 +419,131 @@ app.post('/api/chat-lead', chatLeadLimiter, async (req, res) => {
   } catch (error) {
     console.error('❌ Nodemailer failed to send chat lead email:', error.message);
     res.status(500).json({ success: false, message: 'Server error processing transaction.' });
+  }
+});
+
+// ----------------------------------------------------
+// FLOURISH INSIGHTS & THOUGHT LEADERSHIP API
+// ----------------------------------------------------
+const insightsEngine = require('./insights-engine');
+
+// Rate limiters for engagement actions
+const commentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: { success: false, message: 'Too many comments submitted. Please wait a few moments.' },
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+const likeLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000,
+  max: 60,
+  message: { success: false, message: 'Rate limit exceeded for likes.' },
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+// GET /api/articles - List published articles with recent vs archived breakdown
+app.get('/api/articles', (req, res) => {
+  try {
+    const category = req.query.category || null;
+    const recent = insightsEngine.getRecentArticles(category);
+    const archived = insightsEngine.getArchivedArticles(category);
+    const all = insightsEngine.getPublishedArticles();
+    res.json({
+      success: true,
+      counts: {
+        recent: recent.length,
+        archived: archived.length,
+        total: all.length
+      },
+      recent,
+      archived
+    });
+  } catch (err) {
+    console.error('Error fetching articles:', err.message);
+    res.status(500).json({ success: false, message: 'Failed to load insights articles.' });
+  }
+});
+
+// GET /api/articles/recent - Fetch articles from the past 6 months
+app.get('/api/articles/recent', (req, res) => {
+  try {
+    const category = req.query.category || null;
+    const articles = insightsEngine.getRecentArticles(category);
+    res.json({ success: true, count: articles.length, articles });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// GET /api/articles/archive - Fetch older articles (>6 months)
+app.get('/api/articles/archive', (req, res) => {
+  try {
+    const category = req.query.category || null;
+    const articles = insightsEngine.getArchivedArticles(category);
+    res.json({ success: true, count: articles.length, articles });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// GET /api/articles/:id - Fetch full article with body & comments
+app.get('/api/articles/:id', (req, res) => {
+  try {
+    const article = insightsEngine.getArticleById(req.params.id);
+    if (!article) {
+      return res.status(404).json({ success: false, message: 'Article not found.' });
+    }
+    res.json({ success: true, article });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// POST /api/articles/:id/like - Like an article
+app.post('/api/articles/:id/like', likeLimiter, (req, res) => {
+  try {
+    const result = insightsEngine.likeArticle(req.params.id);
+    if (!result) {
+      return res.status(404).json({ success: false, message: 'Article not found.' });
+    }
+    res.json({ success: true, likes: result.likes });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// POST /api/articles/:id/comment - Add comment to an article
+app.post('/api/articles/:id/comment', commentLimiter, (req, res) => {
+  try {
+    const { author, affiliation, text } = req.body || {};
+    if (!text || !text.trim()) {
+      return res.status(400).json({ success: false, message: 'Comment content cannot be empty.' });
+    }
+    const result = insightsEngine.addComment(req.params.id, { author, affiliation, text });
+    if (!result) {
+      return res.status(404).json({ success: false, message: 'Article not found or comment invalid.' });
+    }
+    res.json({
+      success: true,
+      comment: result.newComment,
+      commentsCount: result.commentsCount,
+      comments: result.comments
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+// POST /api/articles/trigger-schedule - Trigger scheduler check
+app.post('/api/articles/trigger-schedule', (req, res) => {
+  try {
+    insightsEngine.checkSchedule();
+    res.json({ success: true, message: 'Schedule updated.' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 });
 
