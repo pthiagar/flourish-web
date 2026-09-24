@@ -178,15 +178,15 @@ class EmailDispatcher {
           <tr>
             <td style="width: 50%; vertical-align: top; padding-right: 8px;">
               <div style="background-color: #EFE7DE; border-radius: 12px; padding: 22px 18px; text-align: center; border: 1px solid #DFD2C2;">
-                <div style="font-size: 24px; margin-bottom: 8px;">📊</div>
+                <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
                 <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: #1A365D; margin: 0 0 6px 0;">
-                  Portfolio Stress-Testing
+                  Diligence Tear-Sheets
                 </h3>
                 <p style="font-size: 12px; color: #4A5560; line-height: 1.5; margin: 0 0 16px 0;">
-                  Simulate downside delta hedges and asymmetrical alpha capture under market stress.
+                  Access our 3 printable one-pagers: Multifamily Matrix, Seed SAFE Audit, and Delta Hedges.
                 </p>
-                <a href="${siteUrl}/#climate" style="display: inline-block; background-color: #829A7E; color: #FFFFFF; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
-                  Launch Simulator &rarr;
+                <a href="${siteUrl}/#diligence-sheets" style="display: inline-block; background-color: #829A7E; color: #FFFFFF; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 20px;">
+                  View Tear-Sheets &rarr;
                 </a>
               </div>
             </td>
