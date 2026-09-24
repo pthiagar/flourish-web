@@ -92,6 +92,6 @@ The engine implements **hybrid persistence**:
 
 The frontend is implemented in vanilla JavaScript without bulky frameworks:
 - **DOM Hydration**: On `DOMContentLoaded`, the app initiates parallel asynchronous fetches to `/api/articles`.
-- **Sliding Window Rendering**: Renders the 6-month recent cards grid while calculating historical counts.
+- **Sliding Window Rendering**: Renders the 3-month recent cards grid (9 letters) while calculating historical archive counts.
 - **Optimistic UI Updates**: Clicking a "Like" button immediately increments the counter on screen and updates local storage before waiting for server acknowledgment.
 - **Deep Linking**: Reading an article updates URL hashes or modal states, allowing direct sharing of specific letters.

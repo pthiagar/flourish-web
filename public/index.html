@@ -619,12 +619,12 @@
           <svg class="w-4 h-4 text-[#3B6290] group-hover:rotate-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
           </svg>
-          <span>View Archives (6+ Mos)</span>
-          <span id="archive-count-badge" class="ml-1.5 px-2 py-0.5 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-[10px] font-mono">9</span>
+          <span>View Archives (3+ Mos)</span>
+          <span id="archive-count-badge" class="ml-1.5 px-2 py-0.5 bg-[#3B6290]/10 text-[#1A365D] rounded-full text-[10px] font-mono">18</span>
         </button>
       </div>
 
-      <!-- Articles Cards Grid (Hydrated dynamically from /api/articles with 6-month recent sliding window) -->
+      <!-- Articles Cards Grid (Hydrated dynamically from /api/articles with 3-month recent sliding window: 9 letters) -->
       <div id="insights-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         <!-- Initial pre-rendered cards for instant visual load, dynamically updated by app.js -->
         <div class="insight-article-card bg-cream-light border border-cream-accent/50 rounded-4xl p-7 hover:shadow-xl transition-all duration-300 hover:border-[#3B6290]/40 flex flex-col justify-between cursor-pointer group" data-article-id="rate-cycles">
@@ -745,7 +745,7 @@
         <div>
           <span class="text-[10px] uppercase font-bold tracking-widest text-[#3B6290] font-mono">Thought Leadership Library</span>
           <h2 class="text-2xl font-serif text-slate-dark">Flourish Insights Archives</h2>
-          <p class="text-xs text-slate mt-0.5">Historical investment letters and prescriptive frameworks older than 6 months.</p>
+          <p class="text-xs text-slate mt-0.5">Historical investment letters and prescriptive frameworks older than 3 months.</p>
         </div>
         <button id="close-archive-modal" class="p-2 text-slate hover:text-slate-dark rounded-full hover:bg-cream-dark transition-colors" aria-label="Close archive modal">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>

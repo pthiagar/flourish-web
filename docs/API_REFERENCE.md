@@ -43,22 +43,7 @@ Retrieves all currently published articles formatted with recency flags.
 ---
 
 ### `GET /api/articles/recent`
-Returns only articles within the active 6-month sliding window.
-
-- **Query Parameters**: `category` (optional)
-- **Response**:
-```json
-{
-  "success": true,
-  "count": 18,
-  "articles": [ ... ]
-}
-```
-
----
-
-### `GET /api/articles/archive`
-Returns historical articles older than 6 months.
+Returns only articles within the active 3-month sliding window (9 letters).
 
 - **Query Parameters**: `category` (optional)
 - **Response**:
@@ -66,6 +51,21 @@ Returns historical articles older than 6 months.
 {
   "success": true,
   "count": 9,
+  "articles": [ ... ]
+}
+```
+
+---
+
+### `GET /api/articles/archive`
+Returns historical articles older than 3 months (18 letters).
+
+- **Query Parameters**: `category` (optional)
+- **Response**:
+```json
+{
+  "success": true,
+  "count": 18,
   "articles": [ ... ]
 }
 ```

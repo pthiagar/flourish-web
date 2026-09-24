@@ -651,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /**
-   * Render Recent Articles Grid (Past 6 Months sliding window)
+   * Render Recent Articles Grid (Past 3 Months sliding window: 9 letters)
    */
   function renderRecentArticles() {
     if (!insightsGrid) return;
@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       insightsGrid.innerHTML = `
         <div class="col-span-full text-center py-12 text-slate text-sm">
-          No articles found for category "${currentRecentCategory}" in the last 6 months.
+          No articles found for category "${currentRecentCategory}" in the last 3 months.
         </div>
       `;
       return;

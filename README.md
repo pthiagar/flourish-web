@@ -24,7 +24,7 @@
   - **1st of Month**: **Macro Strategy** (Quantitative options overlays, volatility harvesting, rate-cycle hedging, tail risk protection)
   - **10th of Month**: **Real Estate** (Multifamily acquisitions, 50% operating expense rule, off-market sourcing, workforce housing)
   - **20th of Month**: **Venture Capital & Angel Investing** (Seed startup underwriting, SAFE cap table dilution defense, founder velocity tests, power-law economics)
-- **Sliding 6-Month Recency Window**: Dynamically displays articles published within the last 183 days on the primary grid. Older articles automatically transition into the **Archives Modal**.
+- **Sliding 3-Month Recency Window**: Dynamically displays articles published within the last 3 months (9 letters) on the primary grid. Older articles automatically transition into the **Archives Modal**.
 - **Self-Replenishing Queue**: Automatically looks 3–4 months into the future and generates scheduled letters so the publication queue never runs dry.
 - **Strict Human-Pruned Voice Rules**: Every letter is written with ruthless pruning (<15-word sentence rhythm average, plain English, concrete real-world math, zero corporate fluff) and features a numbered **4-Step Actionable Checklist / Diligence Playbook**.
 
@@ -69,7 +69,7 @@
 [ Insights Publishing Engine ]     [ Lead & Email Services ]
 +----------------------------+     +------------------------+
 | * 3-Pillar Monthly Cadence |     | * Nodemailer SMTP      |
-| * Sliding 6-Month Window   |     | * Contact Form Handler |
+| * Sliding 3-Month Window   |     | * Contact Form Handler |
 | * Auto-Archival System     |     | * Newsletter Subsystem |
 | * On-Demand Lazy Check     |     | * Chat Lead Capture    |
 | * Hybrid JSON Storage      |     +------------------------+
@@ -177,8 +177,8 @@ node -c insights-engine.js
 node -e "
 const engine = require('./insights-engine');
 console.log('Total Articles:', engine.articles.length);
-console.log('Recent 6-Month Window:', engine.getRecentArticles().length);
-console.log('Historical Archives:', engine.getArchivedArticles().length);
+console.log('Recent 3-Month Window (9 letters):', engine.getRecentArticles().length);
+console.log('Historical Archives (>3 months):', engine.getArchivedArticles().length);
 "
 ```
 
@@ -190,9 +190,9 @@ Full documentation is available in [docs/API_REFERENCE.md](docs/API_REFERENCE.md
 
 | Endpoint | Method | Rate Limit | Purpose |
 | :--- | :--- | :--- | :--- |
-| `/api/articles` | `GET` | None | Retrieve active recent articles and archive breakdown. |
-| `/api/articles/recent` | `GET` | None | Retrieve articles within the 6-month sliding window. |
-| `/api/articles/archive` | `GET` | None | Retrieve historical archived letters (>6 months old). |
+| `/api/articles` | `GET` | None | Retrieve active recent articles (last 3 months) and archive breakdown. |
+| `/api/articles/recent` | `GET` | None | Retrieve articles within the 3-month sliding window (9 letters). |
+| `/api/articles/archive` | `GET` | None | Retrieve historical archived letters (>3 months old). |
 | `/api/articles/:id` | `GET` | None | Retrieve single article details with discussion comments. |
 | `/api/articles/:id/like` | `POST` | 60 / 5 min | Increment like counter for an article. |
 | `/api/articles/:id/comment` | `POST` | 20 / 15 min | Post a reader perspective comment. |

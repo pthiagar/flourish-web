@@ -10,8 +10,8 @@
  * - 3 monthly prescriptive letters covering all core pillars
  * - Strict Voice & Editing Rules: Ruthless pruning, short sentences (<15 words avg), plain English, no AI fluff
  * - 4-5 min reads with concrete, actionable checklists and underwriting rulebooks
- * - Sliding 6-month recent window (UI displays articles published within past 6 months)
- * - Automatic archiving of articles older than 6 months with organized Archive retrieval
+ * - Sliding 3-month recent window (UI displays articles published within past 3 months, exactly 9 letters)
+ * - Automatic archiving of articles older than 3 months with organized Archive retrieval
  * - Automated scheduler that evaluates publish dates and automatically releases new monthly letters
  * - Interactive Like & Comment system with sanitized inputs and disk/in-memory persistence
  */
@@ -845,15 +845,15 @@ class InsightsEngine {
 
   /**
    * Retrieves all published articles formatted with status flags:
-   * - isRecent: published within the last 6 months
-   * - isArchived: published more than 6 months ago
+   * - isRecent: published within the last 3 months (exactly 9 letters)
+   * - isArchived: published more than 3 months ago (archives)
    */
   getPublishedArticles(options = {}) {
     // Lazily evaluate schedule on each read to guarantee cloud instances stay current
     this.checkSchedule();
     const now = new Date();
-    // 6 months ago threshold in milliseconds: approximately 183 days
-    const sixMonthsAgo = new Date(now.getTime() - 183 * 24 * 60 * 60 * 1000);
+    // 3 months sliding window: beginning of 2 calendar months prior (giving 3 full calendar months: current month + prior 2 months)
+    const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 2, 1);
 
     let list = this.articles.filter(article => {
       const pubDate = new Date(article.publishDate);
@@ -865,8 +865,8 @@ class InsightsEngine {
 
     return list.map(a => {
       const pubDate = new Date(a.publishDate);
-      const isRecent = pubDate >= sixMonthsAgo;
-      const isArchived = pubDate < sixMonthsAgo;
+      const isRecent = pubDate >= threeMonthsAgo;
+      const isArchived = pubDate < threeMonthsAgo;
       return {
         id: a.id,
         title: a.title,
@@ -886,7 +886,7 @@ class InsightsEngine {
   }
 
   /**
-   * Returns recent articles (published within past 6 months)
+   * Returns recent articles (published within past 3 months, 9 letters)
    */
   getRecentArticles(category = null) {
     const all = this.getPublishedArticles();
@@ -898,7 +898,7 @@ class InsightsEngine {
   }
 
   /**
-   * Returns archived articles (older than 6 months), grouped by year/period
+   * Returns archived articles (older than 3 months), grouped by year/period
    */
   getArchivedArticles(category = null) {
     const all = this.getPublishedArticles();
@@ -918,7 +918,7 @@ class InsightsEngine {
 
     const now = new Date();
     const pubDate = new Date(article.publishDate);
-    const sixMonthsAgo = new Date(now.getTime() - 183 * 24 * 60 * 60 * 1000);
+    const threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 2, 1);
 
     return {
       ...article,
@@ -926,8 +926,8 @@ class InsightsEngine {
       likes: article.likes || 0,
       comments: article.comments || [],
       commentsCount: (article.comments && article.comments.length) || 0,
-      isRecent: pubDate >= sixMonthsAgo,
-      isArchived: pubDate < sixMonthsAgo
+      isRecent: pubDate >= threeMonthsAgo,
+      isArchived: pubDate < threeMonthsAgo
     };
   }
 

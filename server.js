@@ -501,7 +501,7 @@ app.get('/api/articles', (req, res) => {
   }
 });
 
-// GET /api/articles/recent - Fetch articles from the past 6 months
+// GET /api/articles/recent - Fetch articles from the past 3 months (9 letters)
 app.get('/api/articles/recent', (req, res) => {
   try {
     const category = req.query.category || null;
@@ -512,7 +512,7 @@ app.get('/api/articles/recent', (req, res) => {
   }
 });
 
-// GET /api/articles/archive - Fetch older articles (>6 months)
+// GET /api/articles/archive - Fetch older articles (>3 months)
 app.get('/api/articles/archive', (req, res) => {
   try {
     const category = req.query.category || null;

@@ -39,22 +39,22 @@ Every letter published by the engine must adhere strictly to these four rules:
 
 ---
 
-## 3. Sliding 6-Month Recency Window & Archival
+## 3. Sliding 3-Month Recency Window & Archival
 
-The engine maintains a dynamic boundary between **Recent** and **Archived** letters:
+The engine maintains a dynamic boundary between **Recent (Last 3 Months, 9 Letters)** and **Archived** letters:
 
 ```
-                                  183 Days Ago                     Today
+                                  3 Months Ago                     Today
 ---------------------------------------|-----------------------------|--------> Time
-           ARCHIVES                    |        RECENT (Active)      |  SCHEDULED
+           ARCHIVES                    |        RECENT (9 Letters)   |  SCHEDULED
  (Viewable in Archives Modal)          |  (Displayed on Main Grid)   |  (Hidden)
 ```
 
 ### Mathematical Formula
-- `sixMonthsAgo = new Date(now.getTime() - 183 * 24 * 60 * 60 * 1000)`
+- `threeMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 2, 1)` (first day of 2 calendar months prior)
 - **Published**: `pubDate <= now`
-- **Recent**: `pubDate >= sixMonthsAgo && pubDate <= now`
-- **Archived**: `pubDate < sixMonthsAgo`
+- **Recent**: `pubDate >= threeMonthsAgo && pubDate <= now` (exactly 9 letters across the 3 calendar months)
+- **Archived**: `pubDate < threeMonthsAgo` (historical letters >3 months old)
 - **Scheduled (Future)**: `pubDate > now`
 
 As time advances, letters automatically transition across these boundaries without manual database migrations.
