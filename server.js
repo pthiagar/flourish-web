@@ -478,6 +478,72 @@ const likeLimiter = rateLimit({
   legacyHeaders: false
 });
 
+// ----------------------------------------------------
+// EXECUTIVE DILIGENCE TEAR-SHEETS API
+// ----------------------------------------------------
+const DILIGENCE_SHEETS = [
+  {
+    id: 'multifamily-matrix',
+    docId: 'FM-RE-TEARSHEET-01',
+    category: 'real-estate',
+    categoryLabel: 'Physical Real Estate',
+    title: 'The 15-Minute Multifamily Acquisition Screening Matrix',
+    subtitle: 'Rapid Institutional Hurdle Filter for Class B/C Workforce Housing Underwriting',
+    format: 'Printable 1-Page PDF / 8.5" x 11"',
+    url: '/sheets/multifamily-matrix.html',
+    highlights: [
+      '50% Operating Expense Ratio Mandate (eliminates broker pro-forma bias)',
+      'Sub-replacement cost hurdle (≤ 75% of reproduction basis)',
+      'Minimum 9.5% unlevered debt yield & 1.35x fixed DSCR',
+      '4-point physical on-site utility & deferred maintenance audit'
+    ],
+    redFlagTrigger: 'Expense ratio < 48% or floating-rate debt proposed'
+  },
+  {
+    id: 'seed-safe-audit',
+    docId: 'FM-VC-TEARSHEET-02',
+    category: 'venture-capital',
+    categoryLabel: 'Early-Stage Venture',
+    title: 'The Seed Angel SAFE & Cap Table Dilution Audit',
+    subtitle: 'Angel Syndicate Defense Architecture: Dilution Math, Protective Covenants & Velocity Scoring',
+    format: 'Printable 1-Page PDF / 8.5" x 11"',
+    url: '/sheets/seed-safe-audit.html',
+    highlights: [
+      'Post-money SAFE stack ceiling (< 25% aggregate seed dilution)',
+      '72-hour founder execution & diligence velocity filter',
+      'Mandatory information rights & pro-rata side letter defense',
+      'Burn multiple hurdle (< 1.5x) and ARR / headcount ratio (> $180k)'
+    ],
+    redFlagTrigger: 'Total unpriced SAFEs > $2.5M or unallocated option pool trap'
+  },
+  {
+    id: 'delta-hedging-matrix',
+    docId: 'FM-MM-TEARSHEET-03',
+    category: 'capital-markets',
+    categoryLabel: 'Capital Markets & Hedging',
+    title: 'The Quantitative Delta-Hedging & Volatility Parameter Matrix',
+    subtitle: 'Systematic 0.18 Delta Overlay Calibration, Asymmetric Put Budgets & VIX Regimes',
+    format: 'Printable 1-Page PDF / 8.5" x 11"',
+    url: '/sheets/delta-hedging-matrix.html',
+    highlights: [
+      '0.18 Delta systematic covered call & cash-secured strangle rules (30–45 DTE)',
+      'Three-tier VIX regime playbook (VIX <15, 15–28, >28)',
+      'Pre-programmed tail-risk put harvest (+500% to +1,000% tiers)',
+      '100% cash-secured mandate & 4-week Treasury Bill sweep collateral'
+    ],
+    redFlagTrigger: 'Naked put writing or holding unhedged delta into IV spikes'
+  }
+];
+
+// GET /api/diligence-sheets - Return list of available executive tear-sheets
+app.get('/api/diligence-sheets', (req, res) => {
+  res.json({
+    success: true,
+    total: DILIGENCE_SHEETS.length,
+    sheets: DILIGENCE_SHEETS
+  });
+});
+
 // GET /api/articles - List published articles with recent vs archived breakdown
 app.get('/api/articles', (req, res) => {
   try {

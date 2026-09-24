@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quantitative Delta-Hedging & Volatility Parameter Matrix — Flourish Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; padding: 0 !important; }
+      .sheet-container { border: none !important; box-shadow: none !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
+      @page { margin: 0.35in; size: letter portrait; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-[#1A212D] font-sans antialiased p-4 sm:p-8 flex flex-col items-center min-h-screen">
+  <div class="no-print w-full max-w-4xl mb-6 flex items-center justify-between bg-white px-6 py-3.5 rounded-2xl shadow-sm border border-slate-200">
+    <div class="flex items-center space-x-3">
+      <a href="/#diligence-sheets" class="text-xs font-semibold text-[#3B6290] hover:text-[#1A365D] flex items-center space-x-1.5 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>Back to Portal</span>
+      </a>
+      <span class="text-slate-300">|</span>
+      <span class="text-xs font-mono text-slate-500 uppercase tracking-wider">Doc ID: FM-MM-TEARSHEET-03</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <button onclick="window.print()" class="bg-[#1A365D] hover:bg-[#0A192F] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl flex items-center space-x-2 transition-all shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <span>Print / Save as PDF</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet-container w-full max-w-4xl bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-xl space-y-5">
+    <div class="flex items-start justify-between border-b-2 border-[#1A365D] pb-4">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span class="text-[10px] font-mono uppercase tracking-widest font-bold px-2 py-0.5 bg-[#1A365D] text-white rounded">Flourish Diligence Framework</span>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-slate-500">Asset Class: Capital Markets &amp; Derivatives</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-serif text-[#1A365D] font-bold">The Quantitative Delta-Hedging &amp; Volatility Parameter Matrix</h1>
+        <p class="text-xs text-slate-600 mt-0.5">Systematic 0.18 Delta Overlay Calibration, Asymmetric Put Budgets &amp; VIX Regimes</p>
+      </div>
+      <div class="text-right">
+        <div class="text-sm font-serif font-bold text-[#1A365D] tracking-wider uppercase">FLOURISH MANAGEMENT</div>
+        <div class="text-[9px] font-mono text-slate-400 uppercase tracking-widest">Investment Committee Directive</div>
+        <div class="text-[9px] font-mono text-emerald-700 font-semibold mt-1">RESTRICTED ALLOCATOR CIRCULATION</div>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[#1A365D] flex items-center space-x-1.5 font-mono">
+          <span class="w-5 h-5 rounded-full bg-[#1A365D] text-white text-[10px] flex items-center justify-center font-bold">1</span>
+          <span>THE 0.18 DELTA OVERLAY ENGINE (THETA HARVESTING)</span>
+        </h2>
+        <span class="text-[10px] font-mono text-emerald-700 font-semibold uppercase">Target: 1.0% - 1.5% Monthly Yield</span>
+      </div>
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-2">
+        <p class="leading-relaxed">
+          <strong>Mandate:</strong> Passive long equities surrender severe drawdowns during macro tightening. By writing systematic <strong>0.18 Delta Out-of-the-Money Options</strong> on 30- to 45-day cycles, we capture non-linear theta time decay while maintaining an 82% statistical probability of expiring out-of-the-money.
+        </p>
+        <div class="grid grid-cols-3 gap-2 font-mono text-[11px]">
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Horizon Horizon (DTE)</span>
+            <span class="font-bold text-[#1A365D]">30 to 45 Days to Expiration</span>
+          </div>
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Delta Strike Selection</span>
+            <span class="font-bold text-slate-800">&Delta; = 0.16 to 0.18 OTM Calls</span>
+          </div>
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Profit Monetization Trigger</span>
+            <span class="font-bold text-emerald-700">Close at 80% Max Profit; Roll Out</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[#1A365D] flex items-center space-x-1.5 font-mono">
+          <span class="w-5 h-5 rounded-full bg-[#1A365D] text-white text-[10px] flex items-center justify-center font-bold">2</span>
+          <span>THREE-TIER VIX VOLATILITY REGIME PLAYBOOK</span>
+        </h2>
+        <span class="text-[10px] font-mono text-slate-500 font-semibold uppercase">Dynamic Regime Tuning</span>
+      </div>
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700">
+        <table class="w-full text-left text-xs font-sans">
+          <thead class="bg-slate-100 text-slate-600 font-mono text-[10px] uppercase">
+            <tr>
+              <th class="p-2">Regime Level</th>
+              <th class="p-2">Market Condition</th>
+              <th class="p-2">Derivative Execution Mandate</th>
+              <th class="p-2 text-right">Portfolio Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-[11px]">
+            <tr>
+              <td class="p-2 font-bold text-emerald-700 font-mono">VIX &lt; 15.0</td>
+              <td class="p-2 text-slate-600">Tranquil / Complacent</td>
+              <td class="p-2 text-slate-800">Options are cheap. Allocate 1.0% annual cash budget to deep OTM crash puts (90-120 DTE, &Delta; &le; 0.05).</td>
+              <td class="p-2 font-mono text-right text-emerald-700 font-bold">[ Buy Insurance ]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-bold text-[#1A365D] font-mono">VIX 15.0 - 28.0</td>
+              <td class="p-2 text-slate-600">Normal / Oscillating</td>
+              <td class="p-2 text-slate-800">Deploy systematic 0.18 delta covered call overlays and cash-secured index strangles. Harvest theta.</td>
+              <td class="p-2 font-mono text-right text-[#3B6290] font-bold">[ Active Yield ]</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-bold text-rose-600 font-mono">VIX &gt; 28.0</td>
+              <td class="p-2 text-slate-600">Liquidity Panic / Crash</td>
+              <td class="p-2 text-slate-800">Monetize appreciated put hedges (+500% to +1,000%). Cease writing short calls into oversold bottoms.</td>
+              <td class="p-2 font-mono text-right text-rose-600 font-bold">[ Sweep Capital ]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[#1A365D] flex items-center space-x-1.5 font-mono">
+          <span class="w-5 h-5 rounded-full bg-[#1A365D] text-white text-[10px] flex items-center justify-center font-bold">3</span>
+          <span>ASYMMETRIC TAIL-RISK PUT MONETIZATION RULES</span>
+        </h2>
+        <span class="text-[10px] font-mono text-emerald-700 font-semibold uppercase">Pre-Committed Exits</span>
+      </div>
+      <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-2">
+        <p class="leading-relaxed">
+          <strong>Mandate:</strong> The most common error in tail-risk hedging is failing to monetize crash insurance before implied volatility collapses. We enforce strict, pre-programmed take-profit tiers regardless of financial news headlines.
+        </p>
+        <div class="grid grid-cols-3 gap-2 font-mono text-[11px]">
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Tier 1: Harvest 50%</span>
+            <span class="font-bold text-[#1A365D]">At +500% Gain on Put Contract</span>
+          </div>
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Tier 2: Harvest 100%</span>
+            <span class="font-bold text-[#1A365D]">At +1,000% Gain on Put Contract</span>
+          </div>
+          <div class="p-2 bg-white rounded border border-slate-200">
+            <span class="text-slate-400 block text-[9px] uppercase">Redeployment Target</span>
+            <span class="font-bold text-emerald-700">Deploy into T-Bills &amp; Dislocated RE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-1.5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-[#1A365D] flex items-center space-x-1.5 font-mono">
+          <span class="w-5 h-5 rounded-full bg-[#1A365D] text-white text-[10px] flex items-center justify-center font-bold">4</span>
+          <span>COLLATERAL MANAGEMENT &amp; CASH SWEEP PROTOCOL</span>
+        </h2>
+        <span class="text-[10px] font-mono text-slate-500 font-semibold uppercase">Zero Counterparty Speculation</span>
+      </div>
+      <table class="w-full text-left text-xs border border-slate-200 rounded-xl overflow-hidden font-sans">
+        <tbody class="divide-y divide-slate-200 text-[11px]">
+          <tr>
+            <td class="p-2 font-bold text-[#1A365D] w-1/3">A. 100% Cash-Secured Mandate</td>
+            <td class="p-2 text-slate-700">Never write naked puts or uncollateralized options. All option obligations must be 100% backed by cash in Treasury Bills or underlying unencumbered equity.</td>
+          </tr>
+          <tr>
+            <td class="p-2 font-bold text-[#1A365D] w-1/3">B. 4-Week Treasury Bill Ladder</td>
+            <td class="p-2 text-slate-700">All dry powder cash is swept into revolving 4-week US Treasury Bills, earning risk-free sovereign yield while serving as margin collateral.</td>
+          </tr>
+          <tr>
+            <td class="p-2 font-bold text-[#1A365D] w-1/3">C. Weekly Rebalancing Audit</td>
+            <td class="p-2 text-slate-700">Portfolio beta-weighted delta is reconciled every Friday at 4:00 PM EST. Maximum allowed portfolio beta delta is maintained within -0.15 to +0.35.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="border-t border-slate-200 pt-3 flex flex-col sm:flex-row items-center justify-between text-[10px] text-slate-500 font-mono">
+      <div>
+        <span>&copy; 2026 Flourish Management LLC &middot; Proprietary Research Syndicate</span>
+      </div>
+      <div class="mt-1 sm:mt-0 text-right">
+        <span>Confidential // Strictly For Qualified Institutional Allocators</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

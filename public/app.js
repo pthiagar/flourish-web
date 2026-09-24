@@ -1348,4 +1348,82 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initRegimeTimeline();
+
+  // ------------------------------------------------------------------------
+  // EXECUTIVE DILIGENCE TEAR-SHEETS PREVIEW MODAL
+  // ------------------------------------------------------------------------
+  const SHEET_DATA = {
+    'multifamily-matrix': {
+      docId: 'FM-RE-01',
+      title: 'The 15-Minute Multifamily Acquisition Screening Matrix',
+      url: '/sheets/multifamily-matrix.html'
+    },
+    'seed-safe-audit': {
+      docId: 'FM-VC-02',
+      title: 'The Seed Angel SAFE & Cap Table Dilution Audit',
+      url: '/sheets/seed-safe-audit.html'
+    },
+    'delta-hedging-matrix': {
+      docId: 'FM-MM-03',
+      title: 'The Quantitative Delta-Hedging & Volatility Matrix',
+      url: '/sheets/delta-hedging-matrix.html'
+    }
+  };
+
+  const sheetModal = document.getElementById('sheet-preview-modal');
+  const sheetModalDocId = document.getElementById('modal-sheet-docid');
+  const sheetModalTitle = document.getElementById('modal-sheet-title');
+  const sheetModalPrintBtn = document.getElementById('modal-sheet-print-btn');
+  const sheetModalIframe = document.getElementById('modal-sheet-iframe');
+  const closeSheetModalBtn = document.getElementById('close-sheet-modal-btn');
+
+  window.openSheetPreview = function(sheetId) {
+    const data = SHEET_DATA[sheetId];
+    if (!data || !sheetModal) return;
+
+    if (sheetModalDocId) sheetModalDocId.textContent = data.docId;
+    if (sheetModalTitle) sheetModalTitle.textContent = data.title;
+    if (sheetModalPrintBtn) sheetModalPrintBtn.href = data.url;
+    if (sheetModalIframe) sheetModalIframe.src = data.url;
+
+    sheetModal.classList.remove('hidden');
+    sheetModal.classList.add('flex');
+    setTimeout(() => {
+      sheetModal.classList.remove('opacity-0');
+      const innerCard = sheetModal.querySelector('div');
+      if (innerCard) innerCard.classList.remove('translate-y-4');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeSheetPreview = function() {
+    if (!sheetModal) return;
+    sheetModal.classList.add('opacity-0');
+    const innerCard = sheetModal.querySelector('div');
+    if (innerCard) innerCard.classList.add('translate-y-4');
+    setTimeout(() => {
+      sheetModal.classList.add('hidden');
+      sheetModal.classList.remove('flex');
+      if (sheetModalIframe) sheetModalIframe.src = '';
+      document.body.style.overflow = '';
+    }, 300);
+  };
+
+  if (closeSheetModalBtn) {
+    closeSheetModalBtn.addEventListener('click', window.closeSheetPreview);
+  }
+
+  if (sheetModal) {
+    sheetModal.addEventListener('click', (e) => {
+      if (e.target === sheetModal) {
+        window.closeSheetPreview();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sheetModal && !sheetModal.classList.contains('hidden')) {
+      window.closeSheetPreview();
+    }
+  });
 });
