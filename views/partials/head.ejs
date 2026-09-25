@@ -4,14 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= typeof title !== 'undefined' ? title + ' | Flourish Management' : 'Flourish Management | Private Investment Management' %></title>
-  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Flourish Management LLC is a private investment holding company deploying capital across strategic real estate, options-hedged capital markets, and venture capital.' %>">
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Flourish Management LLC is a private investment holding company deploying capital across residential and commercial real estate, options-hedged capital markets, and early-stage venture.' %>">
   <link rel="icon" type="image/png" href="/logo.png">
 
-  <!-- Open Graph / Meta -->
-  <meta property="og:type" content="website">
+  <!-- Canonical URL -->
+  <% 
+    const pageUrl = typeof canonicalUrl !== 'undefined' 
+      ? canonicalUrl 
+      : 'https://flourishmgmt.com' + (typeof currentPath !== 'undefined' && currentPath !== '/' ? currentPath : '');
+  %>
+  <link rel="canonical" href="<%= pageUrl %>">
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:site_name" content="Flourish Management">
+  <meta property="og:type" content="<%= typeof ogType !== 'undefined' ? ogType : 'website' %>">
+  <meta property="og:url" content="<%= pageUrl %>">
   <meta property="og:title" content="<%= typeof title !== 'undefined' ? title + ' | Flourish Management' : 'Flourish Management | Private Investment Management' %>">
-  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Deploying capital across strategic real estate, options-hedged capital markets, and early-stage venture capital.' %>">
-  <meta property="og:image" content="/images/about-boardroom.png">
+  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Flourish Management LLC is a private investment holding company deploying capital across residential and commercial real estate, options-hedged capital markets, and early-stage venture.' %>">
+  <meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://flourishmgmt.com/images/about-boardroom.png' %>">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title + ' | Flourish Management' : 'Flourish Management | Private Investment Management' %>">
+  <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Flourish Management LLC is a private investment holding company deploying capital across residential and commercial real estate, options-hedged capital markets, and early-stage venture.' %>">
+  <meta name="twitter:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : 'https://flourishmgmt.com/images/about-boardroom.png' %>">
+
+  <!-- Schema.org JSON-LD Structured Data: Institutional Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "Flourish Management LLC",
+    "alternateName": "Flourish Management",
+    "url": "https://flourishmgmt.com",
+    "logo": "https://flourishmgmt.com/logo.png",
+    "image": "https://flourishmgmt.com/images/about-boardroom.png",
+    "description": "Flourish Management LLC is a private investment holding company deploying capital across residential and commercial real estate, options-hedged capital markets, and early-stage venture.",
+    "telephone": "+1-424-703-3332",
+    "email": "info@flourish-mgmt.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://tcaventuregroup.com/",
+      "https://expertdojo.com/"
+    ]
+  }
+  </script>
+
+  <% if (typeof article !== 'undefined' && article) { %>
+  <!-- Schema.org JSON-LD Structured Data: Financial Research Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": <%- JSON.stringify(article.title || '') %>,
+    "description": <%- JSON.stringify(article.summary || '') %>,
+    "image": "https://flourishmgmt.com/images/about-boardroom.png",
+    "datePublished": "<%= article.publishDate || '2026-06-01' %>",
+    "dateModified": "<%= article.publishDate || '2026-06-01' %>",
+    "author": {
+      "@type": "Organization",
+      "name": "Flourish Management Investment Committee",
+      "url": "https://flourishmgmt.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Flourish Management LLC",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://flourishmgmt.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "<%= pageUrl %>"
+    }
+  }
+  </script>
+  <% } %>
 
   <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -915,6 +915,44 @@ app.get('/contact', (req, res) => {
   res.render('contact', { currentPath: '/contact' });
 });
 
+
+// Dynamic XML Sitemap for Search Engines & AEO (Perplexity / ChatGPT / Gemini)
+app.get('/sitemap.xml', (req, res) => {
+  try {
+    const baseUrl = 'https://flourishmgmt.com';
+    const allArticles = insightsEngine.getAllArticles();
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+    const corePages = [
+      { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/strategies`, priority: '0.9', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/track-record`, priority: '0.9', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/diligence`, priority: '0.9', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/insights`, priority: '0.9', changefreq: 'weekly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/contact`, priority: '0.8', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/sheets/multifamily-matrix.html`, priority: '0.8', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/sheets/seed-safe-audit.html`, priority: '0.8', changefreq: 'monthly', lastmod: '2026-09-25' },
+      { loc: `${baseUrl}/sheets/delta-hedging-matrix.html`, priority: '0.8', changefreq: 'monthly', lastmod: '2026-09-25' }
+    ];
+
+    corePages.forEach(p => {
+      xml += `  <url>\n    <loc>${p.loc}</loc>\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>\n`;
+    });
+
+    allArticles.forEach(art => {
+      const modDate = (art.publishDate || '2026-09-01').substring(0, 10);
+      xml += `  <url>\n    <loc>${baseUrl}/insights/${art.id}</loc>\n    <lastmod>${modDate}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+    });
+
+    xml += '</urlset>\n';
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+  } catch (err) {
+    res.status(500).send('Error generating sitemap');
+  }
+});
+
 // Fallback 404: redirect unmapped URLs to overview
 app.get('*', (req, res) => {
   res.redirect('/');

@@ -1,4 +1,4 @@
-<%- include('partials/head', { title: article.title, description: article.summary }) %>
+<%- include('partials/head', { title: article.title, description: article.summary, canonicalUrl: 'https://flourishmgmt.com/insights/' + article.id, ogType: 'article', article: article }) %>
 <%- include('partials/nav') %>
 
 <main class="flex-grow bg-white">
