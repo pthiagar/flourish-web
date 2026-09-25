@@ -244,12 +244,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Greetings & Desk Introduction
     if (reMatch(query, ['hello', 'hi', 'hey', 'greetings', 'start', 'test', 'good morning', 'good afternoon', 'good evening', 'who is this'])) {
-      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee</strong>.<br><br>We allocate proprietary capital across three core disciplines:<br>• <strong>Workforce Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
+      return "Greetings. I represent the digital desk for the <strong>Flourish Investment Committee</strong>.<br><br>We allocate proprietary capital across three core disciplines:<br>• <strong>Residential & Commercial Real Estate:</strong> 50% OpEx & debt yield hurdles.<br>• <strong>Options Hedging:</strong> 0.18 delta systematic overlay & crash put reserves.<br>• <strong>Seed Venture:</strong> SAFE dilution caps & founder velocity.<br><br>Select a topic above or state your inquiry to begin.";
     }
 
     // 2. Real Estate Underwriting & Criteria
     if (reMatch(query, ['real estate', 'property', 'properties', 'multifamily', 'apartment', 'housing', 'acquisition', 'cap rate', 'debt yield', 'replacement cost', 'opex', 'underwriting rule', 'fm-re-01', 'real estate underwriting'])) {
-      return "<strong>Real Estate Underwriting Mandate:</strong><br>Our committee acquires cash-flowing residential and workforce housing under four non-negotiable rules:<br><br>" +
+      return "<strong>Real Estate Underwriting Mandate:</strong><br>Our committee acquires cash-flowing residential and commercial real estate under four non-negotiable rules:<br><br>" +
         "1. <strong>The 50% OpEx Mandate:</strong> We never underwrite to seller or broker pro formas. Operating expenses (taxes, insurance, turns, management) invariably absorb 48–52% of gross revenues.<br>" +
         "2. <strong>Sub-Replacement Cost Hurdle:</strong> Acquisition basis must be ≤75% of new construction cost per door to ensure an unassailable margin of safety.<br>" +
         "3. <strong>Fixed-Rate Debt Only:</strong> Zero floating-rate bridge debt. All properties carry 7-to-10 year fixed agency financing backed by a 12-month operational liquidity reserve.<br>" +
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (leadState === 'ALLOCATOR_ORG') {
       leadData.organization = messageText;
       leadState = 'ALLOCATOR_INTEREST';
-      responseText = "Understood. What is your <strong>primary allocation interest or target strategy</strong> (e.g., 'Workforce Housing Equity', 'Systematic Volatility Yield', 'Seed Co-Investment Rights')?";
+      responseText = "Understood. What is your <strong>primary allocation interest or target strategy</strong> (e.g., 'Residential & Commercial Real Estate Equity', 'Systematic Volatility Yield', 'Seed Co-Investment Rights')?";
     } else if (leadState === 'ALLOCATOR_INTEREST') {
       leadData.interest = messageText;
       leadState = 'DEFAULT';
@@ -1358,7 +1358,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const SHEET_DATA = {
     'multifamily-matrix': {
       docId: 'FM-RE-01',
-      title: 'The 15-Minute Multifamily Acquisition Screening Matrix',
+      title: 'The 15-Minute Real Estate Acquisition Screening Matrix',
       url: '/sheets/multifamily-matrix.html'
     },
     'seed-safe-audit': {

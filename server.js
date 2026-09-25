@@ -537,8 +537,8 @@ const DILIGENCE_SHEETS = [
     docId: 'FM-RE-TEARSHEET-01',
     category: 'real-estate',
     categoryLabel: 'Physical Real Estate',
-    title: 'The 15-Minute Multifamily Acquisition Screening Matrix',
-    subtitle: 'Rapid Institutional Hurdle Filter for Class B/C Workforce Housing Underwriting',
+    title: 'The 15-Minute Real Estate Acquisition Screening Matrix',
+    subtitle: 'Rapid Institutional Hurdle Filter for Residential & Commercial Real Estate Underwriting',
     format: 'Printable 1-Page PDF / 8.5" x 11"',
     url: '/sheets/multifamily-matrix.html',
     highlights: [
