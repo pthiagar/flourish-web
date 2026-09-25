@@ -80,7 +80,10 @@
           <article class="bg-white rounded-2xl p-6 border border-brand-linen shadow-sm flex flex-col justify-between card-hover">
             <div>
               <div class="flex items-center justify-between text-[11px] font-mono text-brand-slateLight uppercase tracking-wider mb-3">
-                <span><%= article.displayDate || article.date || 'Publication' %></span>
+                <div class="flex items-center space-x-1.5">
+                  <img src="/logo.png" alt="Flourish" class="w-3.5 h-3.5 object-contain opacity-85">
+                  <span><%= article.displayDate || article.date || 'Publication' %></span>
+                </div>
                 <span class="px-2 py-0.5 rounded bg-brand-cream border border-brand-linen text-brand-navy font-semibold"><%= article.category %></span>
               </div>
               <h3 class="font-serif text-lg font-bold text-brand-navy mb-2 line-clamp-2">

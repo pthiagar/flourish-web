@@ -22,6 +22,24 @@
   <!-- Editorial Article Container -->
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
     
+    <!-- Executive Letterhead with Official Flourish Management Logo -->
+    <div class="flex items-center justify-between pb-6 border-b border-brand-linen mb-8">
+      <div class="flex items-center space-x-3.5">
+        <a href="/" class="shrink-0 block group">
+          <img src="/logo.png" alt="Flourish Management Logo" class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105">
+        </a>
+        <div>
+          <span class="font-serif text-sm sm:text-base font-bold text-brand-navy tracking-wider uppercase block">Flourish Management</span>
+          <span class="text-[10px] font-mono text-brand-slateLight tracking-widest uppercase block">Monthly Partner Letter &middot; Investment Committee Directive</span>
+        </div>
+      </div>
+      <div class="hidden sm:block text-right">
+        <span class="text-[10px] font-mono font-semibold text-brand-gold uppercase tracking-widest px-3 py-1 rounded-full bg-brand-cream border border-brand-linen">
+          <%= article.category %> Desk
+        </span>
+      </div>
+    </div>
+
     <!-- Meta Info Strip -->
     <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-brand-slateLight uppercase tracking-wider mb-6">
       <span class="px-2.5 py-1 rounded bg-brand-cream border border-brand-linen text-brand-navy font-semibold"><%= article.category %></span>
@@ -46,6 +64,26 @@
       <%- article.body %>
     </div>
 
+    <!-- How Flourish Adopts This Best Practice -->
+    <% if (article.flourishAdoption) { %>
+    <div class="my-10 p-6 sm:p-7 rounded-2xl bg-brand-cream border border-brand-linen/90 shadow-sm flex flex-col sm:flex-row items-start gap-4">
+      <div class="w-11 h-11 rounded-xl bg-white border border-brand-linen flex items-center justify-center shrink-0 p-1.5 shadow-xs">
+        <img src="/logo.png" alt="Flourish Management Logo" class="w-full h-full object-contain">
+      </div>
+      <div class="space-y-1.5 flex-1">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[10px] font-mono uppercase tracking-widest font-bold text-brand-gold">Flourish Execution Standard</span>
+          <span class="text-brand-slateLight">&middot;</span>
+          <span class="text-[10px] font-mono text-brand-slateLight uppercase">Principal Portfolio Implementation</span>
+        </div>
+        <h3 class="font-serif text-base sm:text-lg font-bold text-brand-navy">How Flourish Adopts This Best Practice</h3>
+        <p class="text-xs sm:text-sm text-brand-ink leading-relaxed font-sans">
+          <%= article.flourishAdoption %>
+        </p>
+      </div>
+    </div>
+    <% } %>
+
     <!-- Interactive Engagement & Sharing Bar -->
     <div class="mt-12 pt-8 border-t border-brand-linen flex flex-col sm:flex-row items-center justify-between gap-4">
       
@@ -65,13 +103,16 @@
 
     </div>
 
-    <!-- Committee Attribution Box -->
-    <div class="mt-10 p-6 rounded-2xl bg-brand-navy text-white flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <h4 class="font-serif text-lg font-bold text-brand-gold">Flourish Investment Committee</h4>
-        <p class="text-xs text-brand-slateLight mt-1">General Partner Desk &middot; Flourish Management LLC</p>
+    <!-- Committee Attribution Box with Logo -->
+    <div class="mt-10 p-6 sm:p-7 rounded-2xl bg-brand-navy text-white flex flex-col sm:flex-row items-center justify-between gap-5 border border-brand-gold/20 shadow-md">
+      <div class="flex items-center space-x-4">
+        <img src="/logo.png" alt="Flourish Management Logo" class="h-11 w-auto object-contain brightness-0 invert opacity-95 shrink-0">
+        <div>
+          <h4 class="font-serif text-lg font-bold text-brand-gold">Flourish Investment Committee</h4>
+          <p class="text-xs text-brand-slateLight mt-0.5">General Partner Desk &middot; Flourish Management LLC</p>
+        </div>
       </div>
-      <a href="/contact" class="px-4 py-2 rounded-full bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-colors shrink-0">
+      <a href="/contact" class="px-5 py-2.5 rounded-full bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-colors shrink-0 shadow-sm">
         Direct Inquiries &rarr;
       </a>
     </div>

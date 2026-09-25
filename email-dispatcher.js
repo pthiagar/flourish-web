@@ -123,6 +123,26 @@ class EmailDispatcher {
 
           ${checklistHtml}
 
+          ${article.flourishAdoption ? `
+            <div style="background-color: #FAF7F2; border-left: 3px solid #B48D48; border-radius: 8px; padding: 14px 18px; margin: 16px 0 20px 0;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="width: 32px; vertical-align: top; padding-right: 12px;">
+                    <img src="${siteUrl}/logo.png" alt="Flourish Management" width="28" style="display: block; max-width: 28px; height: auto;" />
+                  </td>
+                  <td style="vertical-align: top;">
+                    <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #B48D48; margin-bottom: 4px;">
+                      How Flourish Adopts This Best Practice:
+                    </div>
+                    <div style="font-size: 13px; line-height: 1.55; color: #1A212D;">
+                      ${article.flourishAdoption}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          ` : ''}
+
           <div>
             <a href="${readUrl}" style="display: inline-block; background-color: #1A365D; color: #FAF7F2; text-decoration: none; font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 20px;">
               Read Full Letter on Portal &rarr;
