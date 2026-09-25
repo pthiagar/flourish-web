@@ -268,13 +268,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. Venture Capital & Seed Diligence
-    if (reMatch(query, ['venture', 'vc', 'startup', 'start-up', 'founder', 'seed', 'series a', 'safe', 'cap table', 'dilution', 'angel', 'pre-seed', 'fm-vc-02', 'venture capital'])) {
-      return "<strong>Seed Venture Underwriting & Diligence:</strong><br>We partner with technical founders building high-velocity software, fintech, and critical infrastructure under strict ownership discipline:<br><br>" +
-        "1. <strong>20% SAFE Dilution Ceiling:</strong> Total cumulative post-money SAFE dilution before Series A cannot exceed 20% to prevent founder demotivation.<br>" +
-        "2. <strong>72-Hour Technical Velocity Test:</strong> Founders must demonstrate exceptional execution tempo by shipping code or addressing diligence requests within 72 hours.<br>" +
-        "3. <strong>Option Pool Trap Defense:</strong> We verify unallocated ESOP pools (10–15%) are modeled post-money to shield seed investors from unearned early dilution.<br>" +
-        "4. <strong>Pro-Rata Rights:</strong> We insist on contractual pro-rata participation into Series A.<br><br>" +
-        "🚀 <em>If you are a founder raising seed capital, type <strong>'pitch'</strong> or select 'Founder Pitch' above to initiate Investment Committee review.</em><br><br>" +
+    if (reMatch(query, ['venture', 'vc', 'startup', 'start-up', 'founder', 'seed', 'series a', 'safe', 'cap table', 'dilution', 'angel', 'pre-seed', 'fm-vc-02', 'venture capital', 'dual-track', 'dual track', 'co-development', 'codevelopment', 'velocity capital'])) {
+      return "<strong>Flourish Management — Early-Stage Venture Arm:</strong><br>" +
+        "<em>&ldquo;Capital that moves at your speed. Partnership that builds at your depth.&rdquo;</em><br><br>" +
+        "We solve the modern founder’s greatest trade-off between fast hands-off capital and slow intrusive mentorship through our <strong>Dual-Track Engine</strong>:<br><br>" +
+        "1. <strong>Track 1: High-Velocity Capital:</strong> Frictionless deployment funded in days, unrestricted founder autonomy without board baggage, and instant access to our technical ecosystem.<br>" +
+        "2. <strong>Track 2: Active Operational Co-Development:</strong> Direct collaboration with experienced domain partners across product architecture, AI systems, and go-to-market scaling.<br><br>" +
+        "<strong>Why Founders Choose Flourish:</strong> No forced playbooks, deep technical force-multipliers, and founder-first speed under strict cap table defense (under 20% aggregate seed dilution).<br><br>" +
+        "<strong>Value for Limited Partners:</strong> Broad market velocity, concentrated alpha via operational de-risking, and disciplined risk architecture.<br><br>" +
+        "🚀 <strong>Founders:</strong> Submit your pitch via our <a href='/contact?type=founder' class='font-bold text-brand-gold underline'>Founder Pitch Portal</a>.<br>" +
+        "💼 <strong>LPs & Allocators:</strong> Access strategy details via our <a href='/contact?type=allocator' class='font-bold text-brand-gold underline'>LP Portal & Inquiries</a>.<br>" +
         "📥 Review our framework: <a href='/sheets/seed-safe-audit.html' target='_blank' class='underline font-bold text-brand-gold'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
     }
 

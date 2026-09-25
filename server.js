@@ -559,10 +559,10 @@ const DILIGENCE_SHEETS = [
     format: 'Printable 1-Page PDF / 8.5" x 11"',
     url: '/sheets/seed-safe-audit.html',
     highlights: [
-      'Post-money SAFE stack ceiling (< 25% aggregate seed dilution)',
+      'Dual-Track Engine: Programmatic capital velocity vs active co-development',
+      'Post-money SAFE stack ceiling (< 20% aggregate seed dilution)',
       '72-hour founder execution & diligence velocity filter',
-      'Mandatory information rights & pro-rata side letter defense',
-      'Burn multiple hurdle (< 1.5x) and ARR / headcount ratio (> $180k)'
+      'Mandatory information rights & pro-rata side letter defense'
     ],
     redFlagTrigger: 'Total unpriced SAFEs > $2.5M or unallocated option pool trap'
   },

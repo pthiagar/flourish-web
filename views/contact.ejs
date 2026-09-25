@@ -57,7 +57,7 @@
                 <select id="contact-type" name="inquiryType" class="w-full text-xs sm:text-sm px-4 py-3 rounded-xl bg-brand-cream border border-brand-linen focus:border-brand-gold focus:outline-none transition-colors">
                   <option value="allocator">Accredited LP / Allocator Co-Investment</option>
                   <option value="founder">Early-Stage Founder Pitch</option>
-                  <option value="realestate">Real Estate Acquisition Acquisition</option>
+                  <option value="realestate">Real Estate Acquisition</option>
                   <option value="general">General Partner Desk Inquiry</option>
                 </select>
               </div>
@@ -136,6 +136,22 @@
 </main>
 
 <script>
+  // Pre-select track from URL query parameter (?type=founder or ?type=allocator)
+  const urlParams = new URLSearchParams(window.location.search);
+  const trackParam = urlParams.get('type') || urlParams.get('track');
+  if (trackParam) {
+    const contactTypeSelect = document.getElementById('contact-type');
+    if (contactTypeSelect) {
+      if (trackParam === 'founder' || trackParam === 'pitch') {
+        contactTypeSelect.value = 'founder';
+      } else if (trackParam === 'allocator' || trackParam === 'lp' || trackParam === 'investor') {
+        contactTypeSelect.value = 'allocator';
+      } else if (trackParam === 'realestate' || trackParam === 're') {
+        contactTypeSelect.value = 'realestate';
+      }
+    }
+  }
+
   // AJAX form submit
   const portalForm = document.getElementById('portal-form');
   const formStatus = document.getElementById('form-status');
