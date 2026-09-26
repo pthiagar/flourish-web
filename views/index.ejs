@@ -1,9 +1,9 @@
-<%- include('partials/head', { title: 'Executive Overview', description: 'Flourish Management LLC is a private investment holding company focused on residential and commercial real estate, systematic options cash flow, and early-stage venture.' }) %>
+<%- include('partials/head', { title: 'Executive Overview', description: 'Flourish Management LLC is a private investment holding company deploying capital across public equity options hedging, early-stage venture funding, and residential and commercial real estate.' }) %>
 <%- include('partials/nav') %>
 
 <main class="flex-grow">
   
-  <!-- Hero Section -->
+  <!-- Hero Section: Bold Institutional Tri-Pillar Entry Point -->
   <section class="relative bg-brand-cream border-b border-brand-linen py-16 sm:py-24 overflow-hidden">
     <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#0A192F 1px, transparent 1px); background-size: 24px 24px;"></div>
 
@@ -18,45 +18,70 @@
 
         <!-- Main Headline -->
         <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-brand-navy leading-[1.15] font-bold tracking-tight mb-6">
-          We invest in residential and commercial real estate, harvest options cash flow, and back early-stage founders.
+          Systematic Options Cash Flow. High-Velocity Seed Venture. Tangible Real Estate.
         </h1>
 
         <!-- Subhead -->
         <p class="text-base sm:text-lg text-brand-inkMuted leading-relaxed mb-8 max-w-2xl">
-          Flourish Management is a private holding company. We don't chase fads or burn money on hype. We focus on real cash flow, conservative debt, and downside survival across residential and commercial real estate.
+          Flourish Management is an institutional private investment holding company. We deploy proprietary capital across three uncorrelated engines. We generate systematic options cash flow, fund visionary tech founders, and acquire commercial and residential properties.
         </p>
 
-        <!-- Primary Actions -->
+        <!-- Primary Dual-Intent Actions -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
           <a href="/strategies" class="inline-flex justify-center items-center px-6 py-3.5 rounded-full bg-brand-navy text-white text-xs font-semibold uppercase tracking-wider hover:bg-brand-navyLight border border-brand-navy shadow-sm transition-all">
-            <span>Explore Strategies</span>
+            <span>Explore Investment Strategies</span>
             <svg class="w-4 h-4 ml-2 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
-          <a href="/track-record" class="inline-flex justify-center items-center px-6 py-3.5 rounded-full bg-white text-brand-navy text-xs font-semibold uppercase tracking-wider hover:bg-brand-creamPaper border border-brand-linen shadow-sm transition-all">
-            <span>Cross-Cycle Track Record</span>
+          <a href="/contact?type=founder" class="inline-flex justify-center items-center px-6 py-3.5 rounded-full bg-white text-brand-navy text-xs font-semibold uppercase tracking-wider hover:bg-brand-creamPaper border border-brand-linen shadow-sm transition-all">
+            <span>Founder Pitch & Co-Development</span>
           </a>
         </div>
 
       </div>
 
-      <!-- Headline Metric Ribbon -->
-      <div class="mt-16 pt-12 border-t border-brand-linen grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-        <div>
-          <div class="font-serif text-3xl sm:text-4xl text-brand-navy font-bold">4</div>
-          <p class="text-xs uppercase tracking-wider text-brand-inkMuted mt-1">Market Regimes Weathered</p>
+      <!-- Tri-Pillar Action Strip -->
+      <div class="mt-16 pt-12 border-t border-brand-linen grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Strip Item 1: Options -->
+        <div class="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-brand-linen/70 shadow-sm">
+          <div class="flex items-center space-x-2 text-brand-gold mb-1">
+            <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+            <span class="text-[10px] uppercase font-mono tracking-wider font-bold">Pillar I &middot; Options Yield</span>
+          </div>
+          <div class="font-serif text-xl text-brand-navy font-bold">0.18 Delta Overlay</div>
+          <p class="text-xs text-brand-inkMuted mt-1">10% to 14% target yield with pre-funded crash put reserves.</p>
         </div>
-        <div>
-          <div class="font-serif text-3xl sm:text-4xl text-brand-navy font-bold">Zero</div>
-          <p class="text-xs uppercase tracking-wider text-brand-inkMuted mt-1">Debt Defaults</p>
+
+        <!-- Strip Item 2: Venture -->
+        <div class="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-brand-linen/70 shadow-sm">
+          <div class="flex items-center space-x-2 text-brand-gold mb-1">
+            <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+            <span class="text-[10px] uppercase font-mono tracking-wider font-bold">Pillar II &middot; Seed Venture</span>
+          </div>
+          <div class="font-serif text-xl text-brand-navy font-bold">72-Hour Deployment</div>
+          <p class="text-xs text-brand-inkMuted mt-1">Unencumbered checks plus hands-on technical co-development.</p>
         </div>
-        <div>
-          <div class="font-serif text-3xl sm:text-4xl text-brand-navy font-bold">3</div>
-          <p class="text-xs uppercase tracking-wider text-brand-inkMuted mt-1">Core Investment Verticals</p>
+
+        <!-- Strip Item 3: Real Estate -->
+        <div class="bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-brand-linen/70 shadow-sm">
+          <div class="flex items-center space-x-2 text-brand-gold mb-1">
+            <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+            <span class="text-[10px] uppercase font-mono tracking-wider font-bold">Pillar III &middot; Real Estate</span>
+          </div>
+          <div class="font-serif text-xl text-brand-navy font-bold">Sub-Replacement Cost</div>
+          <p class="text-xs text-brand-inkMuted mt-1">25% discount to build cost with 50% operating expense discipline.</p>
         </div>
-        <div>
-          <div class="font-serif text-3xl sm:text-4xl text-brand-navy font-bold">100<span class="text-brand-gold">%</span></div>
-          <p class="text-xs uppercase tracking-wider text-brand-inkMuted mt-1">Principal Capital Aligned</p>
+
+        <!-- Strip Item 4: Discipline -->
+        <div class="bg-brand-navy text-white p-4 rounded-xl shadow-sm">
+          <div class="flex items-center space-x-2 text-brand-gold mb-1">
+            <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+            <span class="text-[10px] uppercase font-mono tracking-wider font-bold">Risk Architecture</span>
+          </div>
+          <div class="font-serif text-xl text-white font-bold">Zero Debt Defaults</div>
+          <p class="text-xs text-brand-slateLight mt-1">Steered across 4 historical economic cycles with principal alignment.</p>
         </div>
+
       </div>
 
     </div>
@@ -106,7 +131,7 @@
     </div>
   </section>
 
-  <!-- The Three Core Disciplines -->
+  <!-- The Three Core Disciplines: Reordered to Equities/Options, Seed VC, and Real Estate -->
   <section class="py-16 sm:py-24 bg-brand-cream border-b border-brand-linen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -116,39 +141,23 @@
           Three uncorrelated engines of return.
         </h2>
         <p class="text-brand-inkMuted text-xs sm:text-sm mt-2">
-          Balanced across residential and commercial property cash flows, quantitative option yields, and breakout software innovation.
+          Balanced across quantitative equity options yield, breakout seed venture innovation, and income-producing physical real estate.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Card 1: Real Estate -->
-        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen card-hover flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-gold mb-6 border border-brand-linen">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            </div>
-            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar I</span>
-            <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-3">Physical Real Estate</h3>
-            <p class="text-brand-inkMuted text-xs leading-relaxed mb-6">
-              We acquire income-producing residential and commercial real estate in high-growth regional hubs. We buy well below replacement cost, underwrite conservative 50% operating expenses on day one, and lock in long-term fixed debt.
-            </p>
-          </div>
-          <a href="/strategies#real-estate" class="text-xs font-bold text-brand-navy hover:text-brand-gold inline-flex items-center pt-4 border-t border-brand-linen/60">
-            <span>Underwriting Criteria &rarr;</span>
-          </a>
-        </div>
-
-        <!-- Card 2: Options Hedging -->
+        <!-- Card 1: Public Equities & Options Hedging (Pillar I) -->
         <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen card-hover flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-gold mb-6 border border-brand-linen">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
             </div>
-            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar II</span>
-            <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-3">Systematic Options Yield</h3>
+            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar I</span>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-2">Public Equities & Options</h3>
+            <p class="text-[11px] font-mono text-brand-gold font-semibold uppercase tracking-wider mb-2">Systematic Yield & Downside Protection</p>
             <p class="text-brand-inkMuted text-xs leading-relaxed mb-6">
-              We don't bet on Fed announcements. We sell 30 to 45-day calls at a 0.18 delta against equity positions, collecting 10% to 14% annual cash yield. We sweep collateral into short Treasury bills and reinvest 20% into deep crash puts.
+              We generate steady cash flow by combining high-quality equity positions with systematic options overlays. We sell 30 to 45-day calls at 0.18 delta, collecting 10% to 14% annual cash yield. We sweep collateral into short Treasuries and reinvest 20% into deep crash puts.
             </p>
           </div>
           <a href="/strategies#options-hedging" class="text-xs font-bold text-brand-navy hover:text-brand-gold inline-flex items-center pt-4 border-t border-brand-linen/60">
@@ -156,21 +165,39 @@
           </a>
         </div>
 
-        <!-- Card 3: Seed Venture -->
+        <!-- Card 2: Early-Stage Venture (Pillar II) -->
         <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen card-hover flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-gold mb-6 border border-brand-linen">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar III</span>
+            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar II</span>
             <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-2">Early-Stage Venture</h3>
             <p class="text-[11px] font-mono text-brand-gold font-semibold uppercase tracking-wider mb-2">Dual-Track Engine &middot; Velocity & Co-Development</p>
             <p class="text-brand-inkMuted text-xs leading-relaxed mb-6">
-              Capital that moves fast. Partners who build deep. We offer seed founders fast checks in 72 hours, or hands-on technical co-development across AI and product architecture. No bloated boards. No forced playbooks.
+              Capital that moves fast. Partners who build deep. Track 1 wires unencumbered checks in 72 hours for execution velocity. Track 2 delivers hands-on technical co-development across AI pipelines, distributed systems, and code reviews. No forced playbooks.
             </p>
           </div>
           <a href="/strategies#venture-capital" class="text-xs font-bold text-brand-navy hover:text-brand-gold inline-flex items-center pt-4 border-t border-brand-linen/60">
             <span>Explore Venture Engine &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Card 3: Residential & Commercial Real Estate (Pillar III) -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-brand-linen card-hover flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-full bg-brand-cream flex items-center justify-center text-brand-gold mb-6 border border-brand-linen">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <span class="text-[10px] uppercase tracking-widest text-brand-slateLight font-mono">Pillar III</span>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mt-1 mb-2">Residential & Commercial Real Estate</h3>
+            <p class="text-[11px] font-mono text-brand-gold font-semibold uppercase tracking-wider mb-2">Hard Asset Moat & Steady Cash Flow</p>
+            <p class="text-brand-inkMuted text-xs leading-relaxed mb-6">
+              Hard physical asset backing. We acquire income-producing residential and commercial real estate in high-growth regional hubs. We buy at a 25% to 30% discount to replacement cost. We underwrite 50% operating expenses on day one and secure long-term fixed debt.
+            </p>
+          </div>
+          <a href="/strategies#real-estate" class="text-xs font-bold text-brand-navy hover:text-brand-gold inline-flex items-center pt-4 border-t border-brand-linen/60">
+            <span>Underwriting Criteria &rarr;</span>
           </a>
         </div>
 
@@ -179,8 +206,71 @@
     </div>
   </section>
 
+  <!-- NEW SECTION: The Asymmetric Capital Allocation Engine -->
+  <section class="py-16 sm:py-24 bg-white border-b border-brand-linen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-2xl mb-14">
+        <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Portfolio Architecture</span>
+        <h2 class="font-serif text-2xl sm:text-4xl text-brand-navy font-bold mt-1">
+          How the three engines reinforce each other.
+        </h2>
+        <p class="text-brand-inkMuted text-xs sm:text-sm mt-2">
+          Most investors choose between slow preservation and risky growth. Our structure captures both without compromise.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Engine Column 1 -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-brand-cream border border-brand-linen flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono font-bold text-brand-gold tracking-widest uppercase mb-3">Engine 01 &middot; Cash Liquidity</div>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mb-3">Continuous Cash Flow</h3>
+            <p class="text-brand-inkMuted text-xs leading-relaxed">
+              Options premiums and property rents produce steady monthly cash flow. This predictable income covers operational expenses and eliminates forced asset sales during market downturns.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-linen/60 text-[11px] font-mono text-brand-slate">
+            <span>Result: Zero Forced Selling</span>
+          </div>
+        </div>
+
+        <!-- Engine Column 2 -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-brand-cream border border-brand-linen flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono font-bold text-brand-gold tracking-widest uppercase mb-3">Engine 02 &middot; Downside Defense</div>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mb-3">Self-Funding Crash Hedges</h3>
+            <p class="text-brand-inkMuted text-xs leading-relaxed">
+              We allocate 20% of options premium to buy deep out-of-the-money puts. When markets crash, these contracts surge. We harvest massive gains and turn market panic into dry powder.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-linen/60 text-[11px] font-mono text-brand-slate">
+            <span>Result: Liquidity During Crashes</span>
+          </div>
+        </div>
+
+        <!-- Engine Column 3 -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-brand-cream border border-brand-linen flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono font-bold text-brand-gold tracking-widest uppercase mb-3">Engine 03 &middot; Asymmetric Upside</div>
+            <h3 class="font-serif text-xl font-bold text-brand-navy mb-3">Patient Venture Power</h3>
+            <p class="text-brand-inkMuted text-xs leading-relaxed">
+              Because our base assets generate continuous cash, we never face liquidity pressure. We can back exceptional seed founders with long-term capital and hands-on technical co-development.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-brand-linen/60 text-[11px] font-mono text-brand-slate">
+            <span>Result: Unconstrained Power-Law Upside</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- Strategic Ecosystem & Venture Partners Section -->
-  <section class="py-16 sm:py-20 bg-white border-b border-brand-linen">
+  <section class="py-16 sm:py-20 bg-brand-cream border-b border-brand-linen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
@@ -196,7 +286,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         
         <!-- Partner 1: TCA Venture Group -->
-        <a href="https://tcaventuregroup.com/" target="_blank" rel="noopener noreferrer" class="bg-brand-cream border border-brand-linen rounded-2xl p-6 sm:p-8 hover:border-brand-gold/60 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px]">
+        <a href="https://tcaventuregroup.com/" target="_blank" rel="noopener noreferrer" class="bg-white border border-brand-linen rounded-2xl p-6 sm:p-8 hover:border-brand-gold/60 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px]">
           <div>
             <div class="flex items-center justify-between mb-3">
               <h3 class="font-serif text-xl font-bold text-brand-navy group-hover:text-brand-gold transition-colors">
@@ -217,7 +307,7 @@
         </a>
 
         <!-- Partner 2: Expert Dojo -->
-        <a href="https://expertdojo.com/" target="_blank" rel="noopener noreferrer" class="bg-brand-cream border border-brand-linen rounded-2xl p-6 sm:p-8 hover:border-brand-gold/60 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px]">
+        <a href="https://expertdojo.com/" target="_blank" rel="noopener noreferrer" class="bg-white border border-brand-linen rounded-2xl p-6 sm:p-8 hover:border-brand-gold/60 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between min-h-[220px]">
           <div>
             <div class="flex items-center justify-between mb-3">
               <h3 class="font-serif text-xl font-bold text-brand-navy group-hover:text-brand-gold transition-colors">
