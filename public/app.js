@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "2. <strong>Sub-Replacement Cost Hurdle:</strong> Acquisition basis must be ≤75% of new construction cost per door to ensure an unassailable margin of safety.<br>" +
         "3. <strong>Fixed-Rate Debt Only:</strong> Zero floating-rate bridge debt. All properties carry 7-to-10 year fixed agency financing backed by a 12-month operational liquidity reserve.<br>" +
         "4. <strong>Unlevered Debt Yield:</strong> Minimum 9.5% unlevered debt yield hurdle upon stabilized occupancy.<br><br>" +
-        "📥 Review our complete 1-page framework: <a href='/sheets/multifamily-matrix.html' target='_blank' class='underline font-bold text-brand-gold'>Multifamily Screening Matrix (Doc ID: FM-RE-01)</a>.";
+        "📥 Receive our complete 1-page framework via email: <a href='/diligence?sheet=multifamily-matrix' class='underline font-bold text-brand-gold'>Get FM-RE-01 Real Estate Matrix</a>.";
     }
 
     // 3. Options Hedging & Volatility Strategy
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "2. <strong>3-Tier VIX Regime Calibration:</strong> Low IV (VIX <15) triggers tight systematic writes; moderate (15–28) triggers defensive call spreads; high volatility (VIX >28) triggers rolling strikes down and monetizing long tail puts.<br>" +
         "3. <strong>Asymmetric Crash-Put Budget:</strong> 1.5%–2.0% annual premium allocated to deep out-of-the-money crash puts, generating +500% to +1,000% payouts during systemic shocks (e.g. 2020 liquidity freeze).<br>" +
         "4. <strong>100% Cash-Secured Collateral:</strong> Collateral is swept continuously into 4-week US Treasury bills; unhedged margin debt is strictly prohibited.<br><br>" +
-        "📥 Review our parameters: <a href='/sheets/delta-hedging-matrix.html' target='_blank' class='underline font-bold text-brand-gold'>Delta-Hedging Parameter Sheet (Doc ID: FM-MM-03)</a>.";
+        "📥 Receive our complete parameters via email: <a href='/diligence?sheet=delta-hedging-matrix' class='underline font-bold text-brand-gold'>Get FM-MM-03 Options Matrix</a>.";
     }
 
     // 4. Venture Capital & Seed Diligence
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "<strong>Value for Limited Partners:</strong> Broad market velocity, concentrated alpha via operational de-risking, and disciplined risk architecture.<br><br>" +
         "🚀 <strong>Founders:</strong> Submit your pitch via our <a href='/contact?type=founder' class='font-bold text-brand-gold underline'>Founder Pitch Portal</a>.<br>" +
         "💼 <strong>LPs & Allocators:</strong> Access strategy details via our <a href='/contact?type=allocator' class='font-bold text-brand-gold underline'>LP Portal & Inquiries</a>.<br>" +
-        "📥 Review our framework: <a href='/sheets/seed-safe-audit.html' target='_blank' class='underline font-bold text-brand-gold'>Seed SAFE Cap Table Audit (Doc ID: FM-VC-02)</a>.";
+        "📥 Receive our complete framework via email: <a href='/diligence?sheet=seed-safe-audit' class='underline font-bold text-brand-gold'>Get FM-VC-02 Venture Audit</a>.";
     }
 
     // 5. Four Market Regimes Track Record
@@ -293,11 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Institutional Diligence Tear-Sheets
     if (reMatch(query, ['tear-sheet', 'tear sheet', 'tear-sheets', 'tear sheets', 'checklist', 'pdf', 'matrix', 'worksheet', 'download', 'print', 'diligence sheets'])) {
-      return "<strong>Institutional Diligence Tear-Sheets:</strong><br>We provide standardized 1-page institutional diligence matrices for allocators and operators:<br><br>" +
-        "1. <a href='/sheets/multifamily-matrix.html' target='_blank' class='font-bold text-brand-gold underline'>FM-RE-01: Multifamily Screening Matrix</a> &middot; 50% OpEx stress test, debt yield hurdles, replacement cost.<br>" +
-        "2. <a href='/sheets/seed-safe-audit.html' target='_blank' class='font-bold text-brand-gold underline'>FM-VC-02: Seed SAFE Cap Table Audit</a> &middot; 20% aggregate dilution ceiling, 72-hr founder velocity, ESOP traps.<br>" +
-        "3. <a href='/sheets/delta-hedging-matrix.html' target='_blank' class='font-bold text-brand-gold underline'>FM-MM-03: Delta-Hedging Parameter Sheet</a> &middot; 0.18 delta covered calls, VIX regimes, crash put insurance.<br><br>" +
-        "Review and print all sheets on the <a href='/diligence' class='underline font-bold text-brand-gold'>Diligence Portal</a>.";
+      return "<strong>Institutional Diligence Tear-Sheets:</strong><br>We provide standardized 1-page institutional diligence matrices delivered directly to your inbox:<br><br>" +
+        "1. <a href='/diligence?sheet=multifamily-matrix' class='font-bold text-brand-gold underline'>FM-RE-01: Real Estate Screening Matrix</a> &middot; 50% OpEx stress test, debt yield hurdles, replacement cost.<br>" +
+        "2. <a href='/diligence?sheet=seed-safe-audit' class='font-bold text-brand-gold underline'>FM-VC-02: Seed SAFE Cap Table Audit</a> &middot; 20% aggregate dilution ceiling, 72-hr founder velocity, ESOP traps.<br>" +
+        "3. <a href='/diligence?sheet=delta-hedging-matrix' class='font-bold text-brand-gold underline'>FM-MM-03: Delta-Hedging Parameter Sheet</a> &middot; 0.18 delta covered calls, VIX regimes, crash put insurance.<br><br>" +
+        "Request any 1-pager delivered to your email on our <a href='/diligence' class='underline font-bold text-brand-gold'>Diligence Portal</a>.";
     }
 
     // 7. Allocator / LP Inquiries
@@ -1353,48 +1353,52 @@ document.addEventListener('DOMContentLoaded', () => {
   initRegimeTimeline();
 
   // ------------------------------------------------------------------------
-  // EXECUTIVE DILIGENCE TEAR-SHEETS PREVIEW MODAL
+  // EXECUTIVE DILIGENCE TEAR-SHEETS EMAIL REQUEST MODAL
   // ------------------------------------------------------------------------
   const SHEET_DATA = {
     'multifamily-matrix': {
       docId: 'FM-RE-01',
-      title: 'The 15-Minute Real Estate Acquisition Screening Matrix',
-      url: '/sheets/multifamily-matrix.html'
+      title: 'Real Estate Acquisition Screening Matrix',
+      desc: 'Enter your email to receive this 1-page diligence framework and hurdle filter directly in your inbox.'
     },
     'seed-safe-audit': {
       docId: 'FM-VC-02',
-      title: 'The Seed Angel SAFE & Cap Table Dilution Audit',
-      url: '/sheets/seed-safe-audit.html'
+      title: 'Seed Dilution & SAFE Audit',
+      desc: 'Enter your email to receive this 1-page diligence framework and cap table stress test directly in your inbox.'
     },
     'delta-hedging-matrix': {
       docId: 'FM-MM-03',
-      title: 'The Quantitative Delta-Hedging & Volatility Matrix',
-      url: '/sheets/delta-hedging-matrix.html'
+      title: 'Delta-Hedging Parameter Sheet',
+      desc: 'Enter your email to receive this 1-page quantitative hedging rulebook directly in your inbox.'
     }
   };
 
-  window.openSheetPreview = function(sheetId) {
-    const data = SHEET_DATA[sheetId];
-    if (!data) {
-      console.warn('Unknown sheetId:', sheetId);
-      return;
-    }
+  window.openSheetRequestModal = function(sheetId) {
+    const data = SHEET_DATA[sheetId] || SHEET_DATA['multifamily-matrix'];
+    const modal = document.getElementById('sheet-request-modal');
+    if (!modal) return;
 
-    const modal = document.getElementById('sheet-preview-modal');
-    const docIdEl = document.getElementById('modal-sheet-docid');
-    const titleEl = document.getElementById('modal-sheet-title');
-    const printBtnEl = document.getElementById('modal-sheet-print-btn');
-    const iframeEl = document.getElementById('modal-sheet-iframe');
-
-    if (!modal) {
-      console.warn('sheet-preview-modal element not found in DOM');
-      return;
-    }
+    const docIdEl = document.getElementById('request-modal-docid');
+    const titleEl = document.getElementById('request-modal-title');
+    const descEl = document.getElementById('request-modal-desc');
+    const sheetIdInput = document.getElementById('request-modal-sheet-id');
+    const emailInput = document.getElementById('request-modal-email');
+    const statusEl = document.getElementById('request-modal-status');
+    const submitBtn = document.getElementById('request-modal-submit-btn');
 
     if (docIdEl) docIdEl.textContent = data.docId;
     if (titleEl) titleEl.textContent = data.title;
-    if (printBtnEl) printBtnEl.href = data.url;
-    if (iframeEl) iframeEl.src = data.url;
+    if (descEl) descEl.textContent = data.desc;
+    if (sheetIdInput) sheetIdInput.value = sheetId;
+    if (statusEl) {
+      statusEl.className = 'hidden text-xs py-2 px-3 rounded-lg';
+      statusEl.textContent = '';
+    }
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.className = 'w-full py-3.5 px-6 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-all shadow-md flex items-center justify-center space-x-2';
+      submitBtn.innerHTML = '<span>Send 1-Pager to My Inbox &rarr;</span>';
+    }
 
     modal.classList.remove('hidden');
     modal.classList.add('flex');
@@ -1402,13 +1406,13 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.remove('opacity-0');
       const innerCard = modal.querySelector('div');
       if (innerCard) innerCard.classList.remove('translate-y-4');
+      if (emailInput) emailInput.focus();
     }, 20);
     document.body.style.overflow = 'hidden';
   };
 
-  window.closeSheetPreview = function() {
-    const modal = document.getElementById('sheet-preview-modal');
-    const iframeEl = document.getElementById('modal-sheet-iframe');
+  window.closeSheetRequestModal = function() {
+    const modal = document.getElementById('sheet-request-modal');
     if (!modal) return;
 
     modal.classList.add('opacity-0');
@@ -1417,39 +1421,108 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       modal.classList.add('hidden');
       modal.classList.remove('flex');
-      if (iframeEl) iframeEl.src = '';
       document.body.style.overflow = '';
     }, 250);
   };
 
-  // Event delegation for preview buttons
+  // Wire sheet request form submission
+  const requestForm = document.getElementById('sheet-request-form');
+  if (requestForm) {
+    requestForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const sheetIdInput = document.getElementById('request-modal-sheet-id');
+      const emailInput = document.getElementById('request-modal-email');
+      const newsletterInput = document.getElementById('request-modal-newsletter');
+      const statusEl = document.getElementById('request-modal-status');
+      const submitBtn = document.getElementById('request-modal-submit-btn');
+
+      const email = emailInput ? emailInput.value.trim() : '';
+      const sheetId = sheetIdInput ? sheetIdInput.value : '';
+      const subscribeNewsletter = newsletterInput ? newsletterInput.checked : true;
+
+      if (!email) return;
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> <span>Sending 1-Pager...</span>';
+      }
+
+      try {
+        const response = await fetch('/api/request-sheet', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, sheetId, subscribeNewsletter })
+        });
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          if (statusEl) {
+            statusEl.className = 'block text-xs py-2.5 px-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium';
+            statusEl.innerHTML = `✓ <strong>Dispatched:</strong> We have sent the 1-page diligence matrix to <strong>${email}</strong>. Check your inbox shortly.`;
+          }
+          if (submitBtn) {
+            submitBtn.innerHTML = '<span>✓ 1-Pager Dispatched</span>';
+            submitBtn.classList.remove('bg-brand-navy', 'hover:bg-brand-navyLight');
+            submitBtn.classList.add('bg-emerald-700');
+          }
+          if (emailInput) emailInput.value = '';
+          setTimeout(() => {
+            window.closeSheetRequestModal();
+          }, 3500);
+        } else {
+          if (statusEl) {
+            statusEl.className = 'block text-xs py-2.5 px-3 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 font-medium';
+            statusEl.textContent = result.error || 'Failed to dispatch 1-pager. Please try again.';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Retry Sending &rarr;</span>';
+          }
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.className = 'block text-xs py-2.5 px-3 rounded-xl bg-rose-50 text-rose-800 border border-rose-200 font-medium';
+          statusEl.textContent = 'Network error. Please try again or email info@flourish-mgmt.com.';
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>Retry Sending &rarr;</span>';
+        }
+      }
+    });
+  }
+
+  // Event delegation for sheet request triggers
   document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.sheet-preview-btn');
+    const btn = e.target.closest('.request-sheet-trigger');
     if (btn) {
       e.preventDefault();
       const sheetId = btn.getAttribute('data-sheet-id');
       if (sheetId) {
-        window.openSheetPreview(sheetId);
+        window.openSheetRequestModal(sheetId);
       }
     }
 
-    // Close button
-    if (e.target.closest('#close-sheet-modal-btn')) {
-      e.preventDefault();
-      window.closeSheetPreview();
-    }
-
     // Backdrop click
-    const modal = document.getElementById('sheet-preview-modal');
+    const modal = document.getElementById('sheet-request-modal');
     if (modal && e.target === modal) {
-      window.closeSheetPreview();
+      window.closeSheetRequestModal();
     }
   });
 
   document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('sheet-preview-modal');
+    const modal = document.getElementById('sheet-request-modal');
     if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-      window.closeSheetPreview();
+      window.closeSheetRequestModal();
     }
   });
+
+  // Auto-open modal if URL has ?sheet= or ?request=
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedSheet = urlParams.get('sheet') || urlParams.get('request');
+  if (requestedSheet && SHEET_DATA[requestedSheet]) {
+    setTimeout(() => {
+      window.openSheetRequestModal(requestedSheet);
+    }, 250);
+  }
 });

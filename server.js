@@ -531,59 +531,7 @@ const likeLimiter = rateLimit({
 // ----------------------------------------------------
 // EXECUTIVE DILIGENCE TEAR-SHEETS API
 // ----------------------------------------------------
-const DILIGENCE_SHEETS = [
-  {
-    id: 'multifamily-matrix',
-    docId: 'FM-RE-TEARSHEET-01',
-    category: 'real-estate',
-    categoryLabel: 'Physical Real Estate',
-    title: 'The 15-Minute Real Estate Acquisition Screening Matrix',
-    subtitle: 'Rapid Institutional Hurdle Filter for Residential & Commercial Real Estate Underwriting',
-    format: 'Printable 1-Page PDF / 8.5" x 11"',
-    url: '/sheets/multifamily-matrix.html',
-    highlights: [
-      '50% Operating Expense Ratio Mandate (eliminates broker pro-forma bias)',
-      'Sub-replacement cost hurdle (≤ 75% of reproduction basis)',
-      'Minimum 9.5% unlevered debt yield & 1.35x fixed DSCR',
-      '4-point physical on-site utility & deferred maintenance audit'
-    ],
-    redFlagTrigger: 'Expense ratio < 48% or floating-rate debt proposed'
-  },
-  {
-    id: 'seed-safe-audit',
-    docId: 'FM-VC-TEARSHEET-02',
-    category: 'venture-capital',
-    categoryLabel: 'Early-Stage Venture',
-    title: 'The Seed Angel SAFE & Cap Table Dilution Audit',
-    subtitle: 'Seed Capital Defense Architecture: Dilution Math, Protective Covenants & Velocity Scoring',
-    format: 'Printable 1-Page PDF / 8.5" x 11"',
-    url: '/sheets/seed-safe-audit.html',
-    highlights: [
-      'Dual-Track Engine: Programmatic capital velocity vs active co-development',
-      'Post-money SAFE stack ceiling (< 20% aggregate seed dilution)',
-      '72-hour founder execution & diligence velocity filter',
-      'Mandatory information rights & pro-rata side letter defense'
-    ],
-    redFlagTrigger: 'Total unpriced SAFEs > $2.5M or unallocated option pool trap'
-  },
-  {
-    id: 'delta-hedging-matrix',
-    docId: 'FM-MM-TEARSHEET-03',
-    category: 'capital-markets',
-    categoryLabel: 'Capital Markets & Hedging',
-    title: 'The Quantitative Delta-Hedging & Volatility Parameter Matrix',
-    subtitle: 'Systematic 0.18 Delta Overlay Calibration, Asymmetric Put Budgets & VIX Regimes',
-    format: 'Printable 1-Page PDF / 8.5" x 11"',
-    url: '/sheets/delta-hedging-matrix.html',
-    highlights: [
-      '0.18 Delta systematic covered call & cash-secured strangle rules (30–45 DTE)',
-      'Three-tier VIX regime playbook (VIX <15, 15–28, >28)',
-      'Pre-programmed tail-risk put harvest (+500% to +1,000% tiers)',
-      '100% cash-secured mandate & 4-week Treasury Bill sweep collateral'
-    ],
-    redFlagTrigger: 'Naked put writing or holding unhedged delta into IV spikes'
-  }
-];
+const { DILIGENCE_SHEETS, getSheetById } = require('./data/diligence-sheets-data');
 
 // GET /api/diligence-sheets - Return list of available executive tear-sheets
 app.get('/api/diligence-sheets', (req, res) => {
@@ -593,6 +541,67 @@ app.get('/api/diligence-sheets', (req, res) => {
     sheets: DILIGENCE_SHEETS
   });
 });
+
+// POST /api/request-sheet - Request an institutional 1-page diligence matrix delivered via email
+app.post('/api/request-sheet', async (req, res) => {
+  try {
+    const { email, sheetId, subscribeNewsletter } = req.body;
+    const cleanEmail = (email || '').toLowerCase().trim();
+
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.')) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide a valid institutional or personal email address.'
+      });
+    }
+
+    if (!sheetId) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please specify which 1-page diligence matrix you wish to receive.'
+      });
+    }
+
+    const sheet = getSheetById(sheetId);
+    if (!sheet) {
+      return res.status(404).json({
+        success: false,
+        error: 'Requested diligence matrix was not found.'
+      });
+    }
+
+    // Capture subscriber if opted in
+    if (subscribeNewsletter !== false) {
+      try {
+        subscriberManager.addSubscriber(cleanEmail);
+      } catch (subErr) {
+        // Continue even if already subscribed
+      }
+    }
+
+    // Dispatch email
+    const result = await emailDispatcher.dispatchTearSheet({
+      email: cleanEmail,
+      sheetId: sheet.id,
+      subscribeNewsletter: subscribeNewsletter !== false
+    });
+
+    return res.json({
+      success: true,
+      message: `The 1-page ${sheet.shortTitle || sheet.title} has been sent to ${cleanEmail}.`,
+      sheetTitle: sheet.title,
+      docId: sheet.docId,
+      email: cleanEmail
+    });
+  } catch (err) {
+    console.error('Error handling tear-sheet request:', err);
+    return res.status(500).json({
+      success: false,
+      error: 'An unexpected error occurred while dispatching the diligence sheet. Please try again or contact info@flourish-mgmt.com.'
+    });
+  }
+});
+
 
 // GET /api/articles - List published articles with recent vs archived breakdown
 app.get('/api/articles', (req, res) => {

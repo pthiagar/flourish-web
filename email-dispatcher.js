@@ -374,6 +374,204 @@ class EmailDispatcher {
     }
   }
 
+  generateTearSheetEmailHtml(sheet, subscriber) {
+    const siteUrl = process.env.BASE_URL || 'https://flourishmgmt.com';
+    const unsubToken = (subscriber && subscriber.unsubscribeToken) || 'unsub';
+    const unsubUrl = `${siteUrl}/api/unsubscribe?token=${unsubToken}`;
+    const printableUrl = `${siteUrl}${sheet.url}`;
+
+    const rulesHtml = sheet.rules.map(rule => `
+      <div style="background-color: #FFFFFF; border: 1px solid #DFD2C2; border-left: 4px solid #1A365D; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #B48D48; margin-bottom: 4px;">
+          Rule 0${rule.num}
+        </div>
+        <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; color: #1A365D; margin-bottom: 6px;">
+          ${rule.title}
+        </div>
+        <div style="font-size: 13px; line-height: 1.6; color: #4A5560;">
+          ${rule.desc}
+        </div>
+      </div>
+    `).join('');
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>${sheet.title} — Flourish Diligence Brief</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F5EFEB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1A212D;">
+  <div style="max-width: 640px; margin: 30px auto; background-color: #FAF7F2; border: 1px solid #DFD2C2; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.04);">
+    
+    <!-- Header -->
+    <div style="background-color: #1A365D; padding: 36px 30px; text-align: center; border-bottom: 2px solid #DFD2C2;">
+      <a href="${siteUrl}" style="text-decoration: none; display: inline-block;">
+        <img src="${siteUrl}/logo.png" alt="Flourish Management" width="180" style="display: block; margin: 0 auto 12px auto; max-width: 180px; height: auto; border: 0;" />
+      </a>
+      <h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: #FAF7F2; letter-spacing: 2.5px; font-weight: 400; text-transform: uppercase;">
+        FLOURISH MANAGEMENT
+      </h1>
+      <p style="margin: 5px 0 0 0; color: #A5B8D1; font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;">
+        Institutional Diligence Brief &bull; 1-Page Framework
+      </p>
+    </div>
+
+    <!-- Letter Body -->
+    <div style="padding: 36px 30px;">
+      <div style="margin-bottom: 16px;">
+        <span style="display: inline-block; background-color: #1A365D; color: #FAF7F2; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 4px 10px; border-radius: 4px;">
+          Doc ID: ${sheet.docId}
+        </span>
+        <span style="display: inline-block; background-color: #EFE7DE; color: #556B2F; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; margin-left: 6px;">
+          ${sheet.categoryLabel}
+        </span>
+      </div>
+
+      <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 22px; line-height: 1.3; color: #1A365D; margin: 0 0 8px 0; font-weight: 700;">
+        ${sheet.title}
+      </h2>
+      <p style="font-size: 13px; line-height: 1.5; color: #718096; margin: 0 0 20px 0; font-style: italic;">
+        ${sheet.subtitle}
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.65; color: #4A5560; margin: 0 0 20px 0;">
+        ${sheet.summary}
+      </p>
+
+      <!-- Walk-away Trigger Warning -->
+      <div style="background-color: #FFF5F5; border: 1px solid #FEB2B2; border-left: 4px solid #E53E3E; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;">
+        <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #C53030; margin-bottom: 4px;">
+          Walk-Away / Red Flag Threshold:
+        </div>
+        <div style="font-size: 13px; font-weight: 600; color: #9B2C2C; line-height: 1.5;">
+          ${sheet.redFlagTrigger}
+        </div>
+      </div>
+
+      <!-- Core 4 Execution Rules -->
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 16px; color: #1A365D; margin: 0 0 14px 0; font-weight: 700;">
+          The 4 Underwriting Mandates:
+        </h3>
+        ${rulesHtml}
+      </div>
+
+      <!-- Flourish Standard -->
+      <div style="background-color: #FAF7F2; border: 1px solid #DFD2C2; border-left: 4px solid #B48D48; border-radius: 8px; padding: 16px 18px; margin-bottom: 28px;">
+        <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #B48D48; margin-bottom: 4px;">
+          How Flourish Adopts This Standard:
+        </div>
+        <div style="font-size: 13px; line-height: 1.55; color: #1A212D;">
+          ${sheet.flourishAdoption}
+        </div>
+      </div>
+
+      <!-- Printable Button CTA -->
+      <div style="text-align: center; margin: 28px 0 16px 0;">
+        <a href="${printableUrl}" style="display: inline-block; background-color: #1A365D; color: #FAF7F2; text-decoration: none; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 12px 28px; border-radius: 24px; box-shadow: 0 3px 8px rgba(0,0,0,0.1);">
+          Open Printable 8.5" x 11" Matrix &rarr;
+        </a>
+        <p style="font-size: 11px; color: #8C9BAE; margin-top: 8px;">
+          Optimized for single-page deal committee printing and boardroom review.
+        </p>
+      </div>
+
+      <!-- General Partner Direct Connect -->
+      <div style="margin-top: 32px; border-top: 2px solid #DFD2C2; padding-top: 24px;">
+        <div style="background-color: #EFE7DE; border-radius: 12px; padding: 20px 22px; border: 1px solid #DFD2C2;">
+          <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 15px; color: #1A365D; margin: 0 0 6px 0;">
+            Investment Committee Direct Line
+          </h4>
+          <p style="font-size: 12px; color: #4A5560; line-height: 1.5; margin: 0 0 12px 0;">
+            Have a live acquisition, early-stage founder pitch, or equity overlay to review? Connect directly with our General Partners.
+          </p>
+          <div style="font-size: 12px; font-weight: 600; color: #1A365D;">
+            Flourish Management LLC &bull; <a href="mailto:info@flourish-mgmt.com" style="color: #1A365D; text-decoration: underline;">info@flourish-mgmt.com</a> &bull; +1 (424) 703-3332
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #EFE7DE; padding: 24px 30px; text-align: center; font-size: 12px; line-height: 1.6; color: #718096; border-top: 1px solid #DFD2C2;">
+      <p style="margin: 0 0 6px 0; font-weight: 600; color: #1A365D;">
+        Flourish Management LLC
+      </p>
+      <p style="margin: 0 0 10px 0; font-size: 11px;">
+        Strategic Real Estate • Options-Hedged Capital Markets • Growth-Stage Venture Capital
+      </p>
+      <p style="margin: 0 0 12px 0; font-size: 11px;">
+        You received this institutional diligence document because it was requested at flourishmgmt.com.<br>
+        <a href="${unsubUrl}" style="color: #3B6290; text-decoration: underline;">Click here to manage your email preferences</a>.
+      </p>
+      <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #DFD2C2; font-size: 10px; color: #8C9BA5; line-height: 1.5; text-align: justify;">
+        <strong>Institutional Research Disclaimer:</strong> Flourish Management LLC operates as an independent private investment management firm and family office allocation think tank. All market perspectives, underwriting frameworks, and quantitative models published herein are for informational and educational purposes only and do not constitute an offer to sell, a solicitation of an offer to buy, or an investment recommendation.
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
+    `;
+  }
+
+  async dispatchTearSheet({ email, sheetId, subscribeNewsletter = true }) {
+    const cleanEmail = (email || '').toLowerCase().trim();
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.')) {
+      throw new Error('Valid email address required');
+    }
+
+    const { getSheetById } = require('./data/diligence-sheets-data');
+    const sheet = getSheetById(sheetId);
+    if (!sheet) {
+      throw new Error(`Unknown tear-sheet: ${sheetId}`);
+    }
+
+    // Register or retrieve subscriber
+    let subscriber = null;
+    if (subscribeNewsletter) {
+      try {
+        const res = subscriberManager.addSubscriber(cleanEmail);
+        subscriber = res.subscriber;
+      } catch (e) {
+        subscriber = { email: cleanEmail, unsubscribeToken: 'default' };
+      }
+    } else {
+      subscriber = { email: cleanEmail, unsubscribeToken: 'default' };
+    }
+
+    const html = this.generateTearSheetEmailHtml(sheet, subscriber);
+    const senderEmail = process.env.SENDER_EMAIL || process.env.NOTIFICATION_EMAIL || 'info@flourish-mgmt.com';
+    const attachments = this.getLogoAttachment();
+
+    console.log(`\n==================================================`);
+    console.log(`📋 [TEAR-SHEET DISPATCH: ${sheet.badge} -> ${cleanEmail}]`);
+    console.log(`==================================================`);
+
+    if (this.transporter) {
+      await this.transporter.sendMail({
+        from: `"Flourish Diligence" <${senderEmail}>`,
+        to: cleanEmail,
+        subject: `[${sheet.badge}] ${sheet.title} — Flourish Diligence Brief`,
+        html,
+        attachments
+      });
+      console.log(`✓ Live email dispatched to: ${cleanEmail}`);
+    } else {
+      console.log(`ℹ️  [Mock Send] Dispatched ${sheet.badge} to: ${cleanEmail}`);
+    }
+
+    return {
+      success: true,
+      email: cleanEmail,
+      sheetId: sheet.id,
+      docId: sheet.docId,
+      message: `The 1-page ${sheet.shortTitle} has been dispatched to ${cleanEmail}.`
+    };
+  }
+
   async checkAndDispatch() {
     const monthKey = this.getCurrentMonthKey();
     const eligible = subscriberManager.getEligibleSubscribersForMonth(monthKey);

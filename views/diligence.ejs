@@ -62,9 +62,10 @@
           </div>
 
           <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
-            <a href="/sheets/multifamily-matrix.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
-              Preview Matrix &rarr;
-            </a>
+            <button type="button" data-sheet-id="multifamily-matrix" class="request-sheet-trigger w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors flex items-center justify-center space-x-2">
+              <svg class="w-4 h-4 text-brand-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Get 1-Pager via Email &rarr;</span>
+            </button>
           </div>
         </div>
 
@@ -104,9 +105,10 @@
           </div>
 
           <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
-            <a href="/sheets/seed-safe-audit.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
-              Preview Matrix &rarr;
-            </a>
+            <button type="button" data-sheet-id="seed-safe-audit" class="request-sheet-trigger w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors flex items-center justify-center space-x-2">
+              <svg class="w-4 h-4 text-brand-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Get 1-Pager via Email &rarr;</span>
+            </button>
           </div>
         </div>
 
@@ -146,9 +148,10 @@
           </div>
 
           <div class="pt-4 border-t border-brand-linen flex flex-col space-y-2">
-            <a href="/sheets/delta-hedging-matrix.html" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors">
-              Preview Matrix &rarr;
-            </a>
+            <button type="button" data-sheet-id="delta-hedging-matrix" class="request-sheet-trigger w-full text-center py-2.5 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-colors flex items-center justify-center space-x-2">
+              <svg class="w-4 h-4 text-brand-gold shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>Get 1-Pager via Email &rarr;</span>
+            </button>
           </div>
         </div>
 
@@ -156,6 +159,84 @@
 
     </div>
   </section>
+
+  <!-- Diligence 1-Pager Email Request Modal -->
+  <div id="sheet-request-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300 opacity-0" role="dialog" aria-modal="true" aria-labelledby="request-modal-title">
+    <div class="bg-white rounded-3xl border border-brand-linen max-w-lg w-full p-6 sm:p-8 shadow-2xl transform transition-all translate-y-4 duration-300 relative">
+      <!-- Close button -->
+      <button type="button" onclick="window.closeSheetRequestModal()" class="absolute top-5 right-5 text-brand-slate hover:text-brand-navy p-1 rounded-full hover:bg-brand-linen/40 transition-colors" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Badge & Doc ID -->
+      <div class="flex items-center space-x-2 pb-3 border-b border-brand-linen/80">
+        <span id="request-modal-docid" class="text-[11px] font-mono font-bold text-brand-gold tracking-widest uppercase">FM-RE-01</span>
+        <span class="text-brand-linen">|</span>
+        <span class="text-[10px] font-mono text-brand-slate uppercase tracking-wider">Institutional 1-Pager Delivery</span>
+      </div>
+
+      <!-- Title & Details -->
+      <div class="mt-4 mb-6">
+        <h3 id="request-modal-title" class="font-serif text-2xl font-bold text-brand-navy leading-snug">
+          Real Estate Acquisition Matrix
+        </h3>
+        <p id="request-modal-desc" class="text-xs text-brand-inkMuted mt-2 leading-relaxed">
+          Enter your email to receive this 1-page diligence framework directly in your inbox.
+        </p>
+      </div>
+
+      <!-- Request Form -->
+      <form id="sheet-request-form" class="space-y-4">
+        <input type="hidden" id="request-modal-sheet-id" name="sheetId" value="multifamily-matrix" />
+        
+        <div>
+          <label for="request-modal-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Your Email Address <span class="text-rose-600">*</span>
+          </label>
+          <input 
+            type="email" 
+            id="request-modal-email" 
+            name="email" 
+            required 
+            placeholder="allocator@familyoffice.com" 
+            class="w-full px-4 py-3 rounded-xl border border-brand-linen bg-brand-cream/40 text-brand-navy text-sm placeholder:text-brand-slate/60 focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:bg-white transition-all"
+          />
+        </div>
+
+        <div class="flex items-start space-x-2.5 pt-1">
+          <input 
+            type="checkbox" 
+            id="request-modal-newsletter" 
+            name="subscribeNewsletter" 
+            checked 
+            class="mt-1 w-4 h-4 rounded border-brand-linen text-brand-navy focus:ring-brand-gold accent-brand-navy"
+          />
+          <label for="request-modal-newsletter" class="text-[11px] text-brand-slate leading-normal">
+            Also receive Flourish Management's monthly partner letters on macro strategy, real estate, and venture.
+          </label>
+        </div>
+
+        <div id="request-modal-status" class="hidden text-xs py-2 px-3 rounded-lg"></div>
+
+        <div class="pt-2">
+          <button 
+            type="submit" 
+            id="request-modal-submit-btn" 
+            class="w-full py-3.5 px-6 rounded-xl bg-brand-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-brand-navyLight transition-all shadow-md flex items-center justify-center space-x-2"
+          >
+            <span>Send 1-Pager to My Inbox &rarr;</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Security / Direct Line Note -->
+      <div class="mt-6 pt-4 border-t border-brand-linen text-center">
+        <p class="text-[10px] text-brand-slateLight">
+          Direct allocator inquiry: <a href="mailto:info@flourish-mgmt.com" class="text-brand-navy underline font-medium">info@flourish-mgmt.com</a> &bull; +1 (424) 703-3332
+        </p>
+      </div>
+    </div>
+  </div>
 
 </main>
 
