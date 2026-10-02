@@ -164,27 +164,27 @@ class InsightsEngine {
     const padMonth = String(monthNum).padStart(2, '0');
     return {
       id: `macro-${monthName.toLowerCase()}-${year}`,
-      title: `Why We Sell 45-Day Calls Instead of Guessing the Fed`,
+      title: `Harvesting Volatility in the AI Infrastructure Cycle`,
       category: 'Macro Strategy',
       topic: 'options',
       publishDate: `${year}-${padMonth}-14T08:00:00Z`,
       displayDate: `${monthName} ${year}`,
       readTime: '4 Min Read',
-      summary: `Nobody knows if rates will drop 25 or 50 basis points. Here is the exact option overlay math we use to harvest cash regardless.`,
-      flourishAdoption: `Flourish systematically writes 0.18 delta calls 30 to 45 days out across core equity allocations, sweeping all collected premium into short-term Treasury bills rather than betting on rate announcements.`,
+      summary: `Hyperscaler capex swings create dramatic options mispricings. How we harvest double-digit yields while staying protected against sudden drawdowns.`,
+      flourishAdoption: `Flourish systematically writes 0.18 delta calls into heightened tech implied volatility, sweeping cash into short Treasuries while pre-funding deep crash puts with 20% of harvested premium.`,
       likes: 0,
       comments: [],
       body: `
-        <p>Wall Street spends billions trying to guess Federal Reserve rate decisions. Most forecasts are wrong.</p>
-        <p>We do not guess rate cuts. We treat stock price volatility as a raw commodity to harvest.</p>
-        <p>Here is our exact math on a $1,000,000 blue-chip equity position trading at $100 per share. Instead of hoping for rallies, we sell an out-of-the-money call option 45 days out at a $106 strike.</p>
-        <p>That $106 strike has a 0.18 delta. That means an 82% probability the stock stays below $106 through expiration. We collect $1.40 per share upfront—or $14,000 in immediate cash.</p>
+        <p>Big tech spending on AI data centers has created unprecedented volatility in public markets. Stocks swing wildly on every earnings report.</p>
+        <p>We do not guess earnings beats. We treat stock price volatility as a raw commodity to harvest.</p>
+        <p>Here is our exact math on a $1,000,000 blue-chip equity position trading at $100 per share. When implied volatility spikes, we sell an out-of-the-money call option 45 days out at a $106 strike.</p>
+        <p>That $106 strike has a 0.18 delta. That means an 82% probability the stock stays below $106 through expiration. Because market participants pay up for volatility, we collect $1.40 to $1.60 per share upfront—or $14,000 to $16,000 in immediate cash.</p>
         <h3 style="font-size: 1.2rem; font-family: serif; color: #1A365D; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Only Two Outcomes Happen</h3>
         <ul style="list-style-type: disc; padding-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 1.25rem; line-height: 1.6;">
-          <li style="margin-bottom: 0.5rem;"><strong>The stock stays below $106:</strong> The contract expires worthless. We keep our shares and we keep the $14,000 cash. Our net cost basis drops to $98.60.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>The stock surges above $106:</strong> Shares sell at $106. We collect a 6% capital gain ($60,000) plus the $14,000 premium. That is a $74,000 return in 45 days.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>The stock stays below $106:</strong> The contract expires worthless. We keep our shares and we keep the cash. Our net cost basis drops.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>The stock surges above $106:</strong> Shares sell at $106. We collect a 6% capital gain ($60,000) plus the premium. That is a $75,000 return in 45 days.</li>
         </ul>
-        <p>We sweep all harvested cash directly into 4-week Treasury bills. Over 12 months, this mechanical rotation generates 10% to 14% cash yields without speculative drama.</p>
+        <p>We sweep all harvested cash directly into 4-week Treasury bills and pre-fund crash puts. Over 12 months, this mechanical rotation generates 10% to 14% cash yields without speculative drama.</p>
       `
     };
   }
@@ -198,27 +198,26 @@ class InsightsEngine {
     const padMonth = String(monthNum).padStart(2, '0');
     return {
       id: `re-${monthName.toLowerCase()}-${year}`,
-      title: `The 15-Minute Multifamily Deal Screen`,
+      title: `The Power Grid Advantage in Commercial Real Estate`,
       category: 'Real Estate',
       topic: 'real-estate',
       publishDate: `${year}-${padMonth}-08T08:00:00Z`,
       displayDate: `${monthName} ${year}`,
       readTime: '3 Min Read',
-      summary: `Commercial brokers love optimistic pro-formas. Here is the 3-step test we use to eliminate 90% of bad deals in fifteen minutes.`,
-      flourishAdoption: `Flourish unconditionally runs every underwriting model at 50% operating expenses with confirmed third-party insurance quotes, walking away whenever in-place yields drop below our 6.5% baseline.`,
+      summary: `Data centers and industrial computing demand are straining regional power grids. Why properties with secured electrical capacity command growing rent premiums.`,
+      flourishAdoption: `Flourish audits municipal power capacity and underwrites a 15% utility escalation reserve across all commercial property acquisitions, prioritizing assets with secured electrical substations.`,
       likes: 0,
       comments: [],
       body: `
-        <p>Commercial brokers love optimistic pro-formas. Last month, our acquisitions team reviewed 16 off-market multifamily properties across Arizona and Florida. We walked away from 14 of them within two hours.</p>
-        <p>Here is what actually happened on a 48-unit property in suburban Phoenix. The offering memorandum claimed a 6.2% cap rate based on 'projected' expenses. It looked great on paper.</p>
-        <p>Then we asked for the real bills.</p>
-        <p>Property insurance had jumped from $650 per unit to $1,420 per unit over two years. The seller ignored that jump in their pro-forma. When we plugged in real utility bills, property taxes, and maintenance costs, total operating expenses hit 51% of gross rents.</p>
-        <p>The true day-one cap rate was 4.9%. With debt at 6.1%, the property would lose money every single month. The buyer would have to pay out of pocket just to service the mortgage.</p>
-        <h3 style="font-size: 1.2rem; font-family: serif; color: #1A365D; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">The 15-Minute Deal Screen</h3>
+        <p>AI compute requires immense electricity. Utilities across major growth corridors are warning that data center power demand is straining regional grids.</p>
+        <p>Most commercial property buyers ignore electrical infrastructure. That is a dangerous mistake.</p>
+        <p>When hyperscalers build massive computing hubs, local utility providers hike commercial power rates to fund substation expansions.</p>
+        <p>In our underwriting, we verify local transformer capacity and model a 15% utility cost buffer into operating expenses.</p>
+        <h3 style="font-size: 1.2rem; font-family: serif; color: #1A365D; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">The Infrastructure Underwriting Filter</h3>
         <ul style="list-style-type: disc; padding-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 1.25rem; line-height: 1.6;">
-          <li style="margin-bottom: 0.5rem;"><strong>Apply the 50% Rule First:</strong> Deduct half of gross collected rents for operating costs. If the remaining cash flow cannot cover debt service by at least 1.35x, stop looking.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Demand Actual Trailing-12 Invoices:</strong> Never trust a broker summary. Ask for the utility bills, trash contracts, and insurance declarations directly.</li>
-          <li style="margin-bottom: 0.5rem;"><strong>Check Replacement Cost:</strong> If the asking price is $190,000 per door and it costs $220,000 to build new next door, you have built-in safety. If it is $280,000, walk away.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Apply the 50% Rule First:</strong> Deduct half of gross collected rents for operating costs. If the remaining cash flow cannot cover debt service by at least 1.35x, walk away.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Verify Substation Capacity:</strong> Commercial properties with dedicated power infrastructure command higher tenant retention and lease pricing power.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Check Replacement Cost:</strong> Buy at a 25% to 30% discount to replacement cost. Building new facilities with modern grid hookups takes years.</li>
         </ul>
         <p>Disciplined investing is mostly saying no. You do not get rewarded for doing deals. You get rewarded for doing deals that survive bad years.</p>
       `
@@ -234,29 +233,26 @@ class InsightsEngine {
     const padMonth = String(monthNum).padStart(2, '0');
     return {
       id: `vc-${monthName.toLowerCase()}-${year}`,
-      title: `The 72-Hour Test: How We Screen Founders Before We Wire Capital`,
+      title: `The Post-Wrapper Era: Backing Founders with Proprietary Data Moats`,
       category: 'Venture Capital',
       topic: 'venture',
       publishDate: `${year}-${padMonth}-20T08:00:00Z`,
       displayDate: `${monthName} ${year}`,
       readTime: '3 Min Read',
-      summary: `Slide decks are polished theater. How a seed founder answers tough questions over a single weekend reveals everything about execution speed.`,
-      flourishAdoption: `Flourish runs a 72-hour responsiveness benchmark during diligence, investing in founders who demonstrate operational speed, transparency, and data clarity under pressure.`,
+      summary: `When foundation models can build generic tools overnight, real enterprise moats come from proprietary data loops and high switching friction.`,
+      flourishAdoption: `Flourish rejects superficial API wrappers, backing seed founders building vertical enterprise workflows integrated directly into proprietary data pipelines.`,
       likes: 0,
       comments: [],
       body: `
-        <p>Almost every startup pitch deck looks compelling in a conference room. Founders rehearse their presentations, memorize industry buzzwords, and show charts where revenue hockey-sticks into the stratosphere.</p>
-        <p>Pitch decks are theater. Day-to-day startup execution is trench warfare.</p>
-        <p>To cut through the rehearsal, we use what we call the 72-Hour Test. After an initial meeting with an interesting seed founder, we send an email with three concrete operational questions:</p>
-        <ol style="list-style-type: decimal; padding-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 1.25rem; line-height: 1.6;">
-          <li style="margin-bottom: 0.5rem;"><em>'Can you send raw, unedited churn figures for your last five pilot customers who did not renew?'</em></li>
-          <li style="margin-bottom: 0.5rem;"><em>'What does your fully burdened customer acquisition cost look like when we exclude founder-led sales?'</em></li>
-          <li style="margin-bottom: 0.5rem;"><em>'If we wire $500,000 on Friday, what is the exact hiring roadmap and cash-out date?'</em></li>
-        </ol>
-        <h3 style="font-size: 1.2rem; font-family: serif; color: #1A365D; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">How Great Founders Respond</h3>
-        <p>Weak teams panic. They take eight days to reply. When the email finally arrives, it is filled with defensive paragraphs explaining why the questions don't apply to their market.</p>
-        <p>Great founders do the opposite. Within 24 to 48 hours, they reply with a link to an unvarnished spreadsheet. They state clearly: <em>'Here is why two pilots failed. Here is the bug we fixed. And here is our real runway down to the dollar.'</em></p>
-        <p>Startup speed and radical transparency are superpowers. If a founder cannot provide honest data when raising money, they will never do it when things go wrong in front of customers.</p>
+        <p>Foundation models get smarter and cheaper every three months. Features that required complex machine learning architectures two years ago now take an afternoon to build.</p>
+        <p>For seed founders, building thin interfaces over public APIs is a fatal trap.</p>
+        <p>To survive and build lasting enterprise value, early-stage startups need defensible structural moats.</p>
+        <h3 style="font-size: 1.2rem; font-family: serif; color: #1A365D; margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">The Two Moats That Endure</h3>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 1.25rem; line-height: 1.6;">
+          <li style="margin-bottom: 0.5rem;"><strong>Private Vertical Data Loops:</strong> Software embedded inside specialized industries—like logistics, water treatment, or healthcare compliance—captures un-scrapable operational data.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>High Switching Costs:</strong> When software integrates into daily mission-critical workflows, enterprise customers rarely switch. That retention protects cash flow.</li>
+        </ul>
+        <p>We back technical teams building deep vertical software with strong unit economics. When foundation models improve, true vertical platforms grow stronger, not weaker.</p>
       `
     };
   }
@@ -346,6 +342,13 @@ class InsightsEngine {
   getArchivedArticles(category = null) {
     const all = this.getPublishedArticles(category);
     return all.filter(a => a.isArchived);
+  }
+
+  /**
+   * Returns all published articles for sitemap and catalog indexing
+   */
+  getAllArticles() {
+    return this.getPublishedArticles();
   }
 
   /**
