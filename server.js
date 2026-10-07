@@ -41,6 +41,16 @@ app.use(
   })
 );
 
+// Canonical apex domain redirect: redirect all www subdomains to the apex domain (301 Permanent)
+app.use((req, res, next) => {
+  const host = req.headers.host || '';
+  if (host.startsWith('www.')) {
+    const apexHost = host.replace(/^www\./, '');
+    return res.redirect(301, `https://${apexHost}${req.originalUrl}`);
+  }
+  next();
+});
+
 // 2. Body parsing middleware (restricted sizes to prevent payload-inflation DDoS attacks)
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
