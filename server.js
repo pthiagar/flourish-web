@@ -911,11 +911,11 @@ app.get('/insights/:id', (req, res) => {
   try {
     const article = insightsEngine.getArticleById(req.params.id);
     if (!article) {
-      return res.redirect('/insights');
+      return res.status(404).render('404', { currentPath: req.path });
     }
     res.render('insight-detail', { currentPath: '/insights', article });
   } catch (err) {
-    res.redirect('/insights');
+    res.status(404).render('404', { currentPath: req.path });
   }
 });
 
@@ -962,9 +962,14 @@ app.get('/sitemap.xml', (req, res) => {
   }
 });
 
-// Fallback 404: redirect unmapped URLs to overview
-app.get('*', (req, res) => {
-  res.redirect('/');
+// Explicit 301 permanent redirect for legacy /index.html requests
+app.get('/index.html', (req, res) => {
+  res.redirect(301, '/');
+});
+
+// Fallback 404: Render branded institutional 404 page with HTTP 404 status
+app.use((req, res) => {
+  res.status(404).render('404', { currentPath: req.path });
 });
 
 app.listen(PORT, () => {
